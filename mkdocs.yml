@@ -1,0 +1,81 @@
+# Project information
+site_name: Guia de Estudos Cisco ACI
+site_description: Guia de Estudos Cisco ACI
+site_author: Weslley Silva
+site_url: https://infra.expert/cisco_aci/
+
+# Repository
+repo_name: weslleycsil/estudos-certificacoes
+repo_url: https://github.com/weslleycsil/estudos-certificacoes/tree/main/cisco/cisco_aci
+
+# Copyright
+copyright: Weslley Silva &copy; 2024
+
+# Configuration
+theme:
+  name: material
+  language: pt-BR
+  palette:
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/link
+        name: Switch to light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: black
+      accent: indigo
+      toggle:
+        icon: material/toggle-switch-off
+        name: Switch to system preference
+  font:
+    text: Roboto
+    code: Roboto Mono
+    
+plugins:
+  - i18n:
+      docs_structure: folder
+      languages:
+        - locale: pt-BR
+          default: true
+          name: Português
+          build: true
+        #- locale: en
+        #  name: English
+        #  build: true
+        #  site_name: "Cisco ACI Guide"
+        #  site_description: "Cisco ACI Guide"
+
+# Extras
+extra:
+  social:
+    - icon: fontawesome/brands/github-alt
+      link: https://github.com/weslleycsil
+    - icon: fontawesome/brands/linkedin
+      link: https://linkedin.com/in/weslleycsil
+  alternate:
+    - name: Português
+      link: /cisco_aci
+      lang: pt-BR
+    #- name: English
+    #  link: /cisco_aci/en/ 
+    #  lang: en
+
+# Extensions
+markdown_extensions:
+  - admonition
+  - codehilite:
+      guess_lang: false
+  - toc:
+      permalink: true
+
+
+# Navigation
+nav:
+  - Inicio: index.md

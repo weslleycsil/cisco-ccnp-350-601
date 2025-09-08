@@ -93,4 +93,3 @@ markdown_extensions:
 nav:
   - Inicio: index.md
   - Roadmap: roadmap.md
-  - Tetse: teste.md

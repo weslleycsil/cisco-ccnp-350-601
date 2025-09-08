@@ -1,6 +1,6 @@
-mkdocs
-mkdocs-material
-pymdown-extensions
+mkdocs>=1.6.0
+mkdocs-material>=9.5.0
+pymdown-extensions>=10.8
+mkdocs-mermaid2-plugin>=1.2.1
+mkdocs-static-i18n>=1.2.3
 mkdocs-glightbox
-mkdocs-static-i18n
-

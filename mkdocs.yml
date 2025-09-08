@@ -5,8 +5,8 @@ site_author: Weslley Silva
 site_url: https://infra.expert/cisco_ccnp_350-501/
 
 # Repository
-repo_name: weslleycsil/estudos-certificacoes
-repo_url: https://github.com/weslleycsil/estudos-certificacoes/tree/main/cisco/cisco_ccnp_350-501
+repo_name: weslleycsil/cisco-ccnp-350-601
+repo_url: https://github.com/weslleycsil/cisco-ccnp-350-601
 
 # Copyright
 copyright: Weslley Silva &copy; 2025
@@ -39,6 +39,8 @@ theme:
     code: Roboto Mono
     
 plugins:
+  - search
+  - mermaid2
   - i18n:
       docs_structure: folder
       languages:
@@ -70,12 +72,25 @@ extra:
 # Extensions
 markdown_extensions:
   - admonition
-  - codehilite:
-      guess_lang: false
+  - attr_list
   - toc:
       permalink: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+  - pymdownx.superfences:
+        # make exceptions to highlighting of code:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:mermaid2.fence_mermaid_custom
+  - def_list
+  - pymdownx.tasklist:
+      custom_checkbox: true
 
 
 # Navigation
 nav:
   - Inicio: index.md
+  - Roadmap: roadmap.md
+  - Tetse: teste.md

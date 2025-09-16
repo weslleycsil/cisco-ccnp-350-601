@@ -11,36 +11,123 @@ gantt
   dateFormat  YYYY-MM-DD
   axisFormat  %d/%m
 
-  %% Ajuste a data inicial abaixo para o seu início real
-  section Fundamentos (Revisão CCNA -> DC)
-  STP/VLAN/EtherChannel           :a1, 2025-09-08, 14d
-  OSPF/BGP (conceitos)            :a2, after a1, 7d
+  section Fundamentos
+  STP/VLAN/EtherChannel            :a1, 2025-09-08, 2w
+  OSPF/BGP                         :a2, after a1, 1w
 
   section Network em DC (NX-OS)
-  vPC/Port-Channel/HSRP/VRRP      :b1, after a2, 14d
-  OSPF underlay + BGP overlay     :b2, after b1, 7d
+  vPC/Port-Channel/HSRP/VRRP       :b1, after a2, 2w
+  OSPF underlay + BGP overlay      :b2, after b1, 1w
 
   section VXLAN EVPN
-  Conceitos + NVE/VNI/IRB         :c1, after b2, 7d
-  EVPN (Route Types, Anycast GW)  :c2, after c1, 7d
+  Conceitos + NVE/VNI/IRB          :c1, after b2, 1w
+  EVPN (Route Types, Anycast GW)   :c2, after c1, 1w
 
   section Compute (UCS)
-  UCS Arch/Policies/Profiles      :d1, after c2, 14d
+  UCS Arch/Policies/Profiles       :d1, after c2, 2w
+  Intersight + Virtualização HW    :d2, after d1, 1w
 
-  section Storage Networking
-  FC/FCoE/VSAN/Zoning/NPIV        :e1, after d1, 14d
+  section Storage
+  FC/FCoE/Zoning/NPIV              :e1, after d2, 2w
+  iSCSI/NFS/NVMe-oF                :e2, after e1, 1w
 
-  section Security
-  AAA/RBAC/CoPP/ACLs              :f1, after e1, 7d
+  section Segurança
+  AAA/RBAC/Segurança em NX-OS      :f1, after e2, 1w
+  ACI Tenants/BD/EPG/Contracts     :f2, after f1, 1w
 
-  section Automation
-  NX-API/REST/Ansible/YANG/NETCONF:g1, after f1, 7d
+  section Automação
+  NX-API/UCS API/Intersight API    :g1, after f2, 1w
+  Ansible/Python/YANG/JSON/XML     :g2, after g1, 1w
 
-  section Revisão & Prova
-  Revisão geral + simulados       :h1, after g1, 14d
+  section Revisão Final
+  Revisão + Labs + Dumps           :h1, after g2, 1w
 ```
 
 > Legenda: **S%W** na régua = Semana (S01 = semana 1, etc.). Ajuste as semanas conforme o teu início real.
+
+---
+
+## Visão por módulos
+
+### Fundamentos
+
+```mermaid
+%%{init: {"theme": "default", "gantt": {"titleTopMargin":25, "barHeight":30, "barGap":10, "fontSize":16, "sectionFontSize":18, "numberSectionStyles":4, "axisFormat": "S%W"}, "themeVariables": {"fontSize":"18px"}} }%%
+gantt
+    title Fundamentos (Revisão CCNA -> DC)
+    dateFormat  YYYY-MM-DD
+    axisFormat  %d/%m
+    STP / VLAN / EtherChannel    :a1, 2025-09-08, 1w
+    OSPF / BGP (conceitos)       :a2,  after a1, 1w
+```
+
+### Network em DC (NX-OS)
+
+```mermaid
+%%{init: {"theme": "default", "gantt": {"titleTopMargin":25, "barHeight":30, "barGap":10, "fontSize":16, "sectionFontSize":18, "numberSectionStyles":4, "axisFormat": "S%W"}, "themeVariables": {"fontSize":"18px"}} }%%
+gantt
+    title Network em DC (NX-OS)
+    dateFormat  YYYY-MM-DD
+    axisFormat  %d/%m
+    vPC / Port-Channel / HSRP / VRRP    :b1, 2025-09-22, 1w
+    OSPF underlay                       :b2, after b1, 1w
+    BGP overlay                         :b3, after b2, 1w
+    VXLAN conceitos + NVE/VNI/IRB       :b4, after b3, 1w
+    EVPN (Route Types, Anycast GW)      :b5, after b4, 1w
+```
+
+### Compute (UCS)
+
+```mermaid
+%%{init: {"theme": "default", "gantt": {"titleTopMargin":25, "barHeight":30, "barGap":10, "fontSize":16, "sectionFontSize":18, "numberSectionStyles":4, "axisFormat": "S%W"}, "themeVariables": {"fontSize":"18px"}} }%%
+gantt
+    title Compute (UCS)
+    dateFormat  YYYY-MM-DD
+    axisFormat  %d/%m
+    UCS Architecture / Fabric Interconnects   :c1, 2025-10-27, 1w
+    Service Profiles / Pools / Policies       :c2, after c1, 1w
+    Intersight + Virtualização HW             :c3, after c2, 1w
+```
+
+### Storage
+
+```mermaid
+%%{init: {"theme": "default", "gantt": {"titleTopMargin":25, "barHeight":30, "barGap":10, "fontSize":16, "sectionFontSize":18, "numberSectionStyles":4, "axisFormat": "S%W"}, "themeVariables": {"fontSize":"18px"}} }%%
+gantt
+    title Storage
+    dateFormat  YYYY-MM-DD
+    axisFormat  %d/%m
+    FC / FCoE / Zoning / NPIV      :d1, 2025-09-22, 1w
+    iSCSI                          :d2, after d1, 0.5w
+    NFS                            :d3, after d2, 0.5w
+    NVMe-oF                        :d4, after d3, 1w
+```
+
+### Segurança
+
+```mermaid
+%%{init: {"theme": "default", "gantt": {"titleTopMargin":25, "barHeight":30, "barGap":10, "fontSize":16, "sectionFontSize":18, "numberSectionStyles":4, "axisFormat": "S%W"}, "themeVariables": {"fontSize":"18px"}} }%%
+gantt
+    title Segurança
+    dateFormat  YYYY-MM-DD
+    axisFormat  %d/%m
+    AAA / RBAC em NX-OS/UCS        :e1, 2025-09-22, 0.5w
+    Segurança em NX-OS             :e2, after e1, 0.5w
+    ACI Tenants / BD / EPG / Contracts :e3, after e2, 1w
+```
+
+### Automação
+
+```mermaid
+%%{init: {"theme": "default", "gantt": {"titleTopMargin":25, "barHeight":30, "barGap":10, "fontSize":16, "sectionFontSize":18, "numberSectionStyles":4, "axisFormat": "S%W"}, "themeVariables": {"fontSize":"18px"}} }%%
+gantt
+    title Automação
+    dateFormat  YYYY-MM-DD
+    axisFormat  %d/%m
+    NX-API / UCS API / Intersight API   :f1, 2025-09-22, 0.5w
+    Ansible / Python / YANG / JSON      :f2, after f1, 0.5w
+```
+
 
 ---
 

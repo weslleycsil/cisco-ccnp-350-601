@@ -97,5 +97,5 @@ nav:
       - "DCICN 640-911":
           - Introdução: pt-BR/revisao-ccna-dc/640-911/index.md
           - Modelos de Rede: pt-BR/revisao-ccna-dc/640-911/modelos-de-rede.md
-          - Endereçamento IPv4: pt-BR/revisao-ccna-dc/640-911/enderecamento-ipv4.md
+          #- Endereçamento IPv4: pt-BR/revisao-ccna-dc/640-911/enderecamento-ipv4.md
   - Roadmap: roadmap.md

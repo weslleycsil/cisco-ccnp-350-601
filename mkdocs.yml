@@ -93,9 +93,9 @@ markdown_extensions:
 nav:
   - Inicio: index.md
   - Revisão CCNA Data Center:
-      - Visão geral: docs/pt-BR/revisao-ccna-dc/index.md
+      - Visão geral: pt-BR/revisao-ccna-dc/index.md
       - "DCICN 640-911":
-          - Introdução: docs/pt-BR/revisao-ccna-dc/640-911/index.md
-          - Modelos de Rede: docs/pt-BR/revisao-ccna-dc/640-911/modelos-de-rede.md
-          - Endereçamento IPv4: docs/pt-BR/revisao-ccna-dc/640-911/enderecamento-ipv4.md
+          - Introdução: pt-BR/revisao-ccna-dc/640-911/index.md
+          - Modelos de Rede: pt-BR/revisao-ccna-dc/640-911/modelos-de-rede.md
+          - Endereçamento IPv4: pt-BR/revisao-ccna-dc/640-911/enderecamento-ipv4.md
   - Roadmap: roadmap.md

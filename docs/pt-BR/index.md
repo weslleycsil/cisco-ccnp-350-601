@@ -1,17 +1,21 @@
-# Welcome to MkDocs
+# 📘 CCNP DCCOR 350-601
 
-Portugues AQUI For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+Este repositório contém meu plano de estudos para o exame **DCCOR 350-601**.
 
-## Commands
+## 📚 Conteúdo
+- Roadmap de estudos
+- Teoria por domínio
+- Laboratórios práticos (CML)
+- Integração com Cisco Black Belt
+- Acompanhamento de progresso
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
+## 🎯 Objetivo
+Consolidar conhecimento em:
+- Data Center Networking
+- VXLAN EVPN
+- UCS
+- Storage
+- ACI
+- Automação
 
-## Project layout
-
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+---

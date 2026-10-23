@@ -1,0 +1,1341 @@
+
+<!DOCTYPE html>
+
+<html class="no-js" lang="pt">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="Guia de Estudos CCNP DCCOR 350-601" name="description"/>
+<meta content="Weslley Silva" name="author"/>
+<link href="https://infra.expert/cisco_ccnp_350-501/revisao-ccna-dc/640-911/enderecamento-ipv4/" rel="canonical"/>
+<link href="../modelos-de-rede/" rel="prev"/>
+<link href="../servicos-de-rede/" rel="next"/>
+<link href="/cisco_aci" hreflang="pt-BR" rel="alternate"/>
+<link href="../../../assets/images/favicon.png" rel="icon"/>
+<meta content="mkdocs-1.6.1, mkdocs-material-9.7.7" name="generator"/>
+<title>Endereçamento IPv4, Máscaras, Subnetting e CIDR - Guia de Estudos CCNP DCCOR 350-601</title>
+<link href="../../../assets/stylesheets/main.ec1eaa64.min.css" rel="stylesheet"/>
+<link href="../../../assets/stylesheets/palette.ab4e12ef.min.css" rel="stylesheet"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
+<style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+<script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+</head>
+<body data-md-color-accent="indigo" data-md-color-primary="indigo" data-md-color-scheme="default" dir="ltr">
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#enderecamento-ipv4-mascaras-subnetting-e-cidr">
+          Pular para conteúdo
+        </a>
+</div>
+<div data-md-component="announce">
+</div>
+<header class="md-header md-header--shadow" data-md-component="header">
+<nav aria-label="Cabeçalho" class="md-header__inner md-grid">
+<a aria-label="Guia de Estudos CCNP DCCOR 350-601" class="md-header__button md-logo" data-md-component="logo" href="../../.." title="Guia de Estudos CCNP DCCOR 350-601">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+</a>
+<label class="md-header__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+</label>
+<div class="md-header__title" data-md-component="header-title">
+<div class="md-header__ellipsis">
+<div class="md-header__topic">
+<span class="md-ellipsis">
+            Guia de Estudos CCNP DCCOR 350-601
+          </span>
+</div>
+<div class="md-header__topic" data-md-component="header-topic">
+<span class="md-ellipsis">
+            
+              Endereçamento IPv4, Máscaras, Subnetting e CIDR
+            
+          </span>
+</div>
+</div>
+</div>
+<form class="md-header__option" data-md-component="palette">
+<input aria-label="Switch to light mode" class="md-option" data-md-color-accent="indigo" data-md-color-media="(prefers-color-scheme)" data-md-color-primary="indigo" data-md-color-scheme="default" id="__palette_0" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_1" hidden="" title="Switch to light mode">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1M8 13h8v-2H8zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4a5 5 0 0 0 5-5 5 5 0 0 0-5-5"></path></svg>
+</label>
+<input aria-label="Switch to dark mode" class="md-option" data-md-color-accent="indigo" data-md-color-media="(prefers-color-scheme: light)" data-md-color-primary="indigo" data-md-color-scheme="default" id="__palette_1" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_2" hidden="" title="Switch to dark mode">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"></path></svg>
+</label>
+<input aria-label="Switch to system preference" class="md-option" data-md-color-accent="indigo" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-primary="black" data-md-color-scheme="slate" id="__palette_2" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_0" hidden="" title="Switch to system preference">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5M7 15a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"></path></svg>
+</label>
+</form>
+<script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+<div class="md-header__option">
+<div class="md-select">
+<button aria-label="Selecione o idioma" class="md-header__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"></path></svg>
+</button>
+<div class="md-select__inner">
+<ul class="md-select__list">
+<li class="md-select__item">
+<a class="md-select__link" href="/cisco_aci" hreflang="pt-BR">
+              Português
+            </a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<label class="md-header__button md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+</label>
+<div class="md-search" data-md-component="search" role="dialog">
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input aria-label="Buscar" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" name="query" placeholder="Buscar" required="" spellcheck="false" type="text"/>
+<label class="md-search__icon md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+</label>
+<nav aria-label="Pesquisar" class="md-search__options">
+<button aria-label="Limpar" class="md-search__icon md-icon" tabindex="-1" title="Limpar" type="reset">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+</button>
+</nav>
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="" tabindex="0">
+<div class="md-search-result" data-md-component="search-result">
+<div class="md-search-result__meta">
+            Inicializando busca
+          </div>
+<ol class="md-search-result__list" role="presentation"></ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="md-header__source">
+<a class="md-source" data-md-component="source" href="https://github.com/weslleycsil/cisco-ccnp-350-601" title="Ir para repositório">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"></path></svg>
+</div>
+<div class="md-source__repository">
+    weslleycsil/cisco-ccnp-350-601
+  </div>
+</a>
+</div>
+</nav>
+</header>
+<div class="md-container" data-md-component="container">
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Navegação" class="md-nav md-nav--primary" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="Guia de Estudos CCNP DCCOR 350-601" class="md-nav__button md-logo" data-md-component="logo" href="../../.." title="Guia de Estudos CCNP DCCOR 350-601">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+</a>
+    Guia de Estudos CCNP DCCOR 350-601
+  </label>
+<div class="md-nav__source">
+<a class="md-source" data-md-component="source" href="https://github.com/weslleycsil/cisco-ccnp-350-601" title="Ir para repositório">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"></path></svg>
+</div>
+<div class="md-source__repository">
+    weslleycsil/cisco-ccnp-350-601
+  </div>
+</a>
+</div>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../..">
+<span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Revisão CCNA Data Center
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="true" aria-labelledby="__nav_2_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_2">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Revisão CCNA Data Center
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../">
+<span class="md-ellipsis">
+    
+  
+    Visão geral
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_2_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    DCICN 640-911
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="true" aria-labelledby="__nav_2_2_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_2">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    DCICN 640-911
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../">
+<span class="md-ellipsis">
+    
+  
+    Introdução
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../modelos-de-rede/">
+<span class="md-ellipsis">
+    
+  
+    Modelos de Rede
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+<span class="md-ellipsis">
+    
+  
+    Endereçamento IPv4
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
+<span class="md-ellipsis">
+    
+  
+    Endereçamento IPv4
+  
+
+    
+  </span>
+</a>
+<nav aria-label="Índice" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#1-o-que-e-um-endereco-ipv4">
+<span class="md-ellipsis">
+      
+        1. O que é um endereço IPv4?
+      
+    </span>
+</a>
+<nav aria-label="1. O que é um endereço IPv4?" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#11-representacao-binaria">
+<span class="md-ellipsis">
+      
+        1.1 Representação binária
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#2-rede-e-host-como-a-mascara-funciona">
+<span class="md-ellipsis">
+      
+        2. Rede e host: como a máscara funciona
+      
+    </span>
+</a>
+<nav aria-label="2. Rede e host: como a máscara funciona" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#21-endereco-de-rede-broadcast-e-enderecos-utilizaveis">
+<span class="md-ellipsis">
+      
+        2.1 Endereço de rede, broadcast e endereços utilizáveis
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#3-classes-ipv4-modelo-historico">
+<span class="md-ellipsis">
+      
+        3. Classes IPv4: modelo histórico
+      
+    </span>
+</a>
+<nav aria-label="3. Classes IPv4: modelo histórico" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#31-como-os-primeiros-bits-identificavam-a-classe">
+<span class="md-ellipsis">
+      
+        3.1 Como os primeiros bits identificavam a classe?
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#4-cidr-enderecamento-sem-classes">
+<span class="md-ellipsis">
+      
+        4. CIDR: endereçamento sem classes
+      
+    </span>
+</a>
+<nav aria-label="4. CIDR: endereçamento sem classes" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#41-prefixos-comuns">
+<span class="md-ellipsis">
+      
+        4.1 Prefixos comuns
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#42-exemplo-descobrir-a-rede-de-192168107726">
+<span class="md-ellipsis">
+      
+        4.2 Exemplo: descobrir a rede de 192.168.10.77/26
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#43-exemplo-dividir-uma-rede-24-em-quatro-26">
+<span class="md-ellipsis">
+      
+        4.3 Exemplo: dividir uma rede /24 em quatro /26
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#5-vlsm-mascaras-de-tamanho-variavel">
+<span class="md-ellipsis">
+      
+        5. VLSM: máscaras de tamanho variável
+      
+    </span>
+</a>
+<nav aria-label="5. VLSM: máscaras de tamanho variável" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#51-metodo-para-planejar-vlsm">
+<span class="md-ellipsis">
+      
+        5.1 Método para planejar VLSM
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#6-enderecos-ipv4-privados-e-especiais">
+<span class="md-ellipsis">
+      
+        6. Endereços IPv4 privados e especiais
+      
+    </span>
+</a>
+<nav aria-label="6. Endereços IPv4 privados e especiais" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#61-outros-enderecos-especiais-importantes">
+<span class="md-ellipsis">
+      
+        6.1 Outros endereços especiais importantes
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#7-sumarizacao-de-rotas">
+<span class="md-ellipsis">
+      
+        7. Sumarização de rotas
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#8-aplicacao-em-data-centers">
+<span class="md-ellipsis">
+      
+        8. Aplicação em Data Centers
+      
+    </span>
+</a>
+<nav aria-label="8. Aplicação em Data Centers" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#81-por-que-31-e-32-aparecem-em-fabrics-spine-leaf">
+<span class="md-ellipsis">
+      
+        8.1 Por que /31 e /32 aparecem em fabrics Spine-Leaf?
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#9-relacao-com-o-ccnp-dccor-350-601">
+<span class="md-ellipsis">
+      
+        9. Relação com o CCNP DCCOR 350-601
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#10-exercicios-de-fixacao">
+<span class="md-ellipsis">
+      
+        10. Exercícios de fixação
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#11-checklist-de-revisao">
+<span class="md-ellipsis">
+      
+        11. Checklist de revisão
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../servicos-de-rede/">
+<span class="md-ellipsis">
+    
+  
+    Serviços de Rede
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../roadmap/">
+<span class="md-ellipsis">
+    
+  
+    Roadmap
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Índice" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#1-o-que-e-um-endereco-ipv4">
+<span class="md-ellipsis">
+      
+        1. O que é um endereço IPv4?
+      
+    </span>
+</a>
+<nav aria-label="1. O que é um endereço IPv4?" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#11-representacao-binaria">
+<span class="md-ellipsis">
+      
+        1.1 Representação binária
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#2-rede-e-host-como-a-mascara-funciona">
+<span class="md-ellipsis">
+      
+        2. Rede e host: como a máscara funciona
+      
+    </span>
+</a>
+<nav aria-label="2. Rede e host: como a máscara funciona" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#21-endereco-de-rede-broadcast-e-enderecos-utilizaveis">
+<span class="md-ellipsis">
+      
+        2.1 Endereço de rede, broadcast e endereços utilizáveis
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#3-classes-ipv4-modelo-historico">
+<span class="md-ellipsis">
+      
+        3. Classes IPv4: modelo histórico
+      
+    </span>
+</a>
+<nav aria-label="3. Classes IPv4: modelo histórico" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#31-como-os-primeiros-bits-identificavam-a-classe">
+<span class="md-ellipsis">
+      
+        3.1 Como os primeiros bits identificavam a classe?
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#4-cidr-enderecamento-sem-classes">
+<span class="md-ellipsis">
+      
+        4. CIDR: endereçamento sem classes
+      
+    </span>
+</a>
+<nav aria-label="4. CIDR: endereçamento sem classes" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#41-prefixos-comuns">
+<span class="md-ellipsis">
+      
+        4.1 Prefixos comuns
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#42-exemplo-descobrir-a-rede-de-192168107726">
+<span class="md-ellipsis">
+      
+        4.2 Exemplo: descobrir a rede de 192.168.10.77/26
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#43-exemplo-dividir-uma-rede-24-em-quatro-26">
+<span class="md-ellipsis">
+      
+        4.3 Exemplo: dividir uma rede /24 em quatro /26
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#5-vlsm-mascaras-de-tamanho-variavel">
+<span class="md-ellipsis">
+      
+        5. VLSM: máscaras de tamanho variável
+      
+    </span>
+</a>
+<nav aria-label="5. VLSM: máscaras de tamanho variável" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#51-metodo-para-planejar-vlsm">
+<span class="md-ellipsis">
+      
+        5.1 Método para planejar VLSM
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#6-enderecos-ipv4-privados-e-especiais">
+<span class="md-ellipsis">
+      
+        6. Endereços IPv4 privados e especiais
+      
+    </span>
+</a>
+<nav aria-label="6. Endereços IPv4 privados e especiais" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#61-outros-enderecos-especiais-importantes">
+<span class="md-ellipsis">
+      
+        6.1 Outros endereços especiais importantes
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#7-sumarizacao-de-rotas">
+<span class="md-ellipsis">
+      
+        7. Sumarização de rotas
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#8-aplicacao-em-data-centers">
+<span class="md-ellipsis">
+      
+        8. Aplicação em Data Centers
+      
+    </span>
+</a>
+<nav aria-label="8. Aplicação em Data Centers" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#81-por-que-31-e-32-aparecem-em-fabrics-spine-leaf">
+<span class="md-ellipsis">
+      
+        8.1 Por que /31 e /32 aparecem em fabrics Spine-Leaf?
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#9-relacao-com-o-ccnp-dccor-350-601">
+<span class="md-ellipsis">
+      
+        9. Relação com o CCNP DCCOR 350-601
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#10-exercicios-de-fixacao">
+<span class="md-ellipsis">
+      
+        10. Exercícios de fixação
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#11-checklist-de-revisao">
+<span class="md-ellipsis">
+      
+        11. Checklist de revisão
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content" data-md-component="content">
+<article class="md-content__inner md-typeset">
+<h1 id="enderecamento-ipv4-mascaras-subnetting-e-cidr">Endereçamento IPv4, Máscaras, Subnetting e CIDR<a class="headerlink" href="#enderecamento-ipv4-mascaras-subnetting-e-cidr" title="Permanent link">¶</a></h1>
+<blockquote>
+<p><strong>Origem:</strong> revisão das anotações do CCNA Data Center — DCICN 640-911, páginas 3–5.<br/>
+<strong>Escopo:</strong> representação IPv4, classes históricas, máscaras, CIDR, VLSM, endereços privados e aplicações em Data Centers.<br/>
+<strong>Complementação técnica:</strong> cálculos de sub-redes, sumarização, exemplos de NX-OS e contextualização para o DCCOR 350-601. DHCP e NAT serão abordados em <code>servicos-de-rede.md</code>.</p>
+</blockquote>
+<h2 id="1-o-que-e-um-endereco-ipv4">1. O que é um endereço IPv4?<a class="headerlink" href="#1-o-que-e-um-endereco-ipv4" title="Permanent link">¶</a></h2>
+<p>O <strong>Internet Protocol version 4 (IPv4)</strong> é um protocolo de camada de rede responsável pelo endereçamento lógico e pelo encaminhamento de pacotes entre redes IP. Um endereço IPv4 identifica uma interface ou um destino lógico dentro de determinado contexto de roteamento.</p>
+<p>O endereço possui <strong>32 bits</strong>, normalmente apresentados em quatro grupos de oito bits (<strong>octetos</strong>) na notação decimal pontuada:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-0-1"><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a>192.168.1.2
+</span></code></pre></div>
+<p>Cada octeto representa um valor entre <strong>0 e 255</strong>. Como existem 32 bits, o espaço IPv4 contém <strong>2³² = 4.294.967.296</strong> combinações possíveis, incluindo endereços reservados e de uso especial.</p>
+<h3 id="11-representacao-binaria">1.1 Representação binária<a class="headerlink" href="#11-representacao-binaria" title="Permanent link">¶</a></h3>
+<p>Cada posição de um octeto corresponde a uma potência de 2:</p>
+<table>
+<thead>
+<tr>
+<th>Posição</th>
+<th>7</th>
+<th>6</th>
+<th>5</th>
+<th>4</th>
+<th>3</th>
+<th>2</th>
+<th>1</th>
+<th>0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Peso</td>
+<td>128</td>
+<td>64</td>
+<td>32</td>
+<td>16</td>
+<td>8</td>
+<td>4</td>
+<td>2</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>Exemplo com o endereço <strong>192.168.1.2</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Octeto decimal</th>
+<th>Binário</th>
+<th>Decomposição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>192</td>
+<td><code>11000000</code></td>
+<td>128 + 64</td>
+</tr>
+<tr>
+<td>168</td>
+<td><code>10101000</code></td>
+<td>128 + 32 + 8</td>
+</tr>
+<tr>
+<td>1</td>
+<td><code>00000001</code></td>
+<td>1</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>00000010</code></td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span id="__span-1-1"><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a>Decimal:  192      . 168      . 1        . 2
+</span><span id="__span-1-2"><a href="#__codelineno-1-2" id="__codelineno-1-2" name="__codelineno-1-2"></a>Binário:  11000000 . 10101000 . 00000001 . 00000010
+</span></code></pre></div>
+<blockquote>
+<p><strong>Por que estudar binário?</strong> Máscaras, identificação da rede, cálculo de sub-redes e sumarização dependem da interpretação dos bits, mesmo quando ferramentas automatizam os cálculos.</p>
+</blockquote>
+<h2 id="2-rede-e-host-como-a-mascara-funciona">2. Rede e host: como a máscara funciona<a class="headerlink" href="#2-rede-e-host-como-a-mascara-funciona" title="Permanent link">¶</a></h2>
+<p>Um endereço IPv4 é interpretado em conjunto com um <strong>prefixo de rede</strong> (ou máscara). O prefixo indica quais bits pertencem à porção de rede; os bits restantes identificam endereços dentro daquela sub-rede.</p>
+<p>Considere <code>192.168.10.34/24</code>:</p>
+<ul>
+<li><code>/24</code>: os primeiros 24 bits identificam a rede.</li>
+<li>Restam <code>32 - 24 = 8</code> bits para endereços dentro da sub-rede.</li>
+<li>Máscara decimal: <code>255.255.255.0</code>.</li>
+<li>Endereço da rede: <code>192.168.10.0</code>.</li>
+<li>Broadcast da sub-rede: <code>192.168.10.255</code>.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span id="__span-2-1"><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a>IP:       11000000.10101000.00001010.00100010
+</span><span id="__span-2-2"><a href="#__codelineno-2-2" id="__codelineno-2-2" name="__codelineno-2-2"></a>Máscara:  11111111.11111111.11111111.00000000
+</span><span id="__span-2-3"><a href="#__codelineno-2-3" id="__codelineno-2-3" name="__codelineno-2-3"></a>          |------ 24 bits de rede ------| host |
+</span><span id="__span-2-4"><a href="#__codelineno-2-4" id="__codelineno-2-4" name="__codelineno-2-4"></a>Rede:     11000000.10101000.00001010.00000000
+</span></code></pre></div>
+<p>O endereço de rede é obtido pela operação lógica <strong>AND</strong> entre o IP e a máscara.</p>
+<h3 id="21-endereco-de-rede-broadcast-e-enderecos-utilizaveis">2.1 Endereço de rede, broadcast e endereços utilizáveis<a class="headerlink" href="#21-endereco-de-rede-broadcast-e-enderecos-utilizaveis" title="Permanent link">¶</a></h3>
+<p>Em uma sub-rede IPv4 convencional com prefixo até <code>/30</code>:</p>
+<ul>
+<li><strong>Endereço de rede:</strong> todos os bits de host em zero.</li>
+<li><strong>Broadcast dirigido:</strong> todos os bits de host em um.</li>
+<li><strong>Endereços utilizáveis:</strong> normalmente os valores entre esses dois extremos.</li>
+</ul>
+<p>Para <code>192.168.10.0/24</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Propriedade</th>
+<th>Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rede</td>
+<td><code>192.168.10.0</code></td>
+</tr>
+<tr>
+<td>Primeiro host usual</td>
+<td><code>192.168.10.1</code></td>
+</tr>
+<tr>
+<td>Último host usual</td>
+<td><code>192.168.10.254</code></td>
+</tr>
+<tr>
+<td>Broadcast</td>
+<td><code>192.168.10.255</code></td>
+</tr>
+<tr>
+<td>Total de endereços</td>
+<td>256</td>
+</tr>
+<tr>
+<td>Hosts utilizáveis convencionais</td>
+<td>254</td>
+</tr>
+</tbody>
+</table>
+<p>A quantidade de endereços é calculada por:</p>
+<p>[
+N_{endereços} = 2^{(32 - prefixo)}
+]</p>
+<p>Para sub-redes convencionais com broadcast, o número de hosts utilizáveis costuma ser <code>2^(32 - prefixo) - 2</code>.</p>
+<blockquote>
+<p><strong>Exceções importantes:</strong> <code>/31</code> é utilizado em enlaces ponto a ponto compatíveis (RFC 3021), com dois endereços de interface e sem o modelo tradicional de rede/broadcast. <code>/32</code> identifica um único endereço e é comum em loopbacks e rotas de host.</p>
+</blockquote>
+<h2 id="3-classes-ipv4-modelo-historico">3. Classes IPv4: modelo histórico<a class="headerlink" href="#3-classes-ipv4-modelo-historico" title="Permanent link">¶</a></h2>
+<p>Endereçamento <strong>classful</strong>, no qual a classe era determinada pelos primeiros bits do endereço e implicava uma máscara padrão.</p>
+<table>
+<thead>
+<tr>
+<th>Classe</th>
+<th>Primeiro octeto</th>
+<th>Máscara histórica</th>
+<th>Prefixo</th>
+<th>Uso histórico</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>1–126</td>
+<td><code>255.0.0.0</code></td>
+<td><code>/8</code></td>
+<td>Redes grandes</td>
+</tr>
+<tr>
+<td>B</td>
+<td>128–191</td>
+<td><code>255.255.0.0</code></td>
+<td><code>/16</code></td>
+<td>Redes intermediárias</td>
+</tr>
+<tr>
+<td>C</td>
+<td>192–223</td>
+<td><code>255.255.255.0</code></td>
+<td><code>/24</code></td>
+<td>Redes menores</td>
+</tr>
+<tr>
+<td>D</td>
+<td>224–239</td>
+<td>Não se aplica</td>
+<td>—</td>
+<td>Multicast</td>
+</tr>
+<tr>
+<td>E</td>
+<td>240–255</td>
+<td>Não se aplica</td>
+<td>—</td>
+<td>Reservado/uso especial</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Observações:</strong> <code>0.0.0.0/8</code> possui usos especiais; <code>127.0.0.0/8</code> é reservado para loopback. As faixas acima representam a classificação histórica, não uma recomendação de planejamento atual.</p>
+<h3 id="31-como-os-primeiros-bits-identificavam-a-classe">3.1 Como os primeiros bits identificavam a classe?<a class="headerlink" href="#31-como-os-primeiros-bits-identificavam-a-classe" title="Permanent link">¶</a></h3>
+<div class="highlight"><pre><span></span><code><span id="__span-3-1"><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a>Classe A: 0xxxxxxx . host     . host     . host
+</span><span id="__span-3-2"><a href="#__codelineno-3-2" id="__codelineno-3-2" name="__codelineno-3-2"></a>Classe B: 10xxxxxx . xxxxxxxx . host     . host
+</span><span id="__span-3-3"><a href="#__codelineno-3-3" id="__codelineno-3-3" name="__codelineno-3-3"></a>Classe C: 110xxxxx . xxxxxxxx . xxxxxxxx . host
+</span></code></pre></div>
+<p>Na abordagem classful, um endereço de classe A tinha, por padrão, oito bits de rede; classe B, dezesseis; classe C, vinte e quatro.</p>
+<blockquote>
+<p><strong>Atualização técnica:</strong> atualmente, a classe do endereço <strong>não determina a máscara</strong>. O prefixo é explicitamente informado, como <code>10.20.30.0/24</code> ou <code>172.16.8.0/21</code>. É possível usar um endereço historicamente classificado como classe A com uma máscara <code>/24</code>.</p>
+</blockquote>
+<h2 id="4-cidr-enderecamento-sem-classes">4. CIDR: endereçamento sem classes<a class="headerlink" href="#4-cidr-enderecamento-sem-classes" title="Permanent link">¶</a></h2>
+<p>O <strong>Classless Inter-Domain Routing (CIDR)</strong> permite definir redes por prefixos de tamanho variável, sem depender das máscaras fixas das antigas classes.</p>
+<p>A notação <code>172.16.0.0/17</code> significa que os primeiros 17 bits identificam o prefixo. A máscara equivalente é <code>255.255.128.0</code>.</p>
+<h3 id="41-prefixos-comuns">4.1 Prefixos comuns<a class="headerlink" href="#41-prefixos-comuns" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>Prefixo</th>
+<th>Máscara decimal</th>
+<th style="text-align: right;">Endereços totais</th>
+<th style="text-align: right;">Hosts usuais*</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/16</code></td>
+<td><code>255.255.0.0</code></td>
+<td style="text-align: right;">65.536</td>
+<td style="text-align: right;">65.534</td>
+</tr>
+<tr>
+<td><code>/24</code></td>
+<td><code>255.255.255.0</code></td>
+<td style="text-align: right;">256</td>
+<td style="text-align: right;">254</td>
+</tr>
+<tr>
+<td><code>/25</code></td>
+<td><code>255.255.255.128</code></td>
+<td style="text-align: right;">128</td>
+<td style="text-align: right;">126</td>
+</tr>
+<tr>
+<td><code>/26</code></td>
+<td><code>255.255.255.192</code></td>
+<td style="text-align: right;">64</td>
+<td style="text-align: right;">62</td>
+</tr>
+<tr>
+<td><code>/27</code></td>
+<td><code>255.255.255.224</code></td>
+<td style="text-align: right;">32</td>
+<td style="text-align: right;">30</td>
+</tr>
+<tr>
+<td><code>/28</code></td>
+<td><code>255.255.255.240</code></td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">14</td>
+</tr>
+<tr>
+<td><code>/29</code></td>
+<td><code>255.255.255.248</code></td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">6</td>
+</tr>
+<tr>
+<td><code>/30</code></td>
+<td><code>255.255.255.252</code></td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr>
+<td><code>/31</code></td>
+<td><code>255.255.255.254</code></td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">2 em ponto a ponto</td>
+</tr>
+<tr>
+<td><code>/32</code></td>
+<td><code>255.255.255.255</code></td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1 endereço individual</td>
+</tr>
+</tbody>
+</table>
+<p>*Para <code>/16</code> a <code>/30</code>, a coluna desconta os endereços de rede e broadcast no modelo convencional.</p>
+<h3 id="42-exemplo-descobrir-a-rede-de-192168107726">4.2 Exemplo: descobrir a rede de <code>192.168.10.77/26</code><a class="headerlink" href="#42-exemplo-descobrir-a-rede-de-192168107726" title="Permanent link">¶</a></h3>
+<ol>
+<li><code>/26</code> corresponde à máscara <code>255.255.255.192</code>.</li>
+<li>O último octeto tem blocos de <code>256 - 192 = 64</code> endereços.</li>
+<li>Os blocos começam em <code>0</code>, <code>64</code>, <code>128</code> e <code>192</code>.</li>
+<li>O endereço <code>.77</code> está no bloco <code>64–127</code>.</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Propriedade</th>
+<th>Resultado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IP informado</td>
+<td><code>192.168.10.77/26</code></td>
+</tr>
+<tr>
+<td>Rede</td>
+<td><code>192.168.10.64/26</code></td>
+</tr>
+<tr>
+<td>Primeiro host</td>
+<td><code>192.168.10.65</code></td>
+</tr>
+<tr>
+<td>Último host</td>
+<td><code>192.168.10.126</code></td>
+</tr>
+<tr>
+<td>Broadcast</td>
+<td><code>192.168.10.127</code></td>
+</tr>
+<tr>
+<td>Hosts utilizáveis convencionais</td>
+<td>62</td>
+</tr>
+</tbody>
+</table>
+<h3 id="43-exemplo-dividir-uma-rede-24-em-quatro-26">4.3 Exemplo: dividir uma rede <code>/24</code> em quatro <code>/26</code><a class="headerlink" href="#43-exemplo-dividir-uma-rede-24-em-quatro-26" title="Permanent link">¶</a></h3>
+<pre class="mermaid"><code>flowchart TD
+    R["192.168.10.0/24"]
+    R --&gt; A["192.168.10.0/26"]
+    R --&gt; B["192.168.10.64/26"]
+    R --&gt; C["192.168.10.128/26"]
+    R --&gt; D["192.168.10.192/26"]
+</code></pre>
+<p>Cada sub-rede possui 64 endereços totais. Essa divisão utiliza dois bits adicionais de rede (<code>/24</code> → <code>/26</code>), produzindo <code>2² = 4</code> sub-redes.</p>
+<h2 id="5-vlsm-mascaras-de-tamanho-variavel">5. VLSM: máscaras de tamanho variável<a class="headerlink" href="#5-vlsm-mascaras-de-tamanho-variavel" title="Permanent link">¶</a></h2>
+<p>O <strong>Variable Length Subnet Mask (VLSM)</strong> permite subdividir um bloco em redes de tamanhos diferentes, adequando a capacidade ao número de dispositivos de cada segmento.</p>
+<p>Imagine que o bloco <code>10.20.0.0/24</code> precise atender:</p>
+<ul>
+<li>Rede de servidores: aproximadamente 100 hosts.</li>
+<li>Rede de gerenciamento: aproximadamente 50 hosts.</li>
+<li>Rede de serviços: aproximadamente 20 hosts.</li>
+<li>Enlace roteado ponto a ponto: dois endereços.</li>
+</ul>
+<p>Uma distribuição possível é:</p>
+<table>
+<thead>
+<tr>
+<th>Segmento</th>
+<th>Sub-rede</th>
+<th style="text-align: right;">Endereços totais</th>
+<th style="text-align: right;">Hosts usuais</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Servidores</td>
+<td><code>10.20.0.0/25</code></td>
+<td style="text-align: right;">128</td>
+<td style="text-align: right;">126</td>
+</tr>
+<tr>
+<td>Gerenciamento</td>
+<td><code>10.20.0.128/26</code></td>
+<td style="text-align: right;">64</td>
+<td style="text-align: right;">62</td>
+</tr>
+<tr>
+<td>Serviços</td>
+<td><code>10.20.0.192/27</code></td>
+<td style="text-align: right;">32</td>
+<td style="text-align: right;">30</td>
+</tr>
+<tr>
+<td>Ponto a ponto</td>
+<td><code>10.20.0.224/31</code></td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">2 (RFC 3021)</td>
+</tr>
+</tbody>
+</table>
+<p>Sobram endereços no bloco para crescimento ou novas sub-redes.</p>
+<h3 id="51-metodo-para-planejar-vlsm">5.1 Método para planejar VLSM<a class="headerlink" href="#51-metodo-para-planejar-vlsm" title="Permanent link">¶</a></h3>
+<ol>
+<li>Liste os segmentos e suas necessidades.</li>
+<li>Ordene do maior para o menor.</li>
+<li>Escolha o menor prefixo que acomode cada segmento.</li>
+<li>Aloque cada rede respeitando seus limites binários.</li>
+<li>Verifique sobreposição e reserve espaço para expansão.</li>
+</ol>
+<blockquote>
+<p><strong>Boa prática:</strong> não escolha sub-redes apenas pelo consumo atual. Considere crescimento, endereços de gateway, IPs de serviços e requisitos de operação.</p>
+</blockquote>
+<h2 id="6-enderecos-ipv4-privados-e-especiais">6. Endereços IPv4 privados e especiais<a class="headerlink" href="#6-enderecos-ipv4-privados-e-especiais" title="Permanent link">¶</a></h2>
+<p>As anotações identificam as três faixas privadas definidas pela <strong>RFC 1918</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Bloco privado</th>
+<th>Intervalo completo</th>
+<th style="text-align: right;">Quantidade de endereços</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>10.0.0.0/8</code></td>
+<td><code>10.0.0.0</code> a <code>10.255.255.255</code></td>
+<td style="text-align: right;">16.777.216</td>
+</tr>
+<tr>
+<td><code>172.16.0.0/12</code></td>
+<td><code>172.16.0.0</code> a <code>172.31.255.255</code></td>
+<td style="text-align: right;">1.048.576</td>
+</tr>
+<tr>
+<td><code>192.168.0.0/16</code></td>
+<td><code>192.168.0.0</code> a <code>192.168.255.255</code></td>
+<td style="text-align: right;">65.536</td>
+</tr>
+</tbody>
+</table>
+<p>Esses endereços são destinados ao uso em redes privadas e <strong>não são roteados globalmente na Internet pública</strong>. Redes privadas podem alcançar serviços externos por mecanismos como NAT, proxies ou gateways apropriados.</p>
+<blockquote>
+<p><strong>Atenção:</strong> não é correto afirmar que toda a faixa <code>172.0.0.0/8</code> é privada. O intervalo privado é somente <code>172.16.0.0</code> a <code>172.31.255.255</code>.</p>
+</blockquote>
+<h3 id="61-outros-enderecos-especiais-importantes">6.1 Outros endereços especiais importantes<a class="headerlink" href="#61-outros-enderecos-especiais-importantes" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>Endereço/bloco</th>
+<th>Finalidade</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>127.0.0.0/8</code></td>
+<td>Loopback local</td>
+</tr>
+<tr>
+<td><code>169.254.0.0/16</code></td>
+<td>Link-local (APIPA em diversos sistemas)</td>
+</tr>
+<tr>
+<td><code>224.0.0.0/4</code></td>
+<td>Multicast IPv4</td>
+</tr>
+<tr>
+<td><code>255.255.255.255</code></td>
+<td>Broadcast limitado</td>
+</tr>
+<tr>
+<td><code>0.0.0.0/0</code></td>
+<td>Rota padrão, quando utilizado como prefixo de rota</td>
+</tr>
+<tr>
+<td><code>100.64.0.0/10</code></td>
+<td>Espaço compartilhado, frequentemente associado a CGNAT; não é RFC 1918</td>
+</tr>
+</tbody>
+</table>
+<h2 id="7-sumarizacao-de-rotas">7. Sumarização de rotas<a class="headerlink" href="#7-sumarizacao-de-rotas" title="Permanent link">¶</a></h2>
+<p>A <strong>sumarização</strong> (route aggregation) combina vários prefixos contíguos em um prefixo menos específico, quando o alinhamento binário permite.</p>
+<p>Exemplo:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-4-1"><a href="#__codelineno-4-1" id="__codelineno-4-1" name="__codelineno-4-1"></a>10.10.0.0/24
+</span><span id="__span-4-2"><a href="#__codelineno-4-2" id="__codelineno-4-2" name="__codelineno-4-2"></a>10.10.1.0/24
+</span><span id="__span-4-3"><a href="#__codelineno-4-3" id="__codelineno-4-3" name="__codelineno-4-3"></a>10.10.2.0/24
+</span><span id="__span-4-4"><a href="#__codelineno-4-4" id="__codelineno-4-4" name="__codelineno-4-4"></a>10.10.3.0/24
+</span><span id="__span-4-5"><a href="#__codelineno-4-5" id="__codelineno-4-5" name="__codelineno-4-5"></a>       ↓
+</span><span id="__span-4-6"><a href="#__codelineno-4-6" id="__codelineno-4-6" name="__codelineno-4-6"></a>10.10.0.0/22
+</span></code></pre></div>
+<p>O prefixo <code>/22</code> abrange <code>10.10.0.0</code> a <code>10.10.3.255</code>.</p>
+<p><strong>Benefícios:</strong> tabelas de roteamento menores, anúncios mais simples e possibilidade de limitar a propagação de alterações internas.</p>
+<p><strong>Cuidado:</strong> uma sumarização incorreta pode anunciar endereços que não deveriam ser alcançáveis por aquele caminho, causando encaminhamento inadequado ou descarte de tráfego.</p>
+<h2 id="8-aplicacao-em-data-centers">8. Aplicação em Data Centers<a class="headerlink" href="#8-aplicacao-em-data-centers" title="Permanent link">¶</a></h2>
+<p>Em um Data Center, o planejamento IPv4 envolve redes com funções distintas:</p>
+<table>
+<thead>
+<tr>
+<th>Função</th>
+<th>Exemplo ilustrativo</th>
+<th>Observação</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Gerenciamento de equipamentos</td>
+<td><code>10.10.10.0/24</code></td>
+<td>Pode estar em VRF de gerenciamento</td>
+</tr>
+<tr>
+<td>Gerenciamento de hipervisores</td>
+<td><code>10.10.20.0/24</code></td>
+<td>Rede dedicada conforme o projeto</td>
+</tr>
+<tr>
+<td>Serviços e aplicações</td>
+<td><code>10.10.30.0/24</code></td>
+<td>Segmentação por função ou segurança</td>
+</tr>
+<tr>
+<td>Loopbacks de equipamentos</td>
+<td><code>10.255.0.1/32</code></td>
+<td>Identificação estável de nós de roteamento</td>
+</tr>
+<tr>
+<td>Underlay roteado ponto a ponto</td>
+<td><code>10.254.0.0/31</code></td>
+<td>Dois endereços em um enlace compatível</td>
+</tr>
+</tbody>
+</table>
+<h3 id="81-por-que-31-e-32-aparecem-em-fabrics-spine-leaf">8.1 Por que <code>/31</code> e <code>/32</code> aparecem em fabrics Spine-Leaf?<a class="headerlink" href="#81-por-que-31-e-32-aparecem-em-fabrics-spine-leaf" title="Permanent link">¶</a></h3>
+<ul>
+<li><strong><code>/31</code>:</strong> pode ser usado nos enlaces roteados ponto a ponto entre Leafs e Spines, reduzindo o consumo de endereços IPv4.</li>
+<li><strong><code>/32</code>:</strong> é comum em interfaces loopback, utilizadas como identificadores estáveis em protocolos de roteamento e, dependendo da arquitetura, como endereços de VTEP.</li>
+</ul>
+<pre class="mermaid"><code>flowchart TD
+    SP["Spine 1<br/>Loopback: 10.255.0.1/32"]
+    LF["Leaf 1<br/>Loopback: 10.255.0.11/32"]
+    SP &lt;--&gt;|"10.254.0.0/31"| LF
+</code></pre>
+<p>No enlace ilustrado, <code>10.254.0.0</code> e <code>10.254.0.1</code> podem ser atribuídos às duas interfaces, desde que os equipamentos e o desenho suportem <code>/31</code>.</p>
+<h2 id="9-relacao-com-o-ccnp-dccor-350-601">9. Relação com o CCNP DCCOR 350-601<a class="headerlink" href="#9-relacao-com-o-ccnp-dccor-350-601" title="Permanent link">¶</a></h2>
+<p>Esses conceitos sustentam vários tópicos do DCCOR:</p>
+<ul>
+<li><strong>Roteamento em NX-OS:</strong> prefixos, rotas conectadas, estáticas e dinâmicas.</li>
+<li><strong>OSPF/BGP:</strong> anúncios de redes, sumarização e seleção de caminhos.</li>
+<li><strong>Spine-Leaf:</strong> endereçamento de interfaces do underlay e loopbacks.</li>
+<li><strong>VXLAN EVPN:</strong> distinção entre endereçamento IP do underlay e redes transportadas pelo overlay.</li>
+<li><strong>VRF:</strong> manutenção de tabelas de roteamento independentes, permitindo inclusive sobreposição de endereços entre contextos isolados.</li>
+<li><strong>Troubleshooting:</strong> interpretação de máscaras, prefixos e tabelas de rotas.</li>
+</ul>
+<h2 id="10-exercicios-de-fixacao">10. Exercícios de fixação<a class="headerlink" href="#10-exercicios-de-fixacao" title="Permanent link">¶</a></h2>
+<ol>
+<li>Converta <code>172.16.5.10</code> para binário, octeto por octeto.</li>
+<li>Determine rede, broadcast e intervalo convencional de hosts de <code>192.168.50.130/27</code>.</li>
+<li>Quantas sub-redes <code>/28</code> cabem em um bloco <code>/24</code>?</li>
+<li>Planeje sub-redes para 60, 25 e 10 hosts dentro de <code>10.30.0.0/24</code>, utilizando VLSM.</li>
+<li>Explique por que <code>172.32.1.1</code> <strong>não</strong> pertence ao espaço privado RFC 1918.</li>
+<li>Explique a diferença prática entre um <code>/31</code> de enlace e um <code>/32</code> de loopback.</li>
+<li>Verifique se <code>10.10.4.0/24</code> e <code>10.10.5.0/24</code> podem ser sumarizados exatamente como <code>10.10.4.0/23</code>.</li>
+</ol>
+<h2 id="11-checklist-de-revisao">11. Checklist de revisão<a class="headerlink" href="#11-checklist-de-revisao" title="Permanent link">¶</a></h2>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Entender a estrutura de 32 bits de um endereço IPv4.</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Converter octetos entre decimal e binário.</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Interpretar máscaras em notação decimal e CIDR.</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Calcular endereço de rede, broadcast e hosts utilizáveis.</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Diferenciar classes históricas do endereçamento CIDR atual.</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Dividir blocos em sub-redes com VLSM.</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Identificar corretamente os três blocos privados RFC 1918.</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Reconhecer usos de <code>/31</code> e <code>/32</code> em Data Centers.</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Entender a lógica de sumarização de rotas.</li>
+</ul>
+</article>
+</div>
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+</div>
+</main>
+<footer class="md-footer">
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-copyright">
+<div class="md-copyright__highlight">
+      Weslley Silva © 2025
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
+      Material for MkDocs
+    </a>
+</div>
+<div class="md-social">
+<a class="md-social__link" href="https://github.com/weslleycsil" rel="noopener" target="_blank" title="github.com">
+<svg viewbox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M202.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M496 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"></path></svg>
+</a>
+<a class="md-social__link" href="https://linkedin.com/in/weslleycsil" rel="noopener" target="_blank" title="linkedin.com">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zM102.2 96a38.5 38.5 0 1 1 0 77 38.5 38.5 0 1 1 0-77m282.1 320h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"></path></svg>
+</a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<div class="md-dialog" data-md-component="dialog">
+<div class="md-dialog__inner md-typeset"></div>
+</div>
+<script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "mais 1 nesta p\u00e1gina", "search.result.more.other": "# mais nesta p\u00e1gina", "search.result.none": "Nenhum documento encontrado", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
+<script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+<script type="module">import mermaid from "https://unpkg.com/mermaid@10.4.0/dist/mermaid.esm.min.mjs";
+window.mermaidConfig = {default: {
+    startOnLoad: false
+}};</script></body>
+</html>

@@ -1,0 +1,1577 @@
+
+<!DOCTYPE html>
+
+<html class="no-js" lang="pt">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="Guia de Estudos CCNP DCCOR 350-601" name="description"/>
+<meta content="Weslley Silva" name="author"/>
+<link href="https://infra.expert/cisco_ccnp_350-501/revisao-ccna-dc/640-911/servicos-de-rede/" rel="canonical"/>
+<link href="../enderecamento-ipv4/" rel="prev"/>
+<link href="../../../roadmap/" rel="next"/>
+<link href="/cisco_aci" hreflang="pt-BR" rel="alternate"/>
+<link href="../../../assets/images/favicon.png" rel="icon"/>
+<meta content="mkdocs-1.6.1, mkdocs-material-9.7.7" name="generator"/>
+<title>Serviços de Rede - Guia de Estudos CCNP DCCOR 350-601</title>
+<link href="../../../assets/stylesheets/main.ec1eaa64.min.css" rel="stylesheet"/>
+<link href="../../../assets/stylesheets/palette.ab4e12ef.min.css" rel="stylesheet"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
+<style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+<script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+</head>
+<body data-md-color-accent="indigo" data-md-color-primary="indigo" data-md-color-scheme="default" dir="ltr">
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#servicos-de-rede-dhcp-nat-e-pat">
+          Pular para conteúdo
+        </a>
+</div>
+<div data-md-component="announce">
+</div>
+<header class="md-header md-header--shadow" data-md-component="header">
+<nav aria-label="Cabeçalho" class="md-header__inner md-grid">
+<a aria-label="Guia de Estudos CCNP DCCOR 350-601" class="md-header__button md-logo" data-md-component="logo" href="../../.." title="Guia de Estudos CCNP DCCOR 350-601">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+</a>
+<label class="md-header__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+</label>
+<div class="md-header__title" data-md-component="header-title">
+<div class="md-header__ellipsis">
+<div class="md-header__topic">
+<span class="md-ellipsis">
+            Guia de Estudos CCNP DCCOR 350-601
+          </span>
+</div>
+<div class="md-header__topic" data-md-component="header-topic">
+<span class="md-ellipsis">
+            
+              Serviços de Rede
+            
+          </span>
+</div>
+</div>
+</div>
+<form class="md-header__option" data-md-component="palette">
+<input aria-label="Switch to light mode" class="md-option" data-md-color-accent="indigo" data-md-color-media="(prefers-color-scheme)" data-md-color-primary="indigo" data-md-color-scheme="default" id="__palette_0" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_1" hidden="" title="Switch to light mode">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1M8 13h8v-2H8zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4a5 5 0 0 0 5-5 5 5 0 0 0-5-5"></path></svg>
+</label>
+<input aria-label="Switch to dark mode" class="md-option" data-md-color-accent="indigo" data-md-color-media="(prefers-color-scheme: light)" data-md-color-primary="indigo" data-md-color-scheme="default" id="__palette_1" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_2" hidden="" title="Switch to dark mode">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"></path></svg>
+</label>
+<input aria-label="Switch to system preference" class="md-option" data-md-color-accent="indigo" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-primary="black" data-md-color-scheme="slate" id="__palette_2" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_0" hidden="" title="Switch to system preference">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5M7 15a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"></path></svg>
+</label>
+</form>
+<script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+<div class="md-header__option">
+<div class="md-select">
+<button aria-label="Selecione o idioma" class="md-header__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"></path></svg>
+</button>
+<div class="md-select__inner">
+<ul class="md-select__list">
+<li class="md-select__item">
+<a class="md-select__link" href="/cisco_aci" hreflang="pt-BR">
+              Português
+            </a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<label class="md-header__button md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+</label>
+<div class="md-search" data-md-component="search" role="dialog">
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input aria-label="Buscar" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" name="query" placeholder="Buscar" required="" spellcheck="false" type="text"/>
+<label class="md-search__icon md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+</label>
+<nav aria-label="Pesquisar" class="md-search__options">
+<button aria-label="Limpar" class="md-search__icon md-icon" tabindex="-1" title="Limpar" type="reset">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+</button>
+</nav>
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="" tabindex="0">
+<div class="md-search-result" data-md-component="search-result">
+<div class="md-search-result__meta">
+            Inicializando busca
+          </div>
+<ol class="md-search-result__list" role="presentation"></ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="md-header__source">
+<a class="md-source" data-md-component="source" href="https://github.com/weslleycsil/cisco-ccnp-350-601" title="Ir para repositório">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"></path></svg>
+</div>
+<div class="md-source__repository">
+    weslleycsil/cisco-ccnp-350-601
+  </div>
+</a>
+</div>
+</nav>
+</header>
+<div class="md-container" data-md-component="container">
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Navegação" class="md-nav md-nav--primary" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="Guia de Estudos CCNP DCCOR 350-601" class="md-nav__button md-logo" data-md-component="logo" href="../../.." title="Guia de Estudos CCNP DCCOR 350-601">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+</a>
+    Guia de Estudos CCNP DCCOR 350-601
+  </label>
+<div class="md-nav__source">
+<a class="md-source" data-md-component="source" href="https://github.com/weslleycsil/cisco-ccnp-350-601" title="Ir para repositório">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"></path></svg>
+</div>
+<div class="md-source__repository">
+    weslleycsil/cisco-ccnp-350-601
+  </div>
+</a>
+</div>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../..">
+<span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Revisão CCNA Data Center
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="true" aria-labelledby="__nav_2_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_2">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Revisão CCNA Data Center
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../">
+<span class="md-ellipsis">
+    
+  
+    Visão geral
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_2_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    DCICN 640-911
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="true" aria-labelledby="__nav_2_2_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_2">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    DCICN 640-911
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../">
+<span class="md-ellipsis">
+    
+  
+    Introdução
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../modelos-de-rede/">
+<span class="md-ellipsis">
+    
+  
+    Modelos de Rede
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../enderecamento-ipv4/">
+<span class="md-ellipsis">
+    
+  
+    Endereçamento IPv4
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+<span class="md-ellipsis">
+    
+  
+    Serviços de Rede
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
+<span class="md-ellipsis">
+    
+  
+    Serviços de Rede
+  
+
+    
+  </span>
+</a>
+<nav aria-label="Índice" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#1-visao-geral">
+<span class="md-ellipsis">
+      
+        1. Visão geral
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#2-dhcp-dynamic-host-configuration-protocol">
+<span class="md-ellipsis">
+      
+        2. DHCP — Dynamic Host Configuration Protocol
+      
+    </span>
+</a>
+<nav aria-label="2. DHCP — Dynamic Host Configuration Protocol" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#21-por-que-utilizar-dhcp">
+<span class="md-ellipsis">
+      
+        2.1 Por que utilizar DHCP?
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#22-componentes-de-uma-implantacao-dhcp">
+<span class="md-ellipsis">
+      
+        2.2 Componentes de uma implantação DHCP
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#23-processo-dora">
+<span class="md-ellipsis">
+      
+        2.3 Processo DORA
+      
+    </span>
+</a>
+<nav aria-label="2.3 Processo DORA" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#discover">
+<span class="md-ellipsis">
+      
+        Discover
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#offer">
+<span class="md-ellipsis">
+      
+        Offer
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#request">
+<span class="md-ellipsis">
+      
+        Request
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#ack">
+<span class="md-ellipsis">
+      
+        ACK
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#24-dhcp-utiliza-tcp-ou-udp">
+<span class="md-ellipsis">
+      
+        2.4 DHCP utiliza TCP ou UDP?
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#25-lease-e-renovacao">
+<span class="md-ellipsis">
+      
+        2.5 Lease e renovação
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#26-dhcp-relay">
+<span class="md-ellipsis">
+      
+        2.6 DHCP Relay
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#27-seguranca-e-troubleshooting-do-dhcp">
+<span class="md-ellipsis">
+      
+        2.7 Segurança e troubleshooting do DHCP
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#3-nat-network-address-translation">
+<span class="md-ellipsis">
+      
+        3. NAT — Network Address Translation
+      
+    </span>
+</a>
+<nav aria-label="3. NAT — Network Address Translation" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#31-enderecos-privados-e-publicos">
+<span class="md-ellipsis">
+      
+        3.1 Endereços privados e públicos
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#32-terminologia-cisco-inside-e-outside">
+<span class="md-ellipsis">
+      
+        3.2 Terminologia Cisco: inside e outside
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#33-nat-estatico-static-nat">
+<span class="md-ellipsis">
+      
+        3.3 NAT estático (Static NAT)
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#34-nat-dinamico-dynamic-nat">
+<span class="md-ellipsis">
+      
+        3.4 NAT dinâmico (Dynamic NAT)
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#35-pat-port-address-translation">
+<span class="md-ellipsis">
+      
+        3.5 PAT — Port Address Translation
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#36-comparacao-entre-nat-estatico-dinamico-e-pat">
+<span class="md-ellipsis">
+      
+        3.6 Comparação entre NAT estático, dinâmico e PAT
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#37-nat-de-origem-e-nat-de-destino">
+<span class="md-ellipsis">
+      
+        3.7 NAT de origem e NAT de destino
+      
+    </span>
+</a>
+<nav aria-label="3.7 NAT de origem e NAT de destino" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#snat-source-nat">
+<span class="md-ellipsis">
+      
+        SNAT (Source NAT)
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#dnat-destination-nat">
+<span class="md-ellipsis">
+      
+        DNAT (Destination NAT)
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#diferenca-entre-snat-dnat-e-pat">
+<span class="md-ellipsis">
+      
+        Diferença entre SNAT, DNAT e PAT
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#38-nat-em-data-centers">
+<span class="md-ellipsis">
+      
+        3.8 NAT em Data Centers
+      
+    </span>
+</a>
+<nav aria-label="3.8 NAT em Data Centers" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#nat-e-balanceamento-de-carga">
+<span class="md-ellipsis">
+      
+        NAT e balanceamento de carga
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#39-troubleshooting-de-natpat">
+<span class="md-ellipsis">
+      
+        3.9 Troubleshooting de NAT/PAT
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#4-dhcp-nat-e-pat-como-se-relacionam">
+<span class="md-ellipsis">
+      
+        4. DHCP, NAT e PAT: como se relacionam?
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#5-relacao-com-o-ccnp-dccor-350-601">
+<span class="md-ellipsis">
+      
+        5. Relação com o CCNP DCCOR 350-601
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#6-exercicios-de-fixacao">
+<span class="md-ellipsis">
+      
+        6. Exercícios de fixação
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#7-checklist-de-revisao">
+<span class="md-ellipsis">
+      
+        7. Checklist de revisão
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../roadmap/">
+<span class="md-ellipsis">
+    
+  
+    Roadmap
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Índice" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#1-visao-geral">
+<span class="md-ellipsis">
+      
+        1. Visão geral
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#2-dhcp-dynamic-host-configuration-protocol">
+<span class="md-ellipsis">
+      
+        2. DHCP — Dynamic Host Configuration Protocol
+      
+    </span>
+</a>
+<nav aria-label="2. DHCP — Dynamic Host Configuration Protocol" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#21-por-que-utilizar-dhcp">
+<span class="md-ellipsis">
+      
+        2.1 Por que utilizar DHCP?
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#22-componentes-de-uma-implantacao-dhcp">
+<span class="md-ellipsis">
+      
+        2.2 Componentes de uma implantação DHCP
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#23-processo-dora">
+<span class="md-ellipsis">
+      
+        2.3 Processo DORA
+      
+    </span>
+</a>
+<nav aria-label="2.3 Processo DORA" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#discover">
+<span class="md-ellipsis">
+      
+        Discover
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#offer">
+<span class="md-ellipsis">
+      
+        Offer
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#request">
+<span class="md-ellipsis">
+      
+        Request
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#ack">
+<span class="md-ellipsis">
+      
+        ACK
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#24-dhcp-utiliza-tcp-ou-udp">
+<span class="md-ellipsis">
+      
+        2.4 DHCP utiliza TCP ou UDP?
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#25-lease-e-renovacao">
+<span class="md-ellipsis">
+      
+        2.5 Lease e renovação
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#26-dhcp-relay">
+<span class="md-ellipsis">
+      
+        2.6 DHCP Relay
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#27-seguranca-e-troubleshooting-do-dhcp">
+<span class="md-ellipsis">
+      
+        2.7 Segurança e troubleshooting do DHCP
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#3-nat-network-address-translation">
+<span class="md-ellipsis">
+      
+        3. NAT — Network Address Translation
+      
+    </span>
+</a>
+<nav aria-label="3. NAT — Network Address Translation" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#31-enderecos-privados-e-publicos">
+<span class="md-ellipsis">
+      
+        3.1 Endereços privados e públicos
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#32-terminologia-cisco-inside-e-outside">
+<span class="md-ellipsis">
+      
+        3.2 Terminologia Cisco: inside e outside
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#33-nat-estatico-static-nat">
+<span class="md-ellipsis">
+      
+        3.3 NAT estático (Static NAT)
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#34-nat-dinamico-dynamic-nat">
+<span class="md-ellipsis">
+      
+        3.4 NAT dinâmico (Dynamic NAT)
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#35-pat-port-address-translation">
+<span class="md-ellipsis">
+      
+        3.5 PAT — Port Address Translation
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#36-comparacao-entre-nat-estatico-dinamico-e-pat">
+<span class="md-ellipsis">
+      
+        3.6 Comparação entre NAT estático, dinâmico e PAT
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#37-nat-de-origem-e-nat-de-destino">
+<span class="md-ellipsis">
+      
+        3.7 NAT de origem e NAT de destino
+      
+    </span>
+</a>
+<nav aria-label="3.7 NAT de origem e NAT de destino" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#snat-source-nat">
+<span class="md-ellipsis">
+      
+        SNAT (Source NAT)
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#dnat-destination-nat">
+<span class="md-ellipsis">
+      
+        DNAT (Destination NAT)
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#diferenca-entre-snat-dnat-e-pat">
+<span class="md-ellipsis">
+      
+        Diferença entre SNAT, DNAT e PAT
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#38-nat-em-data-centers">
+<span class="md-ellipsis">
+      
+        3.8 NAT em Data Centers
+      
+    </span>
+</a>
+<nav aria-label="3.8 NAT em Data Centers" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#nat-e-balanceamento-de-carga">
+<span class="md-ellipsis">
+      
+        NAT e balanceamento de carga
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#39-troubleshooting-de-natpat">
+<span class="md-ellipsis">
+      
+        3.9 Troubleshooting de NAT/PAT
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#4-dhcp-nat-e-pat-como-se-relacionam">
+<span class="md-ellipsis">
+      
+        4. DHCP, NAT e PAT: como se relacionam?
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#5-relacao-com-o-ccnp-dccor-350-601">
+<span class="md-ellipsis">
+      
+        5. Relação com o CCNP DCCOR 350-601
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#6-exercicios-de-fixacao">
+<span class="md-ellipsis">
+      
+        6. Exercícios de fixação
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#7-checklist-de-revisao">
+<span class="md-ellipsis">
+      
+        7. Checklist de revisão
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content" data-md-component="content">
+<article class="md-content__inner md-typeset">
+<h1 id="servicos-de-rede-dhcp-nat-e-pat">Serviços de Rede — DHCP, NAT e PAT<a class="headerlink" href="#servicos-de-rede-dhcp-nat-e-pat" title="Permanent link">¶</a></h1>
+<blockquote>
+<p><strong>Revisão CCNA Data Center — DCICN 640-911</strong><br/>
+<strong>Origem:</strong> anotações manuscritas, páginas 5–6.<br/>
+<strong>Objetivo:</strong> compreender a atribuição dinâmica de parâmetros IPv4 e os mecanismos de tradução de endereços, relacionando os fundamentos com operações de Data Center.</p>
+</blockquote>
+<h2 id="1-visao-geral">1. Visão geral<a class="headerlink" href="#1-visao-geral" title="Permanent link">¶</a></h2>
+<p>Os serviços de rede complementam o endereçamento IP e permitem que dispositivos sejam configurados e se comuniquem em diferentes cenários.</p>
+<p>Neste módulo, estudaremos:</p>
+<ul>
+<li><strong>DHCP (Dynamic Host Configuration Protocol):</strong> fornece parâmetros de rede automaticamente aos clientes.</li>
+<li><strong>NAT (Network Address Translation):</strong> traduz endereços IP entre espaços de endereçamento.</li>
+<li><strong>PAT (Port Address Translation):</strong> utiliza também identificadores de transporte, como portas TCP/UDP, para distinguir traduções.</li>
+</ul>
+<h2 id="2-dhcp-dynamic-host-configuration-protocol">2. DHCP — Dynamic Host Configuration Protocol<a class="headerlink" href="#2-dhcp-dynamic-host-configuration-protocol" title="Permanent link">¶</a></h2>
+<p>O <strong>DHCP</strong> automatiza a distribuição de parâmetros de rede. Em vez de configurar manualmente cada dispositivo, um servidor DHCP pode fornecer endereço IP, máscara, gateway padrão, servidores DNS e outros parâmetros.</p>
+<h3 id="21-por-que-utilizar-dhcp">2.1 Por que utilizar DHCP?<a class="headerlink" href="#21-por-que-utilizar-dhcp" title="Permanent link">¶</a></h3>
+<p>Imagine uma rede com centenas de estações de trabalho, máquinas virtuais. Configurar cada equipamento manualmente aumenta o esforço operacional e o risco de endereços duplicados.</p>
+<p>O DHCP ajuda a:</p>
+<ul>
+<li>Centralizar a administração de endereços.</li>
+<li>Reduzir erros de configuração.</li>
+<li>Reaproveitar endereços que não estão mais em uso.</li>
+<li>Alterar parâmetros, como DNS e gateway, de forma coordenada.</li>
+</ul>
+<blockquote>
+<p><strong>Atenção:</strong> nem todo dispositivo de um Data Center deve utilizar DHCP. Endereços de infraestrutura, interfaces de roteamento e serviços críticos podem exigir configuração estática ou reservas, conforme o projeto.</p>
+</blockquote>
+<h3 id="22-componentes-de-uma-implantacao-dhcp">2.2 Componentes de uma implantação DHCP<a class="headerlink" href="#22-componentes-de-uma-implantacao-dhcp" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>Componente</th>
+<th>Função</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Cliente DHCP</strong></td>
+<td>Solicita parâmetros de rede</td>
+</tr>
+<tr>
+<td><strong>Servidor DHCP</strong></td>
+<td>Mantém escopos e oferece configurações</td>
+</tr>
+<tr>
+<td><strong>Pool / Escopo</strong></td>
+<td>Conjunto de endereços e opções disponíveis</td>
+</tr>
+<tr>
+<td><strong>Lease (concessão)</strong></td>
+<td>Período durante o qual o cliente pode utilizar o endereço</td>
+</tr>
+<tr>
+<td><strong>DHCP Relay</strong></td>
+<td>Encaminha mensagens entre clientes e servidores em sub-redes diferentes</td>
+</tr>
+<tr>
+<td><strong>Reserva</strong></td>
+<td>Associa um endereço a uma identidade de cliente, segundo a implementação</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Exemplo de escopo IPv4:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Parâmetro</th>
+<th>Valor ilustrativo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rede</td>
+<td><code>192.168.50.0/24</code></td>
+</tr>
+<tr>
+<td>Pool</td>
+<td><code>192.168.50.100–192.168.50.200</code></td>
+</tr>
+<tr>
+<td>Gateway</td>
+<td><code>192.168.50.1</code></td>
+</tr>
+<tr>
+<td>DNS</td>
+<td><code>192.168.50.10</code></td>
+</tr>
+<tr>
+<td>Lease</td>
+<td>24 horas</td>
+</tr>
+</tbody>
+</table>
+<h3 id="23-processo-dora">2.3 Processo DORA<a class="headerlink" href="#23-processo-dora" title="Permanent link">¶</a></h3>
+<p>Nas anotações, o estabelecimento inicial de um endereço IPv4 é descrito em quatro etapas, conhecidas como <strong>DORA</strong>:</p>
+<ol>
+<li><strong>Discover:</strong> o cliente procura servidores DHCP.</li>
+<li><strong>Offer:</strong> um servidor oferece um endereço e parâmetros.</li>
+<li><strong>Request:</strong> o cliente solicita a oferta escolhida.</li>
+<li><strong>ACK (Acknowledgment):</strong> o servidor confirma a concessão.</li>
+</ol>
+<pre class="mermaid"><code>sequenceDiagram
+    participant C as Cliente DHCP
+    participant S as Servidor DHCP
+    C-&gt;&gt;S: DHCPDISCOVER (broadcast inicial)
+    S--&gt;&gt;C: DHCPOFFER (oferta)
+    C-&gt;&gt;S: DHCPREQUEST (seleção da oferta)
+    S--&gt;&gt;C: DHCPACK (confirmação)
+    Note over C,S: O cliente passa a utilizar os parâmetros concedidos
+</code></pre>
+<h4 id="discover">Discover<a class="headerlink" href="#discover" title="Permanent link">¶</a></h4>
+<p>Um cliente que ainda não possui endereço IPv4 utilizável geralmente inicia o processo com:</p>
+<ul>
+<li><strong>IP de origem:</strong> <code>0.0.0.0</code></li>
+<li><strong>IP de destino:</strong> <code>255.255.255.255</code></li>
+<li><strong>UDP origem:</strong> porta <code>68</code></li>
+<li><strong>UDP destino:</strong> porta <code>67</code></li>
+</ul>
+<p>A mensagem inicial é transmitida por broadcast porque o cliente ainda não sabe onde está o servidor.</p>
+<h4 id="offer">Offer<a class="headerlink" href="#offer" title="Permanent link">¶</a></h4>
+<p>O servidor responde com uma oferta que pode conter o endereço disponível, máscara, tempo de concessão e outras opções.</p>
+<h4 id="request">Request<a class="headerlink" href="#request" title="Permanent link">¶</a></h4>
+<p>O cliente indica qual oferta deseja aceitar. No processo inicial, o <code>DHCPREQUEST</code> costuma ser enviado em broadcast, permitindo que outros servidores saibam que suas ofertas não foram escolhidas.</p>
+<h4 id="ack">ACK<a class="headerlink" href="#ack" title="Permanent link">¶</a></h4>
+<p>O servidor confirma os parâmetros por meio de <code>DHCPACK</code>. Em determinadas situações pode responder com <code>DHCPNAK</code>, informando que a configuração solicitada não é válida.</p>
+<h3 id="24-dhcp-utiliza-tcp-ou-udp">2.4 DHCP utiliza TCP ou UDP?<a class="headerlink" href="#24-dhcp-utiliza-tcp-ou-udp" title="Permanent link">¶</a></h3>
+<p>O DHCPv4 utiliza <strong>UDP</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Sentido</th>
+<th>Porta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cliente → Servidor</td>
+<td>UDP <strong>67</strong> (destino)</td>
+</tr>
+<tr>
+<td>Servidor → Cliente</td>
+<td>UDP <strong>68</strong> (destino)</td>
+</tr>
+</tbody>
+</table>
+<p>O protocolo não depende de uma conexão TCP prévia para atribuir um endereço IP.</p>
+<h3 id="25-lease-e-renovacao">2.5 Lease e renovação<a class="headerlink" href="#25-lease-e-renovacao" title="Permanent link">¶</a></h3>
+<p>O endereço concedido normalmente tem um período de validade chamado <strong>lease</strong>.</p>
+<p>Em uma configuração comum:</p>
+<ul>
+<li><strong>T1:</strong> o cliente tenta renovar a concessão, normalmente após 50% do tempo.</li>
+<li><strong>T2:</strong> se não conseguiu renovar, tenta novamente em um escopo mais amplo, normalmente após 87,5%.</li>
+<li><strong>Expiração:</strong> se não houver renovação válida, o cliente não deve continuar utilizando o endereço expirado.</li>
+</ul>
+<p>Os tempos podem ser definidos por opções do servidor; os percentuais são valores padrão comuns, não garantias universais.</p>
+<h3 id="26-dhcp-relay">2.6 DHCP Relay<a class="headerlink" href="#26-dhcp-relay" title="Permanent link">¶</a></h3>
+<p>Mensagens de broadcast IPv4 normalmente não atravessam roteadores. Por isso, quando o servidor DHCP está em outra sub-rede, utiliza-se um <strong>DHCP Relay</strong>.</p>
+<pre class="mermaid"><code>flowchart LR
+    C["Cliente<br/>VLAN 10"]
+    R["Gateway L3<br/>DHCP Relay"]
+    S["Servidor DHCP<br/>VLAN 100"]
+    C --&gt;|"Broadcast DHCP"| R
+    R --&gt;|"Encaminhamento ao servidor"| S
+    S --&gt;|"Resposta ao relay"| R
+    R --&gt;|"Entrega ao cliente"| C
+</code></pre>
+<p><strong>Exemplo de topologia:</strong></p>
+<ul>
+<li>Cliente na VLAN 10: <code>10.10.10.0/24</code>.</li>
+<li>Gateway da VLAN 10: <code>10.10.10.1</code>.</li>
+<li>Servidor DHCP: <code>10.10.100.20</code>.</li>
+</ul>
+<p>O relay recebe a solicitação na VLAN 10 e a encaminha ao servidor, normalmente preenchendo informações que permitem identificar a rede de origem do cliente.</p>
+<h3 id="27-seguranca-e-troubleshooting-do-dhcp">2.7 Segurança e troubleshooting do DHCP<a class="headerlink" href="#27-seguranca-e-troubleshooting-do-dhcp" title="Permanent link">¶</a></h3>
+<p>Problemas comuns:</p>
+<table>
+<thead>
+<tr>
+<th>Sintoma</th>
+<th>Possível causa</th>
+<th>Verificação</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cliente não recebe IP</td>
+<td>VLAN incorreta, relay ausente, servidor inacessível</td>
+<td>VLAN, SVI, rotas e captura DHCP</td>
+</tr>
+<tr>
+<td>Recebe IP, mas não navega</td>
+<td>Gateway ou DNS incorreto</td>
+<td>Opções DHCP e rotas</td>
+</tr>
+<tr>
+<td>Recebe IP inesperado</td>
+<td>Servidor DHCP não autorizado</td>
+<td>Inspeção de tráfego e recursos de proteção</td>
+</tr>
+<tr>
+<td>Pool esgotado</td>
+<td>Excesso de concessões ou escopo pequeno</td>
+<td>Utilização do pool e leases</td>
+</tr>
+</tbody>
+</table>
+<p>Um <strong>servidor DHCP não autorizado (rogue DHCP)</strong> pode distribuir parâmetros errados ou maliciosos. Recursos como <strong>DHCP Snooping</strong>, quando suportados e corretamente configurados, ajudam a restringir respostas DHCP a interfaces confiáveis.</p>
+<h2 id="3-nat-network-address-translation">3. NAT — Network Address Translation<a class="headerlink" href="#3-nat-network-address-translation" title="Permanent link">¶</a></h2>
+<p>O <strong>NAT</strong> altera informações de endereçamento IP em pacotes que atravessam um dispositivo responsável pela tradução.</p>
+<p>Um uso conhecido é permitir que dispositivos com endereços IPv4 privados acessem serviços externos utilizando endereços públicos. Porém, o NAT também pode ser empregado em integrações de redes, migrações e ambientes com endereçamento sobreposto.</p>
+<blockquote>
+<p><strong>Importante:</strong> NAT não é, por si só, um firewall nem substitui uma política de segurança. Além disso, a comunicação entre redes privadas <strong>não exige NAT</strong> quando existe roteamento adequado.</p>
+</blockquote>
+<h3 id="31-enderecos-privados-e-publicos">3.1 Endereços privados e públicos<a class="headerlink" href="#31-enderecos-privados-e-publicos" title="Permanent link">¶</a></h3>
+<p>O RFC 1918 define os seguintes blocos privados:</p>
+<table>
+<thead>
+<tr>
+<th>Bloco</th>
+<th>Prefixo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>10.0.0.0 – 10.255.255.255</code></td>
+<td><code>10.0.0.0/8</code></td>
+</tr>
+<tr>
+<td><code>172.16.0.0 – 172.31.255.255</code></td>
+<td><code>172.16.0.0/12</code></td>
+</tr>
+<tr>
+<td><code>192.168.0.0 – 192.168.255.255</code></td>
+<td><code>192.168.0.0/16</code></td>
+</tr>
+</tbody>
+</table>
+<p>Esses endereços não são globalmente roteáveis na Internet pública. O NAT pode fazer parte da solução de acesso externo, mas a tradução precisa estar acompanhada de roteamento e das políticas necessárias.</p>
+<h3 id="32-terminologia-cisco-inside-e-outside">3.2 Terminologia Cisco: inside e outside<a class="headerlink" href="#32-terminologia-cisco-inside-e-outside" title="Permanent link">¶</a></h3>
+<p>Na terminologia tradicional de NAT da Cisco:</p>
+<ul>
+<li><strong>Inside local:</strong> endereço do dispositivo interno conforme aparece na rede interna.</li>
+<li><strong>Inside global:</strong> endereço pelo qual esse dispositivo interno é representado no lado externo.</li>
+<li><strong>Outside global:</strong> endereço real do dispositivo externo.</li>
+<li><strong>Outside local:</strong> endereço do dispositivo externo conforme é visto na rede interna.</li>
+</ul>
+<p>Em muitos exemplos simples, <em>outside local</em> e <em>outside global</em> possuem o mesmo valor.</p>
+<h3 id="33-nat-estatico-static-nat">3.3 NAT estático (Static NAT)<a class="headerlink" href="#33-nat-estatico-static-nat" title="Permanent link">¶</a></h3>
+<p>O <strong>NAT estático</strong> cria um mapeamento fixo entre endereços, geralmente <strong>um para um (1:1)</strong>.</p>
+<pre class="mermaid"><code>flowchart LR
+    A["Servidor interno<br/>10.10.10.20"]
+    N["Dispositivo NAT<br/>10.10.10.20 ↔ 203.0.113.20"]
+    E["Rede externa"]
+    A --&gt; N --&gt; E
+</code></pre>
+<p><strong>Exemplo:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Endereço interno</th>
+<th>Endereço traduzido</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>10.10.10.20</code></td>
+<td><code>203.0.113.20</code></td>
+</tr>
+</tbody>
+</table>
+<p>O mapeamento permanece definido independentemente de haver tráfego ativo.</p>
+<p><strong>Quando utilizar:</strong> publicação ou integração de um serviço com endereço traduzido estável, quando o projeto exige esse tipo de mapeamento.</p>
+<blockquote>
+<p><strong>Nota:</strong> <code>203.0.113.0/24</code> é um bloco reservado para documentação, utilizado aqui apenas em exemplos (RFC 5727 e 6890).</p>
+</blockquote>
+<h3 id="34-nat-dinamico-dynamic-nat">3.4 NAT dinâmico (Dynamic NAT)<a class="headerlink" href="#34-nat-dinamico-dynamic-nat" title="Permanent link">¶</a></h3>
+<p>O <strong>NAT dinâmico</strong> utiliza um conjunto (<em>pool</em>) de endereços disponíveis para criar traduções conforme a necessidade.</p>
+<pre class="mermaid"><code>flowchart LR
+    A["Cliente A<br/>10.10.10.11"]
+    B["Cliente B<br/>10.10.10.12"]
+    N["NAT dinâmico<br/>Pool externo"]
+    E["Rede externa"]
+    A --&gt; N
+    B --&gt; N
+    N --&gt; E
+</code></pre>
+<p><strong>Exemplo de pool:</strong></p>
+<p><code>203.0.113.100 – 203.0.113.102</code></p>
+<p>As traduções são alocadas conforme a configuração e a disponibilidade de endereços. Em NAT dinâmico tradicional sem sobrecarga de portas, o número de mapeamentos simultâneos é limitado pelo pool.</p>
+<h3 id="35-pat-port-address-translation">3.5 PAT — Port Address Translation<a class="headerlink" href="#35-pat-port-address-translation" title="Permanent link">¶</a></h3>
+<p>O <strong>PAT</strong>, também chamado de <strong>NAT overload</strong> em muitos contextos Cisco, permite que múltiplas conexões internas compartilhem um mesmo endereço IPv4 externo.</p>
+<p>Além do endereço IP, o dispositivo utiliza informações de transporte, como portas TCP/UDP, para diferenciar os fluxos.</p>
+<pre class="mermaid"><code>flowchart LR
+    A["Cliente A<br/>10.10.10.11:51000"]
+    B["Cliente B<br/>10.10.10.12:51000"]
+    N["PAT<br/>203.0.113.10"]
+    E["Servidor externo<br/>198.51.100.30:443"]
+    A --&gt;|"203.0.113.10:40001"| N
+    B --&gt;|"203.0.113.10:40002"| N
+    N --&gt; E
+</code></pre>
+<p><strong>Exemplo simplificado de tabela de traduções:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Origem interna</th>
+<th>Origem traduzida</th>
+<th>Destino</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>10.10.10.11:51000</code></td>
+<td><code>203.0.113.10:40001</code></td>
+<td><code>198.51.100.30:443</code></td>
+</tr>
+<tr>
+<td><code>10.10.10.12:51000</code></td>
+<td><code>203.0.113.10:40002</code></td>
+<td><code>198.51.100.30:443</code></td>
+</tr>
+</tbody>
+</table>
+<p>Quando as respostas retornam, o equipamento consulta o estado da tradução para entregá-las ao cliente correto.</p>
+<blockquote>
+<p><strong>Precisão técnica:</strong> a tradução não é identificada apenas pelo número de porta. O protocolo e, conforme a implementação, outros campos do fluxo também participam da identificação.</p>
+</blockquote>
+<h3 id="36-comparacao-entre-nat-estatico-dinamico-e-pat">3.6 Comparação entre NAT estático, dinâmico e PAT<a class="headerlink" href="#36-comparacao-entre-nat-estatico-dinamico-e-pat" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>Característica</th>
+<th>NAT estático</th>
+<th>NAT dinâmico</th>
+<th>PAT</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mapeamento</td>
+<td>Fixo</td>
+<td>Alocado sob demanda</td>
+<td>Alocado por fluxo/tradução</td>
+</tr>
+<tr>
+<td>Relação típica</td>
+<td>1:1</td>
+<td>1:1 temporária</td>
+<td>Muitos:1, frequentemente</td>
+</tr>
+<tr>
+<td>Uso de portas para multiplexar</td>
+<td>Não é necessário</td>
+<td>Não é necessário</td>
+<td>Sim, para TCP/UDP</td>
+</tr>
+<tr>
+<td>Consumo de endereços externos</td>
+<td>Um por mapeamento</td>
+<td>Depende do pool</td>
+<td>Pode compartilhar um endereço</td>
+</tr>
+<tr>
+<td>Aplicação comum</td>
+<td>Endereço externo estável</td>
+<td>Traduções usando pool</td>
+<td>Saída compartilhada para redes externas</td>
+</tr>
+</tbody>
+</table>
+<h3 id="37-nat-de-origem-e-nat-de-destino">3.7 NAT de origem e NAT de destino<a class="headerlink" href="#37-nat-de-origem-e-nat-de-destino" title="Permanent link">¶</a></h3>
+<p>Além de classificar o NAT como estático ou dinâmico, podemos
+diferenciá-lo de acordo com o endereço IP que será traduzido.</p>
+<h4 id="snat-source-nat">SNAT (Source NAT)<a class="headerlink" href="#snat-source-nat" title="Permanent link">¶</a></h4>
+<p>O <strong>SNAT</strong> modifica o endereço IP de origem de um pacote.</p>
+<p>É frequentemente utilizado quando dispositivos de uma rede
+privada precisam acessar redes externas.</p>
+<p><strong>Exemplo:</strong></p>
+<p>Um cliente com endereço <code>10.10.10.11</code> deseja acessar um
+servidor externo <code>198.51.100.30</code>.</p>
+<p>Antes da tradução:</p>
+<ul>
+<li>Origem: <code>10.10.10.11</code></li>
+<li>Destino: <code>198.51.100.30</code></li>
+</ul>
+<p>Após a tradução:</p>
+<ul>
+<li>Origem: <code>203.0.113.10</code></li>
+<li>Destino: <code>198.51.100.30</code></li>
+</ul>
+<pre class="mermaid"><code>flowchart LR
+    C["Cliente<br/>10.10.10.11"]
+    N["Gateway SNAT"]
+    S["Servidor externo<br/>198.51.100.30"]
+
+    C --&gt;|"Origem: 10.10.10.11"| N
+    N --&gt;|"Origem: 203.0.113.10"| S
+</code></pre>
+<p>Observe que apenas o endereço de origem foi alterado
+nesse exemplo.</p>
+<p>O dispositivo NAT mantém as informações necessárias
+para realizar a tradução inversa do tráfego de retorno.</p>
+<h4 id="dnat-destination-nat">DNAT (Destination NAT)<a class="headerlink" href="#dnat-destination-nat" title="Permanent link">¶</a></h4>
+<p>O <strong>DNAT</strong> modifica o endereço IP de destino de um pacote.</p>
+<p>É frequentemente utilizado para disponibilizar serviços
+internos através de endereços externos.</p>
+<p><strong>Exemplo:</strong></p>
+<p>Um servidor Web possui o endereço privado <code>10.10.20.10</code>,
+mas é publicado através do endereço <code>203.0.113.20</code>.</p>
+<p>Antes da tradução:</p>
+<ul>
+<li>Origem: <code>198.51.100.50</code></li>
+<li>Destino: <code>203.0.113.20</code></li>
+</ul>
+<p>Após a tradução:</p>
+<ul>
+<li>Origem: <code>198.51.100.50</code></li>
+<li>Destino: <code>10.10.20.10</code></li>
+</ul>
+<pre class="mermaid"><code>flowchart LR
+    C["Cliente externo<br/>198.51.100.50"]
+    N["Gateway DNAT"]
+    S["Servidor Web<br/>10.10.20.10"]
+
+    C --&gt;|"Destino: 203.0.113.20"| N
+    N --&gt;|"Destino: 10.10.20.10"| S
+</code></pre>
+<p>Observe que o endereço de origem permanece inalterado
+nesse exemplo, enquanto o destino é traduzido.</p>
+<p>O dispositivo NAT também precisa realizar a tradução
+inversa das respostas.</p>
+<h4 id="diferenca-entre-snat-dnat-e-pat">Diferença entre SNAT, DNAT e PAT<a class="headerlink" href="#diferenca-entre-snat-dnat-e-pat" title="Permanent link">¶</a></h4>
+<p>SNAT e DNAT identificam <strong>qual endereço IP é modificado</strong>.</p>
+<p>Já o PAT utiliza informações de transporte, como portas
+TCP/UDP, para realizar ou distinguir traduções.</p>
+<p>Portanto, os conceitos podem ser combinados:</p>
+<table>
+<thead>
+<tr>
+<th>Cenário</th>
+<th>Tradução</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cliente privado acessando a Internet com NAT 1:1</td>
+<td>SNAT</td>
+</tr>
+<tr>
+<td>Vários clientes compartilhando um IP externo</td>
+<td>SNAT com PAT</td>
+</tr>
+<tr>
+<td>Publicação de servidor interno por IP externo</td>
+<td>DNAT</td>
+</tr>
+<tr>
+<td>Redirecionamento de TCP 8443 externo para TCP 443 interno</td>
+<td>DNAT com tradução de porta</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Importante:</strong> SNAT e DNAT descrevem a direção da
+tradução dos endereços. NAT estático, dinâmico e PAT
+descrevem características do mapeamento realizado.
+Essas classificações não são mutuamente exclusivas.</p>
+</blockquote>
+<h3 id="38-nat-em-data-centers">3.8 NAT em Data Centers<a class="headerlink" href="#38-nat-em-data-centers" title="Permanent link">¶</a></h3>
+<p>Em Data Centers, a tradução pode aparecer em:</p>
+<ul>
+<li><strong>Saída de servidores e aplicações:</strong> acesso a repositórios, APIs ou serviços externos.</li>
+<li><strong>Publicação de serviços:</strong> exposição controlada de aplicações por meio de endereços ou portas traduzidos.</li>
+<li><strong>Integração entre ambientes:</strong> interconexão de redes com faixas IPv4 sobrepostas.</li>
+<li><strong>Migrações:</strong> manutenção temporária de conectividade durante mudanças de endereçamento.</li>
+</ul>
+<p>Em muitas arquiteturas, o NAT é executado por <strong>firewalls, appliances ou serviços específicos</strong>, e não necessariamente pelos switches Spine ou Leaf.</p>
+<h4 id="nat-e-balanceamento-de-carga">NAT e balanceamento de carga<a class="headerlink" href="#nat-e-balanceamento-de-carga" title="Permanent link">¶</a></h4>
+<p>NAT e <em>load balancing</em> são conceitos distintos:</p>
+<ul>
+<li><strong>NAT:</strong> altera informações de endereçamento e, em alguns casos, portas.</li>
+<li><strong>Load balancing:</strong> distribui conexões ou requisições entre destinos, segundo regras e verificações de disponibilidade.</li>
+</ul>
+<p>Um balanceador pode utilizar NAT como parte de sua implementação, mas os dois conceitos não são equivalentes.</p>
+<h3 id="39-troubleshooting-de-natpat">3.9 Troubleshooting de NAT/PAT<a class="headerlink" href="#39-troubleshooting-de-natpat" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>Sintoma</th>
+<th>Possível causa</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cliente não acessa serviço externo</td>
+<td>Falta de rota, política, tradução ou DNS</td>
+</tr>
+<tr>
+<td>Algumas conexões falham sob carga</td>
+<td>Limites de traduções ou esgotamento de portas</td>
+</tr>
+<tr>
+<td>Serviço publicado não responde</td>
+<td>DNAT incorreto, rota de retorno ou bloqueio</td>
+</tr>
+<tr>
+<td>Aplicação falha apesar de TCP conectado</td>
+<td>Protocolo com endereços embutidos, inspeção ou timeout</td>
+</tr>
+<tr>
+<td>Tráfego funciona apenas em um sentido</td>
+<td>Assimetria de caminhos ou estado NAT indisponível no retorno</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Verificações gerais:</strong></p>
+<ol>
+<li>Confirmar endereços, máscara, gateway e DNS.</li>
+<li>Verificar rotas de ida e retorno.</li>
+<li>Examinar políticas de segurança.</li>
+<li>Consultar a tabela de traduções no dispositivo que realiza NAT.</li>
+<li>Validar se o fluxo de retorno atravessa o equipamento correto.</li>
+<li>Utilizar capturas de pacotes quando necessário.</li>
+</ol>
+<blockquote>
+<p><strong>Atenção para laboratórios Cisco:</strong> os comandos de NAT dependem muito da plataforma e do sistema operacional. Não é correto assumir que comandos de NAT do IOS/IOS-XE estejam disponíveis da mesma forma em todos os switches Nexus com NX-OS.</p>
+</blockquote>
+<h2 id="4-dhcp-nat-e-pat-como-se-relacionam">4. DHCP, NAT e PAT: como se relacionam?<a class="headerlink" href="#4-dhcp-nat-e-pat-como-se-relacionam" title="Permanent link">¶</a></h2>
+<p>Esses serviços resolvem problemas diferentes:</p>
+<table>
+<thead>
+<tr>
+<th>Pergunta</th>
+<th>Tecnologia</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Como o dispositivo obtém endereço IP e gateway automaticamente?</td>
+<td><strong>DHCP</strong></td>
+</tr>
+<tr>
+<td>Como representar um endereço interno por outro endereço?</td>
+<td><strong>NAT</strong></td>
+</tr>
+<tr>
+<td>Como várias conexões podem compartilhar um endereço externo?</td>
+<td><strong>PAT</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Cenário integrado:</strong></p>
+<ol>
+<li>Uma VM recebe <code>10.20.30.50/24</code>, gateway e DNS via DHCP.</li>
+<li>A VM acessa um repositório externo.</li>
+<li>O gateway/firewall aplica PAT na saída, conforme a política.</li>
+<li>As respostas retornam ao firewall e são entregues à VM usando o estado da tradução.</li>
+</ol>
+<pre class="mermaid"><code>flowchart LR
+    D["Servidor DHCP"]
+    V["VM<br/>10.20.30.50"]
+    F["Firewall / PAT<br/>IP externo"]
+    I["Serviço externo"]
+    D -.-&gt;|"Parâmetros DHCP"| V
+    V --&gt;|"Tráfego IP"| F
+    F --&gt;|"Origem traduzida"| I
+</code></pre>
+<h2 id="5-relacao-com-o-ccnp-dccor-350-601">5. Relação com o CCNP DCCOR 350-601<a class="headerlink" href="#5-relacao-com-o-ccnp-dccor-350-601" title="Permanent link">¶</a></h2>
+<p>Os conceitos estudados aqui ajudam a compreender:</p>
+<ul>
+<li><strong>Infraestrutura de gerenciamento:</strong> endereçamento de equipamentos e acesso a serviços internos.</li>
+<li><strong>Redes virtuais:</strong> atribuição de parâmetros a VMs e cargas de trabalho.</li>
+<li><strong>Segmentação:</strong> necessidade de DHCP Relay quando o servidor está em outra sub-rede.</li>
+<li><strong>Conectividade externa:</strong> tradução de endereços e políticas em equipamentos de borda.</li>
+<li><strong>Troubleshooting:</strong> diferenciação entre problemas de atribuição de IP, roteamento, NAT e aplicação.</li>
+<li><strong>Automação:</strong> provisão consistente de configurações e serviços de rede.</li>
+</ul>
+<h2 id="6-exercicios-de-fixacao">6. Exercícios de fixação<a class="headerlink" href="#6-exercicios-de-fixacao" title="Permanent link">¶</a></h2>
+<ol>
+<li>Descreva as quatro mensagens do processo DORA e a função de cada uma.</li>
+<li>Por que um cliente DHCP pode precisar de um relay?</li>
+<li>Quais portas UDP são utilizadas pelo DHCPv4?</li>
+<li>O que acontece quando um lease expira sem renovação?</li>
+<li>Qual é a diferença entre NAT estático e NAT dinâmico?</li>
+<li>Por que o PAT permite compartilhar um endereço IPv4 externo?</li>
+<li>NAT e firewall são a mesma coisa? Justifique.</li>
+<li>Um servidor com IP privado precisa obrigatoriamente de NAT para acessar outra sub-rede privada? Explique.</li>
+<li>Em um Data Center, quais equipamentos poderiam realizar NAT?</li>
+<li>Se o cliente recebe IP via DHCP, mas não consegue acessar um serviço externo, quais verificações faria primeiro?</li>
+</ol>
+<h2 id="7-checklist-de-revisao">7. Checklist de revisão<a class="headerlink" href="#7-checklist-de-revisao" title="Permanent link">¶</a></h2>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Compreender a finalidade do DHCP.</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Explicar Discover, Offer, Request e ACK.</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Conhecer as portas UDP 67 e 68.</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Entender o funcionamento de leases e renovação.</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Compreender por que DHCP Relay é necessário entre sub-redes.</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Identificar riscos de servidores DHCP não autorizados.</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Diferenciar NAT estático, dinâmico e PAT.</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Explicar o conceito de inside local e inside global.</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Compreender a diferença entre SNAT e DNAT.</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Entender a tabela de traduções PAT.</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Diferenciar NAT de roteamento, firewall e load balancing.</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Relacionar esses serviços a cenários de Data Center.</li>
+</ul>
+</article>
+</div>
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+</div>
+</main>
+<footer class="md-footer">
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-copyright">
+<div class="md-copyright__highlight">
+      Weslley Silva © 2025
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
+      Material for MkDocs
+    </a>
+</div>
+<div class="md-social">
+<a class="md-social__link" href="https://github.com/weslleycsil" rel="noopener" target="_blank" title="github.com">
+<svg viewbox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M202.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M496 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"></path></svg>
+</a>
+<a class="md-social__link" href="https://linkedin.com/in/weslleycsil" rel="noopener" target="_blank" title="linkedin.com">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zM102.2 96a38.5 38.5 0 1 1 0 77 38.5 38.5 0 1 1 0-77m282.1 320h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"></path></svg>
+</a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<div class="md-dialog" data-md-component="dialog">
+<div class="md-dialog__inner md-typeset"></div>
+</div>
+<script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "mais 1 nesta p\u00e1gina", "search.result.more.other": "# mais nesta p\u00e1gina", "search.result.none": "Nenhum documento encontrado", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
+<script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+<script type="module">import mermaid from "https://unpkg.com/mermaid@10.4.0/dist/mermaid.esm.min.mjs";
+window.mermaidConfig = {default: {
+    startOnLoad: false
+}};</script></body>
+</html>

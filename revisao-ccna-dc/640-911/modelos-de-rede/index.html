@@ -1,0 +1,3925 @@
+
+<!DOCTYPE html>
+
+<html class="no-js" lang="pt">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="Guia de Estudos CCNP DCCOR 350-601" name="description"/>
+<meta content="Weslley Silva" name="author"/>
+<link href="https://infra.expert/cisco_ccnp_350-501/revisao-ccna-dc/640-911/modelos-de-rede/" rel="canonical"/>
+<link href="../" rel="prev"/>
+<link href="../enderecamento-ipv4/" rel="next"/>
+<link href="/cisco_aci" hreflang="pt-BR" rel="alternate"/>
+<link href="../../../assets/images/favicon.png" rel="icon"/>
+<meta content="mkdocs-1.6.1, mkdocs-material-9.7.7" name="generator"/>
+<title>Modelos de Rede e Arquitetura - Guia de Estudos CCNP DCCOR 350-601</title>
+<link href="../../../assets/stylesheets/main.ec1eaa64.min.css" rel="stylesheet"/>
+<link href="../../../assets/stylesheets/palette.ab4e12ef.min.css" rel="stylesheet"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
+<style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+<script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+</head>
+<body data-md-color-accent="indigo" data-md-color-primary="indigo" data-md-color-scheme="default" dir="ltr">
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#modelos-de-rede-e-arquitetura">
+          Pular para conteúdo
+        </a>
+</div>
+<div data-md-component="announce">
+</div>
+<header class="md-header md-header--shadow" data-md-component="header">
+<nav aria-label="Cabeçalho" class="md-header__inner md-grid">
+<a aria-label="Guia de Estudos CCNP DCCOR 350-601" class="md-header__button md-logo" data-md-component="logo" href="../../.." title="Guia de Estudos CCNP DCCOR 350-601">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+</a>
+<label class="md-header__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+</label>
+<div class="md-header__title" data-md-component="header-title">
+<div class="md-header__ellipsis">
+<div class="md-header__topic">
+<span class="md-ellipsis">
+            Guia de Estudos CCNP DCCOR 350-601
+          </span>
+</div>
+<div class="md-header__topic" data-md-component="header-topic">
+<span class="md-ellipsis">
+            
+              Modelos de Rede e Arquitetura
+            
+          </span>
+</div>
+</div>
+</div>
+<form class="md-header__option" data-md-component="palette">
+<input aria-label="Switch to light mode" class="md-option" data-md-color-accent="indigo" data-md-color-media="(prefers-color-scheme)" data-md-color-primary="indigo" data-md-color-scheme="default" id="__palette_0" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_1" hidden="" title="Switch to light mode">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1M8 13h8v-2H8zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4a5 5 0 0 0 5-5 5 5 0 0 0-5-5"></path></svg>
+</label>
+<input aria-label="Switch to dark mode" class="md-option" data-md-color-accent="indigo" data-md-color-media="(prefers-color-scheme: light)" data-md-color-primary="indigo" data-md-color-scheme="default" id="__palette_1" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_2" hidden="" title="Switch to dark mode">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"></path></svg>
+</label>
+<input aria-label="Switch to system preference" class="md-option" data-md-color-accent="indigo" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-primary="black" data-md-color-scheme="slate" id="__palette_2" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_0" hidden="" title="Switch to system preference">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5M7 15a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"></path></svg>
+</label>
+</form>
+<script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+<div class="md-header__option">
+<div class="md-select">
+<button aria-label="Selecione o idioma" class="md-header__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"></path></svg>
+</button>
+<div class="md-select__inner">
+<ul class="md-select__list">
+<li class="md-select__item">
+<a class="md-select__link" href="/cisco_aci" hreflang="pt-BR">
+              Português
+            </a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<label class="md-header__button md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+</label>
+<div class="md-search" data-md-component="search" role="dialog">
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input aria-label="Buscar" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" name="query" placeholder="Buscar" required="" spellcheck="false" type="text"/>
+<label class="md-search__icon md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+</label>
+<nav aria-label="Pesquisar" class="md-search__options">
+<button aria-label="Limpar" class="md-search__icon md-icon" tabindex="-1" title="Limpar" type="reset">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+</button>
+</nav>
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="" tabindex="0">
+<div class="md-search-result" data-md-component="search-result">
+<div class="md-search-result__meta">
+            Inicializando busca
+          </div>
+<ol class="md-search-result__list" role="presentation"></ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="md-header__source">
+<a class="md-source" data-md-component="source" href="https://github.com/weslleycsil/cisco-ccnp-350-601" title="Ir para repositório">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"></path></svg>
+</div>
+<div class="md-source__repository">
+    weslleycsil/cisco-ccnp-350-601
+  </div>
+</a>
+</div>
+</nav>
+</header>
+<div class="md-container" data-md-component="container">
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Navegação" class="md-nav md-nav--primary" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="Guia de Estudos CCNP DCCOR 350-601" class="md-nav__button md-logo" data-md-component="logo" href="../../.." title="Guia de Estudos CCNP DCCOR 350-601">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+</a>
+    Guia de Estudos CCNP DCCOR 350-601
+  </label>
+<div class="md-nav__source">
+<a class="md-source" data-md-component="source" href="https://github.com/weslleycsil/cisco-ccnp-350-601" title="Ir para repositório">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"></path></svg>
+</div>
+<div class="md-source__repository">
+    weslleycsil/cisco-ccnp-350-601
+  </div>
+</a>
+</div>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../..">
+<span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Revisão CCNA Data Center
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="true" aria-labelledby="__nav_2_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_2">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Revisão CCNA Data Center
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../">
+<span class="md-ellipsis">
+    
+  
+    Visão geral
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_2_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    DCICN 640-911
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="true" aria-labelledby="__nav_2_2_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_2">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    DCICN 640-911
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../">
+<span class="md-ellipsis">
+    
+  
+    Introdução
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+<span class="md-ellipsis">
+    
+  
+    Modelos de Rede
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
+<span class="md-ellipsis">
+    
+  
+    Modelos de Rede
+  
+
+    
+  </span>
+</a>
+<nav aria-label="Índice" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#1-modos-de-comunicacao">
+<span class="md-ellipsis">
+      
+        1. Modos de Comunicação
+      
+    </span>
+</a>
+<nav aria-label="1. Modos de Comunicação" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#11-simplex">
+<span class="md-ellipsis">
+      
+        1.1 Simplex
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#12-half-duplex">
+<span class="md-ellipsis">
+      
+        1.2 Half-duplex
+      
+    </span>
+</a>
+<nav aria-label="1.2 Half-duplex" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#half-duplex-em-redes-ethernet">
+<span class="md-ellipsis">
+      
+        Half-duplex em redes Ethernet
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#13-full-duplex">
+<span class="md-ellipsis">
+      
+        1.3 Full-duplex
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#14-comparacao-dos-modos-de-comunicacao">
+<span class="md-ellipsis">
+      
+        1.4 Comparação dos modos de comunicação
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#15-aplicacao-em-data-centers">
+<span class="md-ellipsis">
+      
+        1.5 Aplicação em Data Centers
+      
+    </span>
+</a>
+<nav aria-label="1.5 Aplicação em Data Centers" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#exemplo-interface-ethernet-de-10-gbps">
+<span class="md-ellipsis">
+      
+        Exemplo: interface Ethernet de 10 Gbps
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#duplex-mismatch">
+<span class="md-ellipsis">
+      
+        Duplex mismatch
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#16-checklist-de-revisao">
+<span class="md-ellipsis">
+      
+        1.6 Checklist de revisão
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#2-arquitetura-hierarquica-de-rede">
+<span class="md-ellipsis">
+      
+        2. Arquitetura Hierárquica de Rede
+      
+    </span>
+</a>
+<nav aria-label="2. Arquitetura Hierárquica de Rede" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#21-visao-geral-da-arquitetura">
+<span class="md-ellipsis">
+      
+        2.1 Visão geral da arquitetura
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#22-camada-core-nucleo">
+<span class="md-ellipsis">
+      
+        2.2 Camada Core (Núcleo)
+      
+    </span>
+</a>
+<nav aria-label="2.2 Camada Core (Núcleo)" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#principais-responsabilidades">
+<span class="md-ellipsis">
+      
+        Principais responsabilidades
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#caracteristicas-tecnicas">
+<span class="md-ellipsis">
+      
+        Características técnicas
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#exemplo-pratico">
+<span class="md-ellipsis">
+      
+        Exemplo prático
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#23-camada-de-distribuicao-distribution">
+<span class="md-ellipsis">
+      
+        2.3 Camada de Distribuição (Distribution)
+      
+    </span>
+</a>
+<nav aria-label="2.3 Camada de Distribuição (Distribution)" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#principais-responsabilidades_1">
+<span class="md-ellipsis">
+      
+        Principais responsabilidades
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#tecnologias-utilizadas">
+<span class="md-ellipsis">
+      
+        Tecnologias utilizadas
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#exemplo-pratico_1">
+<span class="md-ellipsis">
+      
+        Exemplo prático
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#24-camada-de-acesso-access">
+<span class="md-ellipsis">
+      
+        2.4 Camada de Acesso (Access)
+      
+    </span>
+</a>
+<nav aria-label="2.4 Camada de Acesso (Access)" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#principais-responsabilidades_2">
+<span class="md-ellipsis">
+      
+        Principais responsabilidades
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#caracteristicas-tecnicas_1">
+<span class="md-ellipsis">
+      
+        Características técnicas
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#exemplo-pratico_2">
+<span class="md-ellipsis">
+      
+        Exemplo prático
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#25-comparacao-das-tres-camadas">
+<span class="md-ellipsis">
+      
+        2.5 Comparação das três camadas
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#26-beneficios-da-arquitetura-hierarquica">
+<span class="md-ellipsis">
+      
+        2.6 Benefícios da arquitetura hierárquica
+      
+    </span>
+</a>
+<nav aria-label="2.6 Benefícios da arquitetura hierárquica" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#escalabilidade">
+<span class="md-ellipsis">
+      
+        Escalabilidade
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#redundancia-e-disponibilidade">
+<span class="md-ellipsis">
+      
+        Redundância e disponibilidade
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#organizacao-e-modularidade">
+<span class="md-ellipsis">
+      
+        Organização e modularidade
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#facilidade-de-troubleshooting">
+<span class="md-ellipsis">
+      
+        Facilidade de troubleshooting
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#27-arquitetura-de-duas-camadas-collapsed-core">
+<span class="md-ellipsis">
+      
+        2.7 Arquitetura de duas camadas (Collapsed Core)
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#28-atualizacao-para-data-centers-arquitetura-spine-leaf">
+<span class="md-ellipsis">
+      
+        2.8 Atualização para Data Centers: Arquitetura Spine-Leaf
+      
+    </span>
+</a>
+<nav aria-label="2.8 Atualização para Data Centers: Arquitetura Spine-Leaf" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#por-que-utilizar-spine-leaf">
+<span class="md-ellipsis">
+      
+        Por que utilizar Spine-Leaf?
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#trafego-north-south-e-east-west">
+<span class="md-ellipsis">
+      
+        Tráfego North-South e East-West
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#ecmp-equal-cost-multi-path">
+<span class="md-ellipsis">
+      
+        ECMP (Equal-Cost Multi-Path)
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#29-arquitetura-hierarquica-vs-spine-leaf">
+<span class="md-ellipsis">
+      
+        2.9 Arquitetura hierárquica vs. Spine-Leaf
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#210-relacao-com-o-ccnp-dccor-350-601">
+<span class="md-ellipsis">
+      
+        2.10 Relação com o CCNP DCCOR 350-601
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#211-checklist-de-revisao">
+<span class="md-ellipsis">
+      
+        2.11 Checklist de revisão
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#3-modelo-osi-open-systems-interconnection">
+<span class="md-ellipsis">
+      
+        3. Modelo OSI (Open Systems Interconnection)
+      
+    </span>
+</a>
+<nav aria-label="3. Modelo OSI (Open Systems Interconnection)" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#31-por-que-utilizar-um-modelo-em-camadas">
+<span class="md-ellipsis">
+      
+        3.1 Por que utilizar um modelo em camadas?
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#32-as-sete-camadas-do-modelo-osi">
+<span class="md-ellipsis">
+      
+        3.2 As sete camadas do modelo OSI
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#33-camada-1-fisica-physical-layer">
+<span class="md-ellipsis">
+      
+        3.3 Camada 1 — Física (Physical Layer)
+      
+    </span>
+</a>
+<nav aria-label="3.3 Camada 1 — Física (Physical Layer)" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#principais-responsabilidades_3">
+<span class="md-ellipsis">
+      
+        Principais responsabilidades
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#exemplos-praticos">
+<span class="md-ellipsis">
+      
+        Exemplos práticos
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#34-camada-2-enlace-de-dados-data-link-layer">
+<span class="md-ellipsis">
+      
+        3.4 Camada 2 — Enlace de Dados (Data Link Layer)
+      
+    </span>
+</a>
+<nav aria-label="3.4 Camada 2 — Enlace de Dados (Data Link Layer)" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#principais-responsabilidades_4">
+<span class="md-ellipsis">
+      
+        Principais responsabilidades
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#exemplo-pratico_3">
+<span class="md-ellipsis">
+      
+        Exemplo prático
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#mac-address-table">
+<span class="md-ellipsis">
+      
+        MAC Address Table
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#tecnologias-relacionadas">
+<span class="md-ellipsis">
+      
+        Tecnologias relacionadas
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#35-camada-3-rede-network-layer">
+<span class="md-ellipsis">
+      
+        3.5 Camada 3 — Rede (Network Layer)
+      
+    </span>
+</a>
+<nav aria-label="3.5 Camada 3 — Rede (Network Layer)" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#principais-responsabilidades_5">
+<span class="md-ellipsis">
+      
+        Principais responsabilidades
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#exemplo-pratico_4">
+<span class="md-ellipsis">
+      
+        Exemplo prático
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#tecnologias-relacionadas_1">
+<span class="md-ellipsis">
+      
+        Tecnologias relacionadas
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#36-camada-4-transporte-transport-layer">
+<span class="md-ellipsis">
+      
+        3.6 Camada 4 — Transporte (Transport Layer)
+      
+    </span>
+</a>
+<nav aria-label="3.6 Camada 4 — Transporte (Transport Layer)" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#principais-responsabilidades_6">
+<span class="md-ellipsis">
+      
+        Principais responsabilidades
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#tcp-transmission-control-protocol">
+<span class="md-ellipsis">
+      
+        TCP (Transmission Control Protocol)
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#udp-user-datagram-protocol">
+<span class="md-ellipsis">
+      
+        UDP (User Datagram Protocol)
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#exemplos">
+<span class="md-ellipsis">
+      
+        Exemplos
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#37-camada-5-sessao-session-layer">
+<span class="md-ellipsis">
+      
+        3.7 Camada 5 — Sessão (Session Layer)
+      
+    </span>
+</a>
+<nav aria-label="3.7 Camada 5 — Sessão (Session Layer)" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#exemplo-conceitual">
+<span class="md-ellipsis">
+      
+        Exemplo conceitual
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#38-camada-6-apresentacao-presentation-layer">
+<span class="md-ellipsis">
+      
+        3.8 Camada 6 — Apresentação (Presentation Layer)
+      
+    </span>
+</a>
+<nav aria-label="3.8 Camada 6 — Apresentação (Presentation Layer)" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#principais-responsabilidades_7">
+<span class="md-ellipsis">
+      
+        Principais responsabilidades
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#exemplos_1">
+<span class="md-ellipsis">
+      
+        Exemplos
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#39-camada-7-aplicacao-application-layer">
+<span class="md-ellipsis">
+      
+        3.9 Camada 7 — Aplicação (Application Layer)
+      
+    </span>
+</a>
+<nav aria-label="3.9 Camada 7 — Aplicação (Application Layer)" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#principais-responsabilidades_8">
+<span class="md-ellipsis">
+      
+        Principais responsabilidades
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#exemplos_2">
+<span class="md-ellipsis">
+      
+        Exemplos
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#exemplo-pratico_5">
+<span class="md-ellipsis">
+      
+        Exemplo prático
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#310-equipamentos-e-sua-relacao-com-o-modelo-osi">
+<span class="md-ellipsis">
+      
+        3.10 Equipamentos e sua relação com o modelo OSI
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#311-aplicacao-do-modelo-osi-no-troubleshooting">
+<span class="md-ellipsis">
+      
+        3.11 Aplicação do modelo OSI no troubleshooting
+      
+    </span>
+</a>
+<nav aria-label="3.11 Aplicação do modelo OSI no troubleshooting" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#exemplos-de-comandos-cisco-nx-os">
+<span class="md-ellipsis">
+      
+        Exemplos de comandos Cisco NX-OS
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#312-relacao-com-o-ccnp-dccor-350-601">
+<span class="md-ellipsis">
+      
+        3.12 Relação com o CCNP DCCOR 350-601
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#313-checklist-de-revisao">
+<span class="md-ellipsis">
+      
+        3.13 Checklist de revisão
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#4-modelo-tcpip-e-relacao-com-o-osi">
+<span class="md-ellipsis">
+      
+        4. Modelo TCP/IP e relação com o OSI
+      
+    </span>
+</a>
+<nav aria-label="4. Modelo TCP/IP e relação com o OSI" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#41-organizacao-do-modelo-tcpip">
+<span class="md-ellipsis">
+      
+        4.1 Organização do modelo TCP/IP
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#42-camada-de-aplicacao-application-layer">
+<span class="md-ellipsis">
+      
+        4.2 Camada de Aplicação (Application Layer)
+      
+    </span>
+</a>
+<nav aria-label="4.2 Camada de Aplicação (Application Layer)" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#principais-responsabilidades_9">
+<span class="md-ellipsis">
+      
+        Principais responsabilidades
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#exemplos-de-protocolos">
+<span class="md-ellipsis">
+      
+        Exemplos de protocolos
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#exemplo-pratico_6">
+<span class="md-ellipsis">
+      
+        Exemplo prático
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#43-camada-host-to-host-transporte-transport-layer">
+<span class="md-ellipsis">
+      
+        4.3 Camada Host-to-Host / Transporte (Transport Layer)
+      
+    </span>
+</a>
+<nav aria-label="4.3 Camada Host-to-Host / Transporte (Transport Layer)" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#principais-responsabilidades_10">
+<span class="md-ellipsis">
+      
+        Principais responsabilidades
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#tcp-transmission-control-protocol_1">
+<span class="md-ellipsis">
+      
+        TCP (Transmission Control Protocol)
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#udp-user-datagram-protocol_1">
+<span class="md-ellipsis">
+      
+        UDP (User Datagram Protocol)
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#portas-de-origem-e-destino">
+<span class="md-ellipsis">
+      
+        Portas de origem e destino
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#44-camada-internet-internet-layer">
+<span class="md-ellipsis">
+      
+        4.4 Camada Internet (Internet Layer)
+      
+    </span>
+</a>
+<nav aria-label="4.4 Camada Internet (Internet Layer)" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#principais-responsabilidades_11">
+<span class="md-ellipsis">
+      
+        Principais responsabilidades
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#principais-protocolos">
+<span class="md-ellipsis">
+      
+        Principais protocolos
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#exemplo-pratico_7">
+<span class="md-ellipsis">
+      
+        Exemplo prático
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#45-camada-network-access-acesso-a-rede">
+<span class="md-ellipsis">
+      
+        4.5 Camada Network Access / Acesso à Rede
+      
+    </span>
+</a>
+<nav aria-label="4.5 Camada Network Access / Acesso à Rede" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#principais-responsabilidades_12">
+<span class="md-ellipsis">
+      
+        Principais responsabilidades
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#exemplos-de-tecnologias">
+<span class="md-ellipsis">
+      
+        Exemplos de tecnologias
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#exemplo-pratico_8">
+<span class="md-ellipsis">
+      
+        Exemplo prático
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#46-relacao-entre-os-modelos-tcpip-e-osi">
+<span class="md-ellipsis">
+      
+        4.6 Relação entre os modelos TCP/IP e OSI
+      
+    </span>
+</a>
+<nav aria-label="4.6 Relação entre os modelos TCP/IP e OSI" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#principais-diferencas">
+<span class="md-ellipsis">
+      
+        Principais diferenças
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#47-exemplo-de-comunicacao-utilizando-tcpip">
+<span class="md-ellipsis">
+      
+        4.7 Exemplo de comunicação utilizando TCP/IP
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#48-aplicacao-do-modelo-tcpip-em-data-centers">
+<span class="md-ellipsis">
+      
+        4.8 Aplicação do modelo TCP/IP em Data Centers
+      
+    </span>
+</a>
+<nav aria-label="4.8 Aplicação do modelo TCP/IP em Data Centers" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#servidores-e-aplicacoes">
+<span class="md-ellipsis">
+      
+        Servidores e aplicações
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#infraestrutura-de-rede">
+<span class="md-ellipsis">
+      
+        Infraestrutura de rede
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#redes-spine-leaf">
+<span class="md-ellipsis">
+      
+        Redes Spine-Leaf
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#vxlan">
+<span class="md-ellipsis">
+      
+        VXLAN
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#49-relacao-com-o-ccnp-dccor-350-601">
+<span class="md-ellipsis">
+      
+        4.9 Relação com o CCNP DCCOR 350-601
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#410-checklist-de-revisao">
+<span class="md-ellipsis">
+      
+        4.10 Checklist de revisão
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../enderecamento-ipv4/">
+<span class="md-ellipsis">
+    
+  
+    Endereçamento IPv4
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../servicos-de-rede/">
+<span class="md-ellipsis">
+    
+  
+    Serviços de Rede
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../roadmap/">
+<span class="md-ellipsis">
+    
+  
+    Roadmap
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Índice" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#1-modos-de-comunicacao">
+<span class="md-ellipsis">
+      
+        1. Modos de Comunicação
+      
+    </span>
+</a>
+<nav aria-label="1. Modos de Comunicação" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#11-simplex">
+<span class="md-ellipsis">
+      
+        1.1 Simplex
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#12-half-duplex">
+<span class="md-ellipsis">
+      
+        1.2 Half-duplex
+      
+    </span>
+</a>
+<nav aria-label="1.2 Half-duplex" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#half-duplex-em-redes-ethernet">
+<span class="md-ellipsis">
+      
+        Half-duplex em redes Ethernet
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#13-full-duplex">
+<span class="md-ellipsis">
+      
+        1.3 Full-duplex
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#14-comparacao-dos-modos-de-comunicacao">
+<span class="md-ellipsis">
+      
+        1.4 Comparação dos modos de comunicação
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#15-aplicacao-em-data-centers">
+<span class="md-ellipsis">
+      
+        1.5 Aplicação em Data Centers
+      
+    </span>
+</a>
+<nav aria-label="1.5 Aplicação em Data Centers" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#exemplo-interface-ethernet-de-10-gbps">
+<span class="md-ellipsis">
+      
+        Exemplo: interface Ethernet de 10 Gbps
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#duplex-mismatch">
+<span class="md-ellipsis">
+      
+        Duplex mismatch
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#16-checklist-de-revisao">
+<span class="md-ellipsis">
+      
+        1.6 Checklist de revisão
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#2-arquitetura-hierarquica-de-rede">
+<span class="md-ellipsis">
+      
+        2. Arquitetura Hierárquica de Rede
+      
+    </span>
+</a>
+<nav aria-label="2. Arquitetura Hierárquica de Rede" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#21-visao-geral-da-arquitetura">
+<span class="md-ellipsis">
+      
+        2.1 Visão geral da arquitetura
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#22-camada-core-nucleo">
+<span class="md-ellipsis">
+      
+        2.2 Camada Core (Núcleo)
+      
+    </span>
+</a>
+<nav aria-label="2.2 Camada Core (Núcleo)" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#principais-responsabilidades">
+<span class="md-ellipsis">
+      
+        Principais responsabilidades
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#caracteristicas-tecnicas">
+<span class="md-ellipsis">
+      
+        Características técnicas
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#exemplo-pratico">
+<span class="md-ellipsis">
+      
+        Exemplo prático
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#23-camada-de-distribuicao-distribution">
+<span class="md-ellipsis">
+      
+        2.3 Camada de Distribuição (Distribution)
+      
+    </span>
+</a>
+<nav aria-label="2.3 Camada de Distribuição (Distribution)" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#principais-responsabilidades_1">
+<span class="md-ellipsis">
+      
+        Principais responsabilidades
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#tecnologias-utilizadas">
+<span class="md-ellipsis">
+      
+        Tecnologias utilizadas
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#exemplo-pratico_1">
+<span class="md-ellipsis">
+      
+        Exemplo prático
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#24-camada-de-acesso-access">
+<span class="md-ellipsis">
+      
+        2.4 Camada de Acesso (Access)
+      
+    </span>
+</a>
+<nav aria-label="2.4 Camada de Acesso (Access)" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#principais-responsabilidades_2">
+<span class="md-ellipsis">
+      
+        Principais responsabilidades
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#caracteristicas-tecnicas_1">
+<span class="md-ellipsis">
+      
+        Características técnicas
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#exemplo-pratico_2">
+<span class="md-ellipsis">
+      
+        Exemplo prático
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#25-comparacao-das-tres-camadas">
+<span class="md-ellipsis">
+      
+        2.5 Comparação das três camadas
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#26-beneficios-da-arquitetura-hierarquica">
+<span class="md-ellipsis">
+      
+        2.6 Benefícios da arquitetura hierárquica
+      
+    </span>
+</a>
+<nav aria-label="2.6 Benefícios da arquitetura hierárquica" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#escalabilidade">
+<span class="md-ellipsis">
+      
+        Escalabilidade
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#redundancia-e-disponibilidade">
+<span class="md-ellipsis">
+      
+        Redundância e disponibilidade
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#organizacao-e-modularidade">
+<span class="md-ellipsis">
+      
+        Organização e modularidade
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#facilidade-de-troubleshooting">
+<span class="md-ellipsis">
+      
+        Facilidade de troubleshooting
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#27-arquitetura-de-duas-camadas-collapsed-core">
+<span class="md-ellipsis">
+      
+        2.7 Arquitetura de duas camadas (Collapsed Core)
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#28-atualizacao-para-data-centers-arquitetura-spine-leaf">
+<span class="md-ellipsis">
+      
+        2.8 Atualização para Data Centers: Arquitetura Spine-Leaf
+      
+    </span>
+</a>
+<nav aria-label="2.8 Atualização para Data Centers: Arquitetura Spine-Leaf" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#por-que-utilizar-spine-leaf">
+<span class="md-ellipsis">
+      
+        Por que utilizar Spine-Leaf?
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#trafego-north-south-e-east-west">
+<span class="md-ellipsis">
+      
+        Tráfego North-South e East-West
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#ecmp-equal-cost-multi-path">
+<span class="md-ellipsis">
+      
+        ECMP (Equal-Cost Multi-Path)
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#29-arquitetura-hierarquica-vs-spine-leaf">
+<span class="md-ellipsis">
+      
+        2.9 Arquitetura hierárquica vs. Spine-Leaf
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#210-relacao-com-o-ccnp-dccor-350-601">
+<span class="md-ellipsis">
+      
+        2.10 Relação com o CCNP DCCOR 350-601
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#211-checklist-de-revisao">
+<span class="md-ellipsis">
+      
+        2.11 Checklist de revisão
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#3-modelo-osi-open-systems-interconnection">
+<span class="md-ellipsis">
+      
+        3. Modelo OSI (Open Systems Interconnection)
+      
+    </span>
+</a>
+<nav aria-label="3. Modelo OSI (Open Systems Interconnection)" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#31-por-que-utilizar-um-modelo-em-camadas">
+<span class="md-ellipsis">
+      
+        3.1 Por que utilizar um modelo em camadas?
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#32-as-sete-camadas-do-modelo-osi">
+<span class="md-ellipsis">
+      
+        3.2 As sete camadas do modelo OSI
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#33-camada-1-fisica-physical-layer">
+<span class="md-ellipsis">
+      
+        3.3 Camada 1 — Física (Physical Layer)
+      
+    </span>
+</a>
+<nav aria-label="3.3 Camada 1 — Física (Physical Layer)" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#principais-responsabilidades_3">
+<span class="md-ellipsis">
+      
+        Principais responsabilidades
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#exemplos-praticos">
+<span class="md-ellipsis">
+      
+        Exemplos práticos
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#34-camada-2-enlace-de-dados-data-link-layer">
+<span class="md-ellipsis">
+      
+        3.4 Camada 2 — Enlace de Dados (Data Link Layer)
+      
+    </span>
+</a>
+<nav aria-label="3.4 Camada 2 — Enlace de Dados (Data Link Layer)" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#principais-responsabilidades_4">
+<span class="md-ellipsis">
+      
+        Principais responsabilidades
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#exemplo-pratico_3">
+<span class="md-ellipsis">
+      
+        Exemplo prático
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#mac-address-table">
+<span class="md-ellipsis">
+      
+        MAC Address Table
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#tecnologias-relacionadas">
+<span class="md-ellipsis">
+      
+        Tecnologias relacionadas
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#35-camada-3-rede-network-layer">
+<span class="md-ellipsis">
+      
+        3.5 Camada 3 — Rede (Network Layer)
+      
+    </span>
+</a>
+<nav aria-label="3.5 Camada 3 — Rede (Network Layer)" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#principais-responsabilidades_5">
+<span class="md-ellipsis">
+      
+        Principais responsabilidades
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#exemplo-pratico_4">
+<span class="md-ellipsis">
+      
+        Exemplo prático
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#tecnologias-relacionadas_1">
+<span class="md-ellipsis">
+      
+        Tecnologias relacionadas
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#36-camada-4-transporte-transport-layer">
+<span class="md-ellipsis">
+      
+        3.6 Camada 4 — Transporte (Transport Layer)
+      
+    </span>
+</a>
+<nav aria-label="3.6 Camada 4 — Transporte (Transport Layer)" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#principais-responsabilidades_6">
+<span class="md-ellipsis">
+      
+        Principais responsabilidades
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#tcp-transmission-control-protocol">
+<span class="md-ellipsis">
+      
+        TCP (Transmission Control Protocol)
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#udp-user-datagram-protocol">
+<span class="md-ellipsis">
+      
+        UDP (User Datagram Protocol)
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#exemplos">
+<span class="md-ellipsis">
+      
+        Exemplos
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#37-camada-5-sessao-session-layer">
+<span class="md-ellipsis">
+      
+        3.7 Camada 5 — Sessão (Session Layer)
+      
+    </span>
+</a>
+<nav aria-label="3.7 Camada 5 — Sessão (Session Layer)" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#exemplo-conceitual">
+<span class="md-ellipsis">
+      
+        Exemplo conceitual
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#38-camada-6-apresentacao-presentation-layer">
+<span class="md-ellipsis">
+      
+        3.8 Camada 6 — Apresentação (Presentation Layer)
+      
+    </span>
+</a>
+<nav aria-label="3.8 Camada 6 — Apresentação (Presentation Layer)" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#principais-responsabilidades_7">
+<span class="md-ellipsis">
+      
+        Principais responsabilidades
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#exemplos_1">
+<span class="md-ellipsis">
+      
+        Exemplos
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#39-camada-7-aplicacao-application-layer">
+<span class="md-ellipsis">
+      
+        3.9 Camada 7 — Aplicação (Application Layer)
+      
+    </span>
+</a>
+<nav aria-label="3.9 Camada 7 — Aplicação (Application Layer)" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#principais-responsabilidades_8">
+<span class="md-ellipsis">
+      
+        Principais responsabilidades
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#exemplos_2">
+<span class="md-ellipsis">
+      
+        Exemplos
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#exemplo-pratico_5">
+<span class="md-ellipsis">
+      
+        Exemplo prático
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#310-equipamentos-e-sua-relacao-com-o-modelo-osi">
+<span class="md-ellipsis">
+      
+        3.10 Equipamentos e sua relação com o modelo OSI
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#311-aplicacao-do-modelo-osi-no-troubleshooting">
+<span class="md-ellipsis">
+      
+        3.11 Aplicação do modelo OSI no troubleshooting
+      
+    </span>
+</a>
+<nav aria-label="3.11 Aplicação do modelo OSI no troubleshooting" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#exemplos-de-comandos-cisco-nx-os">
+<span class="md-ellipsis">
+      
+        Exemplos de comandos Cisco NX-OS
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#312-relacao-com-o-ccnp-dccor-350-601">
+<span class="md-ellipsis">
+      
+        3.12 Relação com o CCNP DCCOR 350-601
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#313-checklist-de-revisao">
+<span class="md-ellipsis">
+      
+        3.13 Checklist de revisão
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#4-modelo-tcpip-e-relacao-com-o-osi">
+<span class="md-ellipsis">
+      
+        4. Modelo TCP/IP e relação com o OSI
+      
+    </span>
+</a>
+<nav aria-label="4. Modelo TCP/IP e relação com o OSI" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#41-organizacao-do-modelo-tcpip">
+<span class="md-ellipsis">
+      
+        4.1 Organização do modelo TCP/IP
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#42-camada-de-aplicacao-application-layer">
+<span class="md-ellipsis">
+      
+        4.2 Camada de Aplicação (Application Layer)
+      
+    </span>
+</a>
+<nav aria-label="4.2 Camada de Aplicação (Application Layer)" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#principais-responsabilidades_9">
+<span class="md-ellipsis">
+      
+        Principais responsabilidades
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#exemplos-de-protocolos">
+<span class="md-ellipsis">
+      
+        Exemplos de protocolos
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#exemplo-pratico_6">
+<span class="md-ellipsis">
+      
+        Exemplo prático
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#43-camada-host-to-host-transporte-transport-layer">
+<span class="md-ellipsis">
+      
+        4.3 Camada Host-to-Host / Transporte (Transport Layer)
+      
+    </span>
+</a>
+<nav aria-label="4.3 Camada Host-to-Host / Transporte (Transport Layer)" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#principais-responsabilidades_10">
+<span class="md-ellipsis">
+      
+        Principais responsabilidades
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#tcp-transmission-control-protocol_1">
+<span class="md-ellipsis">
+      
+        TCP (Transmission Control Protocol)
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#udp-user-datagram-protocol_1">
+<span class="md-ellipsis">
+      
+        UDP (User Datagram Protocol)
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#portas-de-origem-e-destino">
+<span class="md-ellipsis">
+      
+        Portas de origem e destino
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#44-camada-internet-internet-layer">
+<span class="md-ellipsis">
+      
+        4.4 Camada Internet (Internet Layer)
+      
+    </span>
+</a>
+<nav aria-label="4.4 Camada Internet (Internet Layer)" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#principais-responsabilidades_11">
+<span class="md-ellipsis">
+      
+        Principais responsabilidades
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#principais-protocolos">
+<span class="md-ellipsis">
+      
+        Principais protocolos
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#exemplo-pratico_7">
+<span class="md-ellipsis">
+      
+        Exemplo prático
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#45-camada-network-access-acesso-a-rede">
+<span class="md-ellipsis">
+      
+        4.5 Camada Network Access / Acesso à Rede
+      
+    </span>
+</a>
+<nav aria-label="4.5 Camada Network Access / Acesso à Rede" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#principais-responsabilidades_12">
+<span class="md-ellipsis">
+      
+        Principais responsabilidades
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#exemplos-de-tecnologias">
+<span class="md-ellipsis">
+      
+        Exemplos de tecnologias
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#exemplo-pratico_8">
+<span class="md-ellipsis">
+      
+        Exemplo prático
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#46-relacao-entre-os-modelos-tcpip-e-osi">
+<span class="md-ellipsis">
+      
+        4.6 Relação entre os modelos TCP/IP e OSI
+      
+    </span>
+</a>
+<nav aria-label="4.6 Relação entre os modelos TCP/IP e OSI" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#principais-diferencas">
+<span class="md-ellipsis">
+      
+        Principais diferenças
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#47-exemplo-de-comunicacao-utilizando-tcpip">
+<span class="md-ellipsis">
+      
+        4.7 Exemplo de comunicação utilizando TCP/IP
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#48-aplicacao-do-modelo-tcpip-em-data-centers">
+<span class="md-ellipsis">
+      
+        4.8 Aplicação do modelo TCP/IP em Data Centers
+      
+    </span>
+</a>
+<nav aria-label="4.8 Aplicação do modelo TCP/IP em Data Centers" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#servidores-e-aplicacoes">
+<span class="md-ellipsis">
+      
+        Servidores e aplicações
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#infraestrutura-de-rede">
+<span class="md-ellipsis">
+      
+        Infraestrutura de rede
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#redes-spine-leaf">
+<span class="md-ellipsis">
+      
+        Redes Spine-Leaf
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#vxlan">
+<span class="md-ellipsis">
+      
+        VXLAN
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#49-relacao-com-o-ccnp-dccor-350-601">
+<span class="md-ellipsis">
+      
+        4.9 Relação com o CCNP DCCOR 350-601
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#410-checklist-de-revisao">
+<span class="md-ellipsis">
+      
+        4.10 Checklist de revisão
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content" data-md-component="content">
+<article class="md-content__inner md-typeset">
+<h1 id="modelos-de-rede-e-arquitetura">Modelos de Rede e Arquitetura<a class="headerlink" href="#modelos-de-rede-e-arquitetura" title="Permanent link">¶</a></h1>
+<blockquote>
+<p><strong>Origem:</strong> revisão do CCNA Data Center — DCICN 640-911, páginas 1–2 das anotações manuscritas.</p>
+<p><strong>Objetivo:</strong> consolidar os fundamentos para os estudos do CCNP Data Center DCCOR 350-601.</p>
+</blockquote>
+<h2 id="1-modos-de-comunicacao">1. Modos de Comunicação<a class="headerlink" href="#1-modos-de-comunicacao" title="Permanent link">¶</a></h2>
+<p>Os modos de comunicação definem como os dispositivos transmitem e recebem informações através de um meio de comunicação.</p>
+<p>A principal diferença entre eles está na <strong>direção em que os dados podem circular</strong> e na <strong>possibilidade de transmissão simultânea</strong>.</p>
+<p>Existem três modos principais de comunicação: <strong>Simplex, Half-duplex e Full-duplex</strong>.</p>
+<h3 id="11-simplex">1.1 Simplex<a class="headerlink" href="#11-simplex" title="Permanent link">¶</a></h3>
+<p>A comunicação <strong>simplex</strong> ocorre em apenas um sentido. Um dispositivo atua como transmissor e o outro como receptor, sem que exista comunicação de retorno pelo mesmo canal.</p>
+<p><strong>Exemplos:</strong></p>
+<ul>
+<li>Transmissões tradicionais de rádio e televisão.</li>
+<li>Sistemas de sensores que apenas enviam informações.</li>
+<li>Sistemas de distribuição de sinais unidirecionais.</li>
+</ul>
+<pre class="mermaid"><code>flowchart LR
+    A["Emissor"] --&gt;|"Dados"| B["Receptor"]
+</code></pre>
+<p>Nesse modelo, o receptor não consegue responder ao emissor através do mesmo canal de comunicação.</p>
+<h3 id="12-half-duplex">1.2 Half-duplex<a class="headerlink" href="#12-half-duplex" title="Permanent link">¶</a></h3>
+<p>Na comunicação <strong>half-duplex</strong>, ambos os dispositivos podem transmitir e receber dados, mas não simultaneamente.</p>
+<p>A transmissão ocorre de maneira alternada: enquanto um dispositivo transmite, o outro recebe.</p>
+<p><strong>Exemplos:</strong></p>
+<ul>
+<li>Rádios comunicadores (<em>walkie-talkies</em>).</li>
+<li>Redes Ethernet antigas que utilizavam hubs.</li>
+<li>Conexões Ethernet operando em half-duplex.</li>
+</ul>
+<pre class="mermaid"><code>flowchart LR
+    A["Dispositivo A"] --&gt;|"Transmissão A → B"| B["Dispositivo B"]
+    B -.-&gt;|"Transmissão B → A"| A
+</code></pre>
+<blockquote>
+<p><strong>Importante:</strong> As setas representam os dois sentidos possíveis de comunicação, mas as transmissões não ocorrem simultaneamente.</p>
+</blockquote>
+<h4 id="half-duplex-em-redes-ethernet">Half-duplex em redes Ethernet<a class="headerlink" href="#half-duplex-em-redes-ethernet" title="Permanent link">¶</a></h4>
+<p>Nas redes Ethernet tradicionais com hubs, os dispositivos compartilham o mesmo meio de transmissão e pertencem ao mesmo domínio de colisão.</p>
+<p>Para controlar o acesso ao meio compartilhado, utiliza-se o mecanismo <strong>CSMA/CD (Carrier Sense Multiple Access with Collision Detection)</strong>. <a href="#">Ver Mais</a></p>
+<p>Seu funcionamento básico consiste em:</p>
+<ol>
+<li>O dispositivo verifica se o meio está disponível.</li>
+<li>Se estiver livre, inicia a transmissão.</li>
+<li>Se ocorrer uma colisão, a transmissão é interrompida.</li>
+<li>Os dispositivos aguardam um intervalo de tempo calculado antes de tentar novamente.</li>
+</ol>
+<p>Esse mecanismo era fundamental nas redes Ethernet compartilhadas, mas deixou de ser utilizado nas conexões Ethernet full-duplex modernas.</p>
+<h3 id="13-full-duplex">1.3 Full-duplex<a class="headerlink" href="#13-full-duplex" title="Permanent link">¶</a></h3>
+<p>Na comunicação <strong>full-duplex</strong>, os dispositivos podem transmitir e receber dados simultaneamente, sem precisar alternar o sentido da comunicação.</p>
+<p>Esse é o modo habitual de funcionamento das conexões Ethernet modernas entre switches, servidores e outros equipamentos de rede.</p>
+<p><strong>Exemplos:</strong></p>
+<ul>
+<li>Conexões Ethernet entre servidores e switches.</li>
+<li>Links entre switches Cisco Nexus.</li>
+<li>Conexões Ethernet entre equipamentos de armazenamento e switches.</li>
+</ul>
+<pre class="mermaid"><code>flowchart LR
+    A["Servidor"] --&gt;|"TX: transmissão"| B["Switch"]
+    B --&gt;|"RX: recepção"| A
+</code></pre>
+<p>Diferentemente do half-duplex, as duas direções podem ser utilizadas ao mesmo tempo.</p>
+<p>Em uma conexão Ethernet ponto a ponto operando em full-duplex, não existem colisões decorrentes da disputa por um meio compartilhado. Portanto, o mecanismo CSMA/CD não é utilizado.</p>
+<h3 id="14-comparacao-dos-modos-de-comunicacao">1.4 Comparação dos modos de comunicação<a class="headerlink" href="#14-comparacao-dos-modos-de-comunicacao" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>Característica</th>
+<th>Simplex</th>
+<th>Half-duplex</th>
+<th>Full-duplex</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Direção da comunicação</td>
+<td>Unidirecional</td>
+<td>Bidirecional</td>
+<td>Bidirecional</td>
+</tr>
+<tr>
+<td>Transmissão simultânea nos dois sentidos</td>
+<td>Não</td>
+<td>Não</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>Alternância entre transmissão e recepção</td>
+<td>Não aplicável</td>
+<td>Necessária</td>
+<td>Desnecessária</td>
+</tr>
+<tr>
+<td>Exemplo</td>
+<td>Rádio tradicional</td>
+<td>Walkie-talkie</td>
+<td>Ethernet com switch</td>
+</tr>
+<tr>
+<td>Colisões em Ethernet</td>
+<td>Não aplicável</td>
+<td>Possíveis em meio compartilhado</td>
+<td>Não ocorrem na ligação ponto a ponto</td>
+</tr>
+</tbody>
+</table>
+<h3 id="15-aplicacao-em-data-centers">1.5 Aplicação em Data Centers<a class="headerlink" href="#15-aplicacao-em-data-centers" title="Permanent link">¶</a></h3>
+<p>Em Data Centers modernos, as conexões Ethernet entre servidores, switches e equipamentos de armazenamento normalmente operam em <strong>full-duplex</strong>.</p>
+<p>Isso permite que um dispositivo transmita e receba informações simultaneamente, aproveitando a capacidade da interface em cada direção.</p>
+<h4 id="exemplo-interface-ethernet-de-10-gbps">Exemplo: interface Ethernet de 10 Gbps<a class="headerlink" href="#exemplo-interface-ethernet-de-10-gbps" title="Permanent link">¶</a></h4>
+<p>Considere um servidor conectado a um switch Cisco Nexus através de uma interface Ethernet de 10 Gbps full-duplex.</p>
+<p>Essa interface pode operar com:</p>
+<ul>
+<li><strong>Transmissão (TX):</strong> até 10 Gbps.</li>
+<li><strong>Recepção (RX):</strong> até 10 Gbps.</li>
+<li><strong>Operação simultânea:</strong> transmissão e recepção ocorrendo ao mesmo tempo.</li>
+</ul>
+<p>Portanto, é possível existir um fluxo agregado de até 20 Gbps, somando as duas direções, embora a capacidade nominal de cada direção continue sendo 10 Gbps.</p>
+<blockquote>
+<p><strong>Atenção:</strong> Isso não significa que uma única transferência unidirecional possa atingir 20 Gbps. Além disso, a taxa útil das aplicações depende dos protocolos e dos overheads envolvidos.</p>
+</blockquote>
+<h4 id="duplex-mismatch">Duplex mismatch<a class="headerlink" href="#duplex-mismatch" title="Permanent link">¶</a></h4>
+<p>O <strong>duplex mismatch</strong> ocorre quando as duas extremidades de uma conexão Ethernet operam com configurações de duplex incompatíveis.</p>
+<p>Por exemplo:</p>
+<ul>
+<li>Switch A configurado em full-duplex.</li>
+<li>Switch B configurado em half-duplex.</li>
+</ul>
+<p>Essa incompatibilidade pode provocar:</p>
+<ul>
+<li>Redução significativa de desempenho.</li>
+<li>Colisões e colisões tardias no lado half-duplex.</li>
+<li>Erros e retransmissões.</li>
+<li>Baixa taxa de transferência, mesmo com o link ativo.</li>
+</ul>
+<p>Esse problema está associado principalmente a interfaces Ethernet que suportam half-duplex, como determinadas interfaces de 10/100 Mbps.</p>
+<p>Interfaces Ethernet modernas de alta velocidade normalmente operam exclusivamente em full-duplex.</p>
+<h3 id="16-checklist-de-revisao">1.6 Checklist de revisão<a class="headerlink" href="#16-checklist-de-revisao" title="Permanent link">¶</a></h3>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Compreender a diferença entre simplex, half-duplex e full-duplex.</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Identificar exemplos de utilização de cada modo.</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Entender por que o CSMA/CD era necessário nas redes Ethernet compartilhadas.</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Compreender por que o CSMA/CD não é utilizado em Ethernet full-duplex.</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Diferenciar capacidade de transmissão e recepção de uma interface.</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Entender os efeitos de um duplex mismatch.</li>
+</ul>
+<h2 id="2-arquitetura-hierarquica-de-rede">2. Arquitetura Hierárquica de Rede<a class="headerlink" href="#2-arquitetura-hierarquica-de-rede" title="Permanent link">¶</a></h2>
+<p>A <strong>arquitetura hierárquica de rede</strong> é um modelo de projeto que organiza a infraestrutura em camadas, atribuindo funções e responsabilidades específicas a cada uma delas.</p>
+<p>Seu principal objetivo é criar redes mais <strong>escaláveis, resilientes, organizadas e fáceis de administrar</strong>, evitando que todos os dispositivos e serviços sejam conectados de maneira desestruturada.</p>
+<p>O modelo clássico de arquitetura hierárquica da Cisco é composto por três camadas:</p>
+<ol>
+<li><strong>Core (Núcleo):</strong> responsável pelo transporte rápido e confiável do tráfego.</li>
+<li><strong>Distribution (Distribuição):</strong> responsável pela agregação, aplicação de políticas e interconexão.</li>
+<li><strong>Access (Acesso):</strong> responsável pela conectividade dos dispositivos finais.</li>
+</ol>
+<h3 id="21-visao-geral-da-arquitetura">2.1 Visão geral da arquitetura<a class="headerlink" href="#21-visao-geral-da-arquitetura" title="Permanent link">¶</a></h3>
+<pre class="mermaid"><code>flowchart TD
+    I["Internet / WAN"]
+
+    subgraph CORE["Camada Core"]
+        C1["Core 1"]
+        C2["Core 2"]
+    end
+
+    subgraph DIST["Camada de Distribuição"]
+        D1["Distribuição 1"]
+        D2["Distribuição 2"]
+    end
+
+    subgraph ACCESS["Camada de Acesso"]
+        A1["Acesso 1"]
+        A2["Acesso 2"]
+    end
+
+    I --- C1
+    I --- C2
+
+    C1 --- D1
+    C1 --- D2
+    C2 --- D1
+    C2 --- D2
+
+    D1 --- A1
+    D1 --- A2
+    D2 --- A1
+    D2 --- A2
+</code></pre>
+<h3 id="22-camada-core-nucleo">2.2 Camada Core (Núcleo)<a class="headerlink" href="#22-camada-core-nucleo" title="Permanent link">¶</a></h3>
+<p>A camada <strong>Core</strong> representa o backbone da rede, sendo responsável por interconectar os diferentes blocos de distribuição e transportar grandes volumes de tráfego.</p>
+<p>Sua principal característica é a capacidade de realizar o encaminhamento de pacotes com <strong>alta performance, baixa latência e elevada disponibilidade</strong>.</p>
+<h4 id="principais-responsabilidades">Principais responsabilidades<a class="headerlink" href="#principais-responsabilidades" title="Permanent link">¶</a></h4>
+<ul>
+<li>Encaminhar tráfego entre diferentes blocos da infraestrutura.</li>
+<li>Disponibilizar conectividade de alta velocidade.</li>
+<li>Oferecer caminhos redundantes para evitar pontos únicos de falha.</li>
+<li>Garantir convergência rápida em caso de falhas.</li>
+<li>Suportar o crescimento da rede sem comprometer o desempenho.</li>
+</ul>
+<h4 id="caracteristicas-tecnicas">Características técnicas<a class="headerlink" href="#caracteristicas-tecnicas" title="Permanent link">¶</a></h4>
+<p>Os equipamentos utilizados no Core normalmente possuem:</p>
+<ul>
+<li>Interfaces de alta velocidade, como 10, 25, 40, 100 ou 400 Gbps, conforme a plataforma.</li>
+<li>Elevada capacidade de switching e forwarding.</li>
+<li>Recursos de redundância de hardware e software.</li>
+<li>Suporte a protocolos de roteamento dinâmico.</li>
+<li>Capacidade de encaminhamento em hardware, utilizando ASICs.</li>
+</ul>
+<p>Uma boa prática no modelo clássico é manter o Core relativamente simples, evitando políticas complexas que possam dificultar a operação e a convergência.</p>
+<h4 id="exemplo-pratico">Exemplo prático<a class="headerlink" href="#exemplo-pratico" title="Permanent link">¶</a></h4>
+<p>Imagine uma organização com três edifícios, cada um contendo sua própria infraestrutura de rede.</p>
+<p>Os switches Core podem interconectar os blocos de distribuição desses edifícios, permitindo que o tráfego entre eles seja encaminhado através do backbone.</p>
+<p>Caso um dos equipamentos Core falhe, a arquitetura pode utilizar um caminho alternativo, desde que a redundância e os protocolos estejam corretamente configurados.</p>
+<h3 id="23-camada-de-distribuicao-distribution">2.3 Camada de Distribuição (Distribution)<a class="headerlink" href="#23-camada-de-distribuicao-distribution" title="Permanent link">¶</a></h3>
+<p>A camada de <strong>Distribuição</strong> estabelece a conexão entre os switches de acesso e o Core.</p>
+<p>Além de agregar o tráfego proveniente da camada de acesso, essa camada normalmente representa um ponto importante para aplicação de políticas e controle do tráfego.</p>
+<h4 id="principais-responsabilidades_1">Principais responsabilidades<a class="headerlink" href="#principais-responsabilidades_1" title="Permanent link">¶</a></h4>
+<ul>
+<li>Agregar as conexões provenientes dos switches de acesso.</li>
+<li>Implementar políticas de segurança e controle de tráfego.</li>
+<li>Realizar roteamento entre VLANs, quando essa função estiver posicionada na distribuição.</li>
+<li>Aplicar mecanismos de filtragem, como ACLs.</li>
+<li>Implementar políticas de QoS.</li>
+<li>Estabelecer limites entre domínios de camada 2 e camada 3.</li>
+<li>Oferecer redundância para os equipamentos de acesso.</li>
+</ul>
+<h4 id="tecnologias-utilizadas">Tecnologias utilizadas<a class="headerlink" href="#tecnologias-utilizadas" title="Permanent link">¶</a></h4>
+<p>Dependendo do projeto, a camada de distribuição pode utilizar:</p>
+<ul>
+<li><strong>VLANs:</strong> segmentação lógica da rede.</li>
+<li><strong>SVIs (Switch Virtual Interfaces):</strong> interfaces de camada 3 associadas a VLANs.</li>
+<li><strong>HSRP/VRRP:</strong> redundância de gateway.</li>
+<li><strong>OSPF/BGP:</strong> roteamento dinâmico, conforme a arquitetura.</li>
+<li><strong>ACLs:</strong> controle de tráfego entre redes.</li>
+<li><strong>Port-Channel/LACP:</strong> agregação de links físicos.</li>
+</ul>
+<h4 id="exemplo-pratico_1">Exemplo prático<a class="headerlink" href="#exemplo-pratico_1" title="Permanent link">¶</a></h4>
+<p>Considere uma infraestrutura com três VLANs:</p>
+<table>
+<thead>
+<tr>
+<th>VLAN</th>
+<th>Finalidade</th>
+<th>Rede IPv4</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10</td>
+<td>Servidores de aplicação</td>
+<td>10.10.10.0/24</td>
+</tr>
+<tr>
+<td>20</td>
+<td>Servidores de banco de dados</td>
+<td>10.10.20.0/24</td>
+</tr>
+<tr>
+<td>30</td>
+<td>Gerenciamento</td>
+<td>10.10.30.0/24</td>
+</tr>
+</tbody>
+</table>
+<p>Em uma arquitetura na qual os gateways estejam na distribuição, os switches dessa camada podem realizar o roteamento entre as VLANs.</p>
+<p>Também podem aplicar ACLs para impedir que determinados servidores acessem diretamente a rede de gerenciamento.</p>
+<p>Dessa forma, a distribuição não atua apenas como ponto de conexão, mas também como uma camada de controle.</p>
+<h3 id="24-camada-de-acesso-access">2.4 Camada de Acesso (Access)<a class="headerlink" href="#24-camada-de-acesso-access" title="Permanent link">¶</a></h3>
+<p>A camada de <strong>Acesso</strong> representa o ponto de conexão dos dispositivos finais à infraestrutura de rede.</p>
+<p>É nessa camada que normalmente são conectados servidores, estações de trabalho, telefones IP, pontos de acesso e outros equipamentos.</p>
+<p>Em Data Centers tradicionais, os switches de acesso também podem ser conhecidos como <strong>Top-of-Rack (ToR)</strong> ou <strong>End-of-Row (EoR)</strong>, dependendo de seu posicionamento físico.</p>
+<h4 id="principais-responsabilidades_2">Principais responsabilidades<a class="headerlink" href="#principais-responsabilidades_2" title="Permanent link">¶</a></h4>
+<ul>
+<li>Disponibilizar conectividade aos dispositivos finais.</li>
+<li>Oferecer densidade de portas adequada.</li>
+<li>Associar interfaces às VLANs correspondentes.</li>
+<li>Implementar controles de acesso na borda.</li>
+<li>Aplicar políticas de QoS quando necessário.</li>
+<li>Fornecer redundância de conectividade aos servidores.</li>
+</ul>
+<h4 id="caracteristicas-tecnicas_1">Características técnicas<a class="headerlink" href="#caracteristicas-tecnicas_1" title="Permanent link">¶</a></h4>
+<p>A escolha dos equipamentos de acesso depende das necessidades da infraestrutura.</p>
+<p>Em redes corporativas, podem ser importantes recursos como:</p>
+<ul>
+<li>Portas Ethernet de 1 Gbps.</li>
+<li>PoE para telefones IP e pontos de acesso.</li>
+<li>Autenticação 802.1X.</li>
+<li>Port Security.</li>
+</ul>
+<p>Em Data Centers, os requisitos frequentemente são diferentes:</p>
+<ul>
+<li>Interfaces de 10, 25, 50 ou 100 Gbps para servidores, conforme a plataforma.</li>
+<li>Alta densidade de interfaces.</li>
+<li>Baixa latência.</li>
+<li>Suporte a VLANs e Port-Channels.</li>
+<li>Recursos de redundância, como vPC em plataformas Cisco Nexus compatíveis.</li>
+</ul>
+<h4 id="exemplo-pratico_2">Exemplo prático<a class="headerlink" href="#exemplo-pratico_2" title="Permanent link">¶</a></h4>
+<p>Considere um rack contendo 20 servidores, cada um com duas interfaces Ethernet de 10 Gbps.</p>
+<p>Uma possibilidade é conectar cada servidor a dois switches de acesso distintos, oferecendo redundância física.</p>
+<pre class="mermaid"><code>flowchart TD
+    A["Switch de Acesso A"]
+    B["Switch de Acesso B"]
+
+    S1["Servidor 1"]
+    S2["Servidor 2"]
+    S3["Servidor N"]
+
+    A --- S1
+    B --- S1
+
+    A --- S2
+    B --- S2
+
+    A --- S3
+    B --- S3
+</code></pre>
+<p>A utilização efetiva das duas conexões depende da configuração adotada, como bonding, teaming, multipathing ou Port-Channel com vPC.</p>
+<blockquote>
+<p><strong>Importante:</strong> A existência de duas interfaces conectadas a switches distintos não garante, por si só, redundância funcional. É necessário configurar corretamente os mecanismos de failover e encaminhamento.</p>
+</blockquote>
+<h3 id="25-comparacao-das-tres-camadas">2.5 Comparação das três camadas<a class="headerlink" href="#25-comparacao-das-tres-camadas" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>Característica</th>
+<th>Core</th>
+<th>Distribuição</th>
+<th>Acesso</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Função principal</td>
+<td>Transporte rápido</td>
+<td>Agregação e políticas</td>
+<td>Conectividade final</td>
+</tr>
+<tr>
+<td>Prioridade</td>
+<td>Performance e disponibilidade</td>
+<td>Controle e agregação</td>
+<td>Densidade e conectividade</td>
+</tr>
+<tr>
+<td>Roteamento</td>
+<td>Frequente</td>
+<td>Frequente</td>
+<td>Depende do projeto</td>
+</tr>
+<tr>
+<td>ACLs e políticas</td>
+<td>Normalmente minimizadas</td>
+<td>Frequentemente aplicadas</td>
+<td>Aplicadas conforme necessidade</td>
+</tr>
+<tr>
+<td>Conexão típica</td>
+<td>Outros blocos de rede</td>
+<td>Core e acesso</td>
+<td>Servidores e dispositivos finais</td>
+</tr>
+<tr>
+<td>Exemplo de equipamento</td>
+<td>Switch de backbone</td>
+<td>Switch de agregação</td>
+<td>Switch ToR ou de acesso</td>
+</tr>
+</tbody>
+</table>
+<h3 id="26-beneficios-da-arquitetura-hierarquica">2.6 Benefícios da arquitetura hierárquica<a class="headerlink" href="#26-beneficios-da-arquitetura-hierarquica" title="Permanent link">¶</a></h3>
+<h4 id="escalabilidade">Escalabilidade<a class="headerlink" href="#escalabilidade" title="Permanent link">¶</a></h4>
+<p>A separação em camadas permite expandir a infraestrutura de forma modular.</p>
+<p>Por exemplo, novos switches de acesso podem ser adicionados sem exigir uma reformulação completa do Core.</p>
+<h4 id="redundancia-e-disponibilidade">Redundância e disponibilidade<a class="headerlink" href="#redundancia-e-disponibilidade" title="Permanent link">¶</a></h4>
+<p>A utilização de equipamentos e caminhos redundantes reduz a dependência de um único componente.</p>
+<p>Entretanto, a redundância deve ser acompanhada de mecanismos adequados de prevenção de loops, roteamento e convergência.</p>
+<h4 id="organizacao-e-modularidade">Organização e modularidade<a class="headerlink" href="#organizacao-e-modularidade" title="Permanent link">¶</a></h4>
+<p>Cada camada possui responsabilidades bem definidas.</p>
+<p>Essa separação facilita a padronização das configurações e o planejamento de mudanças.</p>
+<h4 id="facilidade-de-troubleshooting">Facilidade de troubleshooting<a class="headerlink" href="#facilidade-de-troubleshooting" title="Permanent link">¶</a></h4>
+<p>Quando ocorre uma falha, a organização hierárquica ajuda a delimitar a investigação.</p>
+<p>Por exemplo:</p>
+<ul>
+<li><strong>Acesso:</strong> verificar a interface do servidor, VLAN e estado do link.</li>
+<li><strong>Distribuição:</strong> verificar gateways, ACLs e roteamento entre redes.</li>
+<li><strong>Core:</strong> verificar a conectividade entre blocos e as rotas do backbone.</li>
+</ul>
+<h3 id="27-arquitetura-de-duas-camadas-collapsed-core">2.7 Arquitetura de duas camadas (Collapsed Core)<a class="headerlink" href="#27-arquitetura-de-duas-camadas-collapsed-core" title="Permanent link">¶</a></h3>
+<p>Nem todas as redes precisam utilizar três camadas físicas distintas.</p>
+<p>Em ambientes menores, é comum utilizar uma arquitetura denominada <strong>Collapsed Core</strong>, na qual as funções de Core e Distribuição são combinadas.</p>
+<pre class="mermaid"><code>flowchart TD
+    subgraph CD["Core + Distribuição"]
+        C1["Switch 1"]
+        C2["Switch 2"]
+    end
+
+    subgraph AC["Acesso"]
+        A1["Acesso 1"]
+        A2["Acesso 2"]
+    end
+
+    C1 --- A1
+    C1 --- A2
+    C2 --- A1
+    C2 --- A2
+</code></pre>
+<p>Essa abordagem pode reduzir custos e complexidade, mantendo parte dos benefícios da arquitetura hierárquica.</p>
+<p>A decisão depende de fatores como:</p>
+<ul>
+<li>Quantidade de dispositivos.</li>
+<li>Volume de tráfego.</li>
+<li>Requisitos de disponibilidade.</li>
+<li>Necessidade de expansão.</li>
+<li>Orçamento disponível.</li>
+</ul>
+<h3 id="28-atualizacao-para-data-centers-arquitetura-spine-leaf">2.8 Atualização para Data Centers: Arquitetura Spine-Leaf<a class="headerlink" href="#28-atualizacao-para-data-centers-arquitetura-spine-leaf" title="Permanent link">¶</a></h3>
+<p>Embora a arquitetura hierárquica de três camadas continue importante, muitos Data Centers modernos utilizam a arquitetura <strong>Spine-Leaf</strong>.</p>
+<p>Essa arquitetura é normalmente organizada em duas funções principais:</p>
+<ul>
+<li><strong>Spine:</strong> switches responsáveis pela interconexão dos Leafs.</li>
+<li><strong>Leaf:</strong> switches que conectam servidores, sistemas de armazenamento e outros dispositivos.</li>
+</ul>
+<p>Em uma topologia Spine-Leaf típica, cada Leaf possui conexões com todos os Spines.</p>
+<pre class="mermaid"><code>flowchart TD
+    subgraph SPINE["Camada Spine"]
+        SP1["Spine 1"]
+        SP2["Spine 2"]
+    end
+
+    subgraph LEAF["Camada Leaf"]
+        L1["Leaf 1"]
+        L2["Leaf 2"]
+        L3["Leaf 3"]
+        L4["Leaf 4"]
+    end
+
+    SP1 --- L1
+    SP1 --- L2
+    SP1 --- L3
+    SP1 --- L4
+
+    SP2 --- L1
+    SP2 --- L2
+    SP2 --- L3
+    SP2 --- L4
+
+    L1 --- S1["Servidor 1"]
+    L2 --- S1
+
+    L3 --- S2["Servidor 2"]
+    L4 --- S2
+</code></pre>
+<blockquote>
+<p><strong>Nota técnica — Redundância de servidores (Single-Homed vs. Dual-Homed):</strong></p>
+<p>Em uma arquitetura Spine-Leaf, os servidores podem estar conectados a um único Leaf (<strong>Single-Homed</strong>) ou a dois Leafs distintos (<strong>Dual-Homed</strong>).</p>
+<ul>
+<li><strong>Single-Homed:</strong> o servidor possui conectividade através de um único Leaf. Caso esse switch falhe, o servidor perde a conectividade por esse caminho.</li>
+<li><strong>Dual-Homed:</strong> o servidor possui conexões com dois Leafs distintos, permitindo manter a conectividade em caso de falha de um deles, desde que os mecanismos de redundância estejam corretamente configurados.</li>
+</ul>
+<p>Em Data Centers que exigem alta disponibilidade, a conexão Dual-Homed é frequentemente utilizada. Dependendo da arquitetura, essa redundância pode ser implementada através de <strong>vPC (Cisco Nexus), NIC Teaming/Bonding ou EVPN Multihoming</strong>, conforme o suporte dos equipamentos.</p>
+<p><strong>Importante:</strong> a arquitetura Spine-Leaf não exige obrigatoriamente que todos os servidores sejam Dual-Homed. A escolha depende dos requisitos de disponibilidade, desempenho e desenho da infraestrutura.</p>
+</blockquote>
+<h4 id="por-que-utilizar-spine-leaf">Por que utilizar Spine-Leaf?<a class="headerlink" href="#por-que-utilizar-spine-leaf" title="Permanent link">¶</a></h4>
+<p>A arquitetura foi desenvolvida para atender requisitos comuns em Data Centers, como:</p>
+<ul>
+<li>Elevado volume de tráfego entre servidores.</li>
+<li>Necessidade de baixa latência.</li>
+<li>Crescimento horizontal da infraestrutura.</li>
+<li>Utilização eficiente de múltiplos caminhos.</li>
+<li>Integração com tecnologias de virtualização e redes overlay.</li>
+</ul>
+<h4 id="trafego-north-south-e-east-west">Tráfego North-South e East-West<a class="headerlink" href="#trafego-north-south-e-east-west" title="Permanent link">¶</a></h4>
+<p>Em redes de Data Center, o tráfego pode ser classificado de acordo com seu sentido lógico.</p>
+<p><strong>North-South:</strong> tráfego entre os sistemas do Data Center e redes externas, como Internet, WAN ou usuários.</p>
+<p><strong>East-West:</strong> tráfego entre servidores e aplicações dentro do próprio Data Center.</p>
+<p>Exemplo de tráfego East-West:</p>
+<ol>
+<li>Um servidor Web recebe uma solicitação.</li>
+<li>O servidor Web consulta um servidor de aplicação.</li>
+<li>O servidor de aplicação consulta um banco de dados.</li>
+<li>As respostas retornam pelos caminhos correspondentes.</li>
+</ol>
+<p>Grande parte dessa comunicação pode ocorrer entre servidores localizados em racks diferentes.</p>
+<h4 id="ecmp-equal-cost-multi-path">ECMP (Equal-Cost Multi-Path)<a class="headerlink" href="#ecmp-equal-cost-multi-path" title="Permanent link">¶</a></h4>
+<p>Uma das vantagens de uma arquitetura Spine-Leaf com underlay de camada 3 é a possibilidade de utilizar <strong>ECMP</strong>.</p>
+<p>O ECMP permite que o roteamento utilize múltiplos caminhos de mesmo custo para alcançar determinado destino.</p>
+<pre class="mermaid"><code>flowchart TD
+    L1["Leaf 1"]
+    SP1["Spine 1"]
+    SP2["Spine 2"]
+    L2["Leaf 2"]
+
+    L1 --&gt; SP1
+    L1 --&gt; SP2
+
+    SP1 --&gt; L2
+    SP2 --&gt; L2
+</code></pre>
+<p>Nesse exemplo, o Leaf 1 possui dois caminhos de mesmo custo para alcançar o Leaf 2.</p>
+<p>O equipamento pode distribuir fluxos entre esses caminhos, normalmente utilizando um cálculo de hash baseado em campos dos pacotes.</p>
+<blockquote>
+<p><strong>Atenção:</strong> ECMP não significa necessariamente dividir cada pacote individualmente entre os caminhos. A distribuição por fluxo é utilizada com frequência para evitar reordenação de pacotes.</p>
+</blockquote>
+<h3 id="29-arquitetura-hierarquica-vs-spine-leaf">2.9 Arquitetura hierárquica vs. Spine-Leaf<a class="headerlink" href="#29-arquitetura-hierarquica-vs-spine-leaf" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>Característica</th>
+<th>Hierárquica tradicional</th>
+<th>Spine-Leaf</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Organização</td>
+<td>Core, Distribuição e Acesso</td>
+<td>Spine e Leaf</td>
+</tr>
+<tr>
+<td>Objetivo original</td>
+<td>Modularidade e segmentação funcional</td>
+<td>Escalabilidade e conectividade de Data Center</td>
+</tr>
+<tr>
+<td>Caminhos redundantes</td>
+<td>Dependem do projeto</td>
+<td>Múltiplos caminhos entre Leafs</td>
+</tr>
+<tr>
+<td>Tráfego East-West</td>
+<td>Pode exigir passagem por camadas de agregação</td>
+<td>Normalmente percorre Leaf-Spine-Leaf</td>
+</tr>
+<tr>
+<td>Escalabilidade</td>
+<td>Expansão por blocos hierárquicos</td>
+<td>Expansão horizontal de Leafs e Spines</td>
+</tr>
+<tr>
+<td>Tecnologias comuns</td>
+<td>STP, VLAN, HSRP, roteamento</td>
+<td>ECMP, BGP, VXLAN EVPN</td>
+</tr>
+<tr>
+<td>Aplicação</td>
+<td>Redes corporativas e Data Centers tradicionais</td>
+<td>Data Centers modernos</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Nota técnica:</strong> Spine-Leaf não é simplesmente uma mudança de nomes das camadas tradicionais. Trata-se de uma arquitetura com características próprias de conectividade e escalabilidade.</p>
+</blockquote>
+<h3 id="210-relacao-com-o-ccnp-dccor-350-601">2.10 Relação com o CCNP DCCOR 350-601<a class="headerlink" href="#210-relacao-com-o-ccnp-dccor-350-601" title="Permanent link">¶</a></h3>
+<p>O conhecimento dessas arquiteturas é fundamental para compreender os seguintes tópicos do DCCOR:</p>
+<ul>
+<li><strong>Cisco Nexus:</strong> funções dos switches em diferentes arquiteturas de Data Center.</li>
+<li><strong>vPC:</strong> redundância e conectividade de dispositivos a switches Nexus.</li>
+<li><strong>OSPF e BGP:</strong> protocolos de roteamento utilizados na infraestrutura.</li>
+<li><strong>ECMP:</strong> utilização de múltiplos caminhos de mesmo custo.</li>
+<li><strong>VXLAN EVPN:</strong> construção de redes overlay sobre um underlay IP.</li>
+<li><strong>Cisco ACI:</strong> arquitetura baseada em switches Spine e Leaf.</li>
+<li><strong>Data Center Design:</strong> requisitos de disponibilidade, escalabilidade e desempenho.</li>
+</ul>
+<p>É importante compreender tanto a arquitetura tradicional quanto o Spine-Leaf, pois ambas ajudam a explicar a evolução das redes de Data Center.</p>
+<h3 id="211-checklist-de-revisao">2.11 Checklist de revisão<a class="headerlink" href="#211-checklist-de-revisao" title="Permanent link">¶</a></h3>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Compreender o objetivo de uma arquitetura hierárquica.</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Identificar as responsabilidades das camadas Core, Distribuição e Acesso.</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Entender a função da camada de Distribuição na aplicação de políticas.</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Compreender a importância da redundância entre as camadas.</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Diferenciar a arquitetura de três camadas do Collapsed Core.</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Compreender as funções dos switches Spine e Leaf.</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Diferenciar tráfego North-South e East-West.</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Entender o funcionamento básico do ECMP.</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Relacionar Spine-Leaf com BGP, VXLAN EVPN e Cisco ACI.</li>
+</ul>
+<h2 id="3-modelo-osi-open-systems-interconnection">3. Modelo OSI (Open Systems Interconnection)<a class="headerlink" href="#3-modelo-osi-open-systems-interconnection" title="Permanent link">¶</a></h2>
+<p>O <strong>modelo OSI (Open Systems Interconnection)</strong> é um modelo de referência desenvolvido pela <strong>ISO (International Organization for Standardization)</strong> para representar e padronizar as funções envolvidas na comunicação entre sistemas de rede.</p>
+<p>Seu principal objetivo é dividir o processo de comunicação em camadas, permitindo compreender como os dados são preparados, transmitidos, encaminhados e recebidos.</p>
+<p>O modelo OSI possui <strong>sete camadas</strong>, cada uma com responsabilidades específicas.</p>
+<h3 id="31-por-que-utilizar-um-modelo-em-camadas">3.1 Por que utilizar um modelo em camadas?<a class="headerlink" href="#31-por-que-utilizar-um-modelo-em-camadas" title="Permanent link">¶</a></h3>
+<p>Antes da padronização dos protocolos de comunicação, diferentes fabricantes utilizavam tecnologias e arquiteturas proprietárias, dificultando a interoperabilidade entre equipamentos.</p>
+<p>A organização em camadas oferece diversas vantagens:</p>
+<ul>
+<li><strong>Padronização:</strong> facilita a comunicação entre tecnologias e fabricantes diferentes.</li>
+<li><strong>Modularidade:</strong> permite desenvolver ou modificar protocolos sem redesenhar toda a arquitetura.</li>
+<li><strong>Interoperabilidade:</strong> estabelece funções e interfaces que ajudam diferentes sistemas a trabalhar em conjunto.</li>
+<li><strong>Troubleshooting:</strong> facilita a identificação da origem de problemas de comunicação.</li>
+<li><strong>Abstração:</strong> permite estudar cada etapa da comunicação separadamente.</li>
+</ul>
+<blockquote>
+<p><strong>Nota técnica:</strong> O modelo OSI é uma referência conceitual. As redes modernas utilizam principalmente protocolos da arquitetura TCP/IP, que não correspondem perfeitamente às sete camadas do OSI.</p>
+</blockquote>
+<h3 id="32-as-sete-camadas-do-modelo-osi">3.2 As sete camadas do modelo OSI<a class="headerlink" href="#32-as-sete-camadas-do-modelo-osi" title="Permanent link">¶</a></h3>
+<p>O modelo é organizado da camada 1 (Física) até a camada 7 (Aplicação).</p>
+<table>
+<thead>
+<tr>
+<th>Camada</th>
+<th>Nome</th>
+<th>Função principal</th>
+<th>Exemplos</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>7</td>
+<td>Aplicação</td>
+<td>Serviços de rede utilizados pelas aplicações</td>
+<td>HTTP, DNS, SMTP</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Apresentação</td>
+<td>Representação, codificação e transformação dos dados</td>
+<td>UTF-8, formatos de dados, criptografia</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Sessão</td>
+<td>Organização e controle de sessões de comunicação</td>
+<td>Estabelecimento e controle lógico de sessões</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Transporte</td>
+<td>Comunicação fim a fim e multiplexação por portas</td>
+<td>TCP, UDP</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Rede</td>
+<td>Endereçamento lógico e encaminhamento entre redes</td>
+<td>IPv4, IPv6, ICMP</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Enlace de Dados</td>
+<td>Comunicação no enlace local e enquadramento</td>
+<td>Ethernet, endereços MAC, VLANs</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Física</td>
+<td>Transmissão de sinais pelo meio físico</td>
+<td>Cabos, fibra óptica, sinais elétricos e ópticos</td>
+</tr>
+</tbody>
+</table>
+<pre class="mermaid"><code>flowchart TB
+    L7["7 — Aplicação"]
+    L6["6 — Apresentação"]
+    L5["5 — Sessão"]
+    L4["4 — Transporte"]
+    L3["3 — Rede"]
+    L2["2 — Enlace de Dados"]
+    L1["1 — Física"]
+
+    L7 --- L6
+    L6 --- L5
+    L5 --- L4
+    L4 --- L3
+    L3 --- L2
+    L2 --- L1
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Camadas</th>
+<th>PDU usual</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>7–5</td>
+<td>Dados</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Segmento (TCP) ou datagrama (UDP)</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Pacote</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Quadro (<em>frame</em>)</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Bits</td>
+</tr>
+</tbody>
+</table>
+<pre class="mermaid"><code>flowchart LR
+    subgraph OSI[Camadas]
+        O7[7 Aplicação]
+        O6[6 Apresentação]
+        O5[5 Sessão]
+        O4[4 Transporte]
+        O3[3 Rede]
+        O2[2 Enlace]
+        O1[1 Física]
+    end
+    subgraph PDU[PDU Usual]
+        P5[Dados]
+        P4[Segmento / Datagrama]
+        P3[Pacote]
+        P2[Quadro / Frame]
+        P1[Bits]
+    end
+    O7 --- P5
+    O6 --- P5
+    O5 --- P5
+    O4 --- P4
+    O3 --- P3
+    O2 --- P2
+    O1 --- P1
+</code></pre>
+<blockquote>
+<p><strong>Observação:</strong> essas associações são didáticas; a terminologia pode variar conforme o protocolo e o contexto.</p>
+</blockquote>
+<h3 id="33-camada-1-fisica-physical-layer">3.3 Camada 1 — Física (Physical Layer)<a class="headerlink" href="#33-camada-1-fisica-physical-layer" title="Permanent link">¶</a></h3>
+<p>A camada Física é responsável pela transmissão e recepção de <strong>bits através de um meio físico</strong>.</p>
+<p>Ela define características necessárias para representar os bits por sinais elétricos, ópticos ou de rádio.</p>
+<h4 id="principais-responsabilidades_3">Principais responsabilidades<a class="headerlink" href="#principais-responsabilidades_3" title="Permanent link">¶</a></h4>
+<ul>
+<li>Representação dos bits por sinais.</li>
+<li>Características elétricas e ópticas da transmissão.</li>
+<li>Taxas de sinalização e sincronização.</li>
+<li>Especificações de conectores e meios físicos.</li>
+<li>Características físicas do enlace.</li>
+</ul>
+<h4 id="exemplos-praticos">Exemplos práticos<a class="headerlink" href="#exemplos-praticos" title="Permanent link">¶</a></h4>
+<p>Em um Data Center, um servidor pode estar conectado a um Cisco Nexus por meio de um cabo DAC ou de uma conexão óptica com transceptores SFP+/SFP28.</p>
+<p>A camada Física está relacionada à transmissão dos sinais entre as interfaces.</p>
+<p>Problemas típicos incluem:</p>
+<ul>
+<li>Cabo danificado.</li>
+<li>Transceptor incompatível ou defeituoso.</li>
+<li>Potência óptica fora dos limites suportados.</li>
+<li>Falta de sinal ou ausência de link.</li>
+<li>Erros físicos de transmissão.</li>
+</ul>
+<blockquote>
+<p><strong>Importante:</strong> A camada Física não interpreta endereços IP nem decide para qual rede encaminhar um pacote.</p>
+</blockquote>
+<h3 id="34-camada-2-enlace-de-dados-data-link-layer">3.4 Camada 2 — Enlace de Dados (Data Link Layer)<a class="headerlink" href="#34-camada-2-enlace-de-dados-data-link-layer" title="Permanent link">¶</a></h3>
+<p>A camada de Enlace é responsável pela comunicação através de um enlace de dados, incluindo a organização das informações em <strong>quadros (frames)</strong>.</p>
+<p>Em redes Ethernet, essa camada utiliza endereços MAC e mecanismos de identificação do tipo de conteúdo transportado.</p>
+<h4 id="principais-responsabilidades_4">Principais responsabilidades<a class="headerlink" href="#principais-responsabilidades_4" title="Permanent link">¶</a></h4>
+<ul>
+<li>Formação e interpretação de quadros.</li>
+<li>Endereçamento MAC.</li>
+<li>Detecção de erros através de mecanismos como o FCS.</li>
+<li>Identificação do protocolo transportado.</li>
+<li>Comutação Ethernet.</li>
+<li>Segmentação lógica através de VLANs.</li>
+</ul>
+<h4 id="exemplo-pratico_3">Exemplo prático<a class="headerlink" href="#exemplo-pratico_3" title="Permanent link">¶</a></h4>
+<p>Considere dois servidores conectados ao mesmo switch e pertencentes à mesma VLAN.</p>
+<p>O switch pode encaminhar os quadros Ethernet utilizando sua tabela de endereços MAC, sem precisar realizar roteamento IP entre os servidores.</p>
+<pre class="mermaid"><code>flowchart LR
+    S1["Servidor A"]
+    SW["Switch Nexus"]
+    S2["Servidor B"]
+
+    S1 --&gt;|"Quadro Ethernet"| SW
+    SW --&gt;|"Quadro Ethernet"| S2
+</code></pre>
+<h4 id="mac-address-table">MAC Address Table<a class="headerlink" href="#mac-address-table" title="Permanent link">¶</a></h4>
+<p>Um switch Ethernet aprende endereços MAC de origem associados às interfaces e VLANs pelas quais os quadros são recebidos.</p>
+<p>Quando conhece o endereço MAC de destino, pode encaminhar o quadro pela interface correspondente.</p>
+<p>Quando o destino é desconhecido, normalmente realiza flooding dentro do domínio de camada 2 aplicável.</p>
+<h4 id="tecnologias-relacionadas">Tecnologias relacionadas<a class="headerlink" href="#tecnologias-relacionadas" title="Permanent link">¶</a></h4>
+<ul>
+<li>IEEE 802.3 — Ethernet.</li>
+<li>IEEE 802.1Q — VLAN tagging.</li>
+<li>STP — Spanning Tree Protocol.</li>
+<li>LACP — Link Aggregation Control Protocol.</li>
+</ul>
+<h3 id="35-camada-3-rede-network-layer">3.5 Camada 3 — Rede (Network Layer)<a class="headerlink" href="#35-camada-3-rede-network-layer" title="Permanent link">¶</a></h3>
+<p>A camada de Rede é responsável pelo <strong>endereçamento lógico e encaminhamento de pacotes entre redes diferentes</strong>.</p>
+<p>Enquanto a camada 2 trabalha com quadros no enlace, a camada 3 permite a comunicação entre redes IP.</p>
+<h4 id="principais-responsabilidades_5">Principais responsabilidades<a class="headerlink" href="#principais-responsabilidades_5" title="Permanent link">¶</a></h4>
+<ul>
+<li>Endereçamento lógico.</li>
+<li>Encaminhamento de pacotes.</li>
+<li>Seleção de caminhos através de informações de roteamento.</li>
+<li>Controle de TTL no IPv4 e Hop Limit no IPv6.</li>
+<li>Tratamento de informações de rede necessárias à entrega dos pacotes.</li>
+</ul>
+<h4 id="exemplo-pratico_4">Exemplo prático<a class="headerlink" href="#exemplo-pratico_4" title="Permanent link">¶</a></h4>
+<p>Considere dois servidores em sub-redes distintas:</p>
+<table>
+<thead>
+<tr>
+<th>Dispositivo</th>
+<th>Endereço IP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Servidor A</td>
+<td>10.10.10.10/24</td>
+</tr>
+<tr>
+<td>Servidor B</td>
+<td>10.10.20.10/24</td>
+</tr>
+</tbody>
+</table>
+<p>Como pertencem a redes diferentes, a comunicação normalmente precisa passar por um dispositivo que realize roteamento, como um switch de camada 3.</p>
+<pre class="mermaid"><code>flowchart LR
+    A["Servidor A<br/>10.10.10.10/24"]
+    R["Switch L3 / Gateway"]
+    B["Servidor B<br/>10.10.20.10/24"]
+
+    A --&gt; R --&gt; B
+</code></pre>
+<p>O dispositivo de camada 3 consulta as informações de encaminhamento para determinar a próxima etapa do caminho até a rede de destino.</p>
+<h4 id="tecnologias-relacionadas_1">Tecnologias relacionadas<a class="headerlink" href="#tecnologias-relacionadas_1" title="Permanent link">¶</a></h4>
+<ul>
+<li>IPv4 e IPv6.</li>
+<li>ICMP.</li>
+<li>OSPF e BGP, como protocolos de roteamento que fornecem informações para o encaminhamento IP.</li>
+<li>ECMP.</li>
+<li>Roteamento inter-VLAN.</li>
+</ul>
+<blockquote>
+<p><strong>Nota técnica:</strong> Protocolos como OSPF e BGP não devem ser confundidos com o próprio encaminhamento de pacotes IP. Eles participam da construção e distribuição de informações de roteamento.</p>
+</blockquote>
+<h3 id="36-camada-4-transporte-transport-layer">3.6 Camada 4 — Transporte (Transport Layer)<a class="headerlink" href="#36-camada-4-transporte-transport-layer" title="Permanent link">¶</a></h3>
+<p>A camada de Transporte oferece mecanismos para a comunicação entre processos nas extremidades da rede.</p>
+<p>No conjunto de protocolos TCP/IP, os principais protocolos de transporte são <strong>TCP e UDP</strong>.</p>
+<h4 id="principais-responsabilidades_6">Principais responsabilidades<a class="headerlink" href="#principais-responsabilidades_6" title="Permanent link">¶</a></h4>
+<ul>
+<li>Identificação de aplicações através de portas.</li>
+<li>Multiplexação de diferentes comunicações.</li>
+<li>Segmentação de dados, conforme o protocolo.</li>
+<li>Controle de fluxo, quando suportado.</li>
+<li>Confiabilidade e retransmissão, quando suportadas.</li>
+</ul>
+<h4 id="tcp-transmission-control-protocol">TCP (Transmission Control Protocol)<a class="headerlink" href="#tcp-transmission-control-protocol" title="Permanent link">¶</a></h4>
+<p>O TCP é orientado à conexão e oferece entrega confiável e ordenada de um fluxo de bytes.</p>
+<p>Entre seus mecanismos estão:</p>
+<ul>
+<li>Estabelecimento de conexão.</li>
+<li>Números de sequência.</li>
+<li>Confirmações de recebimento.</li>
+<li>Retransmissões.</li>
+<li>Controle de fluxo.</li>
+<li>Controle de congestionamento.</li>
+</ul>
+<h4 id="udp-user-datagram-protocol">UDP (User Datagram Protocol)<a class="headerlink" href="#udp-user-datagram-protocol" title="Permanent link">¶</a></h4>
+<p>O UDP é um protocolo de transporte sem conexão que oferece um serviço de datagramas com menor quantidade de mecanismos.</p>
+<p>Ele não implementa, por si só, confirmação de entrega, retransmissão ou ordenação.</p>
+<p>Isso não impede que aplicações construídas sobre UDP implementem mecanismos próprios de confiabilidade.</p>
+<h4 id="exemplos">Exemplos<a class="headerlink" href="#exemplos" title="Permanent link">¶</a></h4>
+<table>
+<thead>
+<tr>
+<th>Aplicação ou protocolo</th>
+<th>Transporte comum</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HTTPS tradicional</td>
+<td>TCP 443</td>
+</tr>
+<tr>
+<td>DNS</td>
+<td>UDP 53 ou TCP 53</td>
+</tr>
+<tr>
+<td>SSH</td>
+<td>TCP 22</td>
+</tr>
+<tr>
+<td>NTP</td>
+<td>UDP 123</td>
+</tr>
+<tr>
+<td>QUIC / HTTP/3</td>
+<td>UDP, normalmente porta 443</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Importante:</strong> A escolha entre TCP e UDP não depende apenas de velocidade. Também envolve requisitos de confiabilidade, latência, controle de congestionamento e comportamento da aplicação.</p>
+</blockquote>
+<h3 id="37-camada-5-sessao-session-layer">3.7 Camada 5 — Sessão (Session Layer)<a class="headerlink" href="#37-camada-5-sessao-session-layer" title="Permanent link">¶</a></h3>
+<p>A camada de Sessão representa funções relacionadas ao estabelecimento, manutenção, organização e encerramento de sessões lógicas de comunicação entre aplicações.</p>
+<p>Entre os conceitos associados a essa camada estão:</p>
+<ul>
+<li>Controle do diálogo entre aplicações.</li>
+<li>Gerenciamento do estado de sessões.</li>
+<li>Sincronização de operações.</li>
+<li>Recuperação de determinados estados de comunicação.</li>
+</ul>
+<h4 id="exemplo-conceitual">Exemplo conceitual<a class="headerlink" href="#exemplo-conceitual" title="Permanent link">¶</a></h4>
+<p>Uma aplicação cliente estabelece uma sessão com um serviço remoto e mantém informações necessárias para continuar a interação ao longo de várias operações.</p>
+<h3 id="38-camada-6-apresentacao-presentation-layer">3.8 Camada 6 — Apresentação (Presentation Layer)<a class="headerlink" href="#38-camada-6-apresentacao-presentation-layer" title="Permanent link">¶</a></h3>
+<p>A camada de Apresentação representa funções responsáveis pela forma como os dados são codificados, interpretados e transformados para serem compreendidos pelas aplicações.</p>
+<h4 id="principais-responsabilidades_7">Principais responsabilidades<a class="headerlink" href="#principais-responsabilidades_7" title="Permanent link">¶</a></h4>
+<ul>
+<li>Conversão de formatos de dados.</li>
+<li>Codificação de caracteres.</li>
+<li>Serialização e representação de informações.</li>
+<li>Compressão e descompressão.</li>
+<li>Transformações criptográficas, dependendo da arquitetura.</li>
+</ul>
+<h4 id="exemplos_1">Exemplos<a class="headerlink" href="#exemplos_1" title="Permanent link">¶</a></h4>
+<ul>
+<li>UTF-8 para representação de caracteres.</li>
+<li>JSON e XML como formatos de representação de dados.</li>
+<li>Codificações utilizadas na transmissão de imagens e outros conteúdos.</li>
+</ul>
+<h3 id="39-camada-7-aplicacao-application-layer">3.9 Camada 7 — Aplicação (Application Layer)<a class="headerlink" href="#39-camada-7-aplicacao-application-layer" title="Permanent link">¶</a></h3>
+<p>A camada de Aplicação representa os protocolos e serviços que permitem às aplicações utilizar a rede.</p>
+<p>Ela não deve ser confundida com a interface gráfica de um programa.</p>
+<p>Por exemplo, um navegador é uma aplicação, enquanto HTTP é um protocolo utilizado por ele para comunicar-se com servidores Web.</p>
+<h4 id="principais-responsabilidades_8">Principais responsabilidades<a class="headerlink" href="#principais-responsabilidades_8" title="Permanent link">¶</a></h4>
+<ul>
+<li>Disponibilizar serviços de comunicação para aplicações.</li>
+<li>Definir mensagens e operações específicas de protocolos.</li>
+<li>Permitir acesso a serviços como Web, resolução de nomes e transferência de arquivos.</li>
+</ul>
+<h4 id="exemplos_2">Exemplos<a class="headerlink" href="#exemplos_2" title="Permanent link">¶</a></h4>
+<table>
+<thead>
+<tr>
+<th>Protocolo</th>
+<th>Finalidade</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HTTP/HTTPS</td>
+<td>Comunicação Web</td>
+</tr>
+<tr>
+<td>DNS</td>
+<td>Resolução de nomes</td>
+</tr>
+<tr>
+<td>SMTP</td>
+<td>Envio de mensagens de e-mail</td>
+</tr>
+<tr>
+<td>SSH</td>
+<td>Acesso remoto seguro</td>
+</tr>
+<tr>
+<td>DHCP</td>
+<td>Configuração automática de parâmetros de rede</td>
+</tr>
+<tr>
+<td>SNMP</td>
+<td>Monitoramento e gerenciamento de dispositivos</td>
+</tr>
+</tbody>
+</table>
+<h4 id="exemplo-pratico_5">Exemplo prático<a class="headerlink" href="#exemplo-pratico_5" title="Permanent link">¶</a></h4>
+<p>Quando um administrador acessa a interface de gerenciamento de um equipamento Cisco através de HTTPS, o protocolo HTTP e os mecanismos de segurança associados permitem a comunicação entre o cliente e o serviço Web do equipamento.</p>
+<h3 id="310-equipamentos-e-sua-relacao-com-o-modelo-osi">3.10 Equipamentos e sua relação com o modelo OSI<a class="headerlink" href="#310-equipamentos-e-sua-relacao-com-o-modelo-osi" title="Permanent link">¶</a></h3>
+<p>É comum associar determinados equipamentos a camadas específicas do modelo OSI.</p>
+<p>Essa associação é útil para fins didáticos, mas não significa que o equipamento opere exclusivamente naquela camada.</p>
+<table>
+<thead>
+<tr>
+<th>Equipamento</th>
+<th>Camadas mais associadas</th>
+<th>Função</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Repetidor</td>
+<td>1</td>
+<td>Regeneração ou repetição de sinais</td>
+</tr>
+<tr>
+<td>Hub Ethernet</td>
+<td>1</td>
+<td>Repetição de sinais entre portas</td>
+</tr>
+<tr>
+<td>Switch Ethernet L2</td>
+<td>1 e 2</td>
+<td>Comutação baseada em quadros e MAC</td>
+</tr>
+<tr>
+<td>Roteador</td>
+<td>1, 2 e 3</td>
+<td>Encaminhamento entre redes</td>
+</tr>
+<tr>
+<td>Switch multicamada</td>
+<td>1, 2 e 3 ou superiores</td>
+<td>Comutação e roteamento</td>
+</tr>
+<tr>
+<td>Firewall</td>
+<td>Variável</td>
+<td>Filtragem e aplicação de políticas</td>
+</tr>
+<tr>
+<td>Load Balancer</td>
+<td>Frequentemente 4 e/ou 7</td>
+<td>Distribuição de conexões ou requisições</td>
+</tr>
+</tbody>
+</table>
+<p>Em Data Centers, um Cisco Nexus pode executar funções de switching Ethernet, roteamento IP e recursos adicionais de encapsulamento, dependendo do modelo e da configuração.</p>
+<h3 id="311-aplicacao-do-modelo-osi-no-troubleshooting">3.11 Aplicação do modelo OSI no troubleshooting<a class="headerlink" href="#311-aplicacao-do-modelo-osi-no-troubleshooting" title="Permanent link">¶</a></h3>
+<p>Uma das maiores utilidades práticas do modelo OSI é ajudar a organizar o diagnóstico de falhas.</p>
+<p>Considere um servidor que não consegue acessar uma aplicação hospedada em outra rede.</p>
+<p>A investigação pode ser organizada da seguinte forma:</p>
+<table>
+<thead>
+<tr>
+<th>Camada</th>
+<th>O que verificar</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 — Física</td>
+<td>Estado do link, cabos, transceptores, erros físicos</td>
+</tr>
+<tr>
+<td>2 — Enlace</td>
+<td>VLAN, trunk, MAC address table, STP</td>
+</tr>
+<tr>
+<td>3 — Rede</td>
+<td>Endereços IP, máscaras, gateway, rotas</td>
+</tr>
+<tr>
+<td>4 — Transporte</td>
+<td>Portas TCP/UDP, sessões, bloqueios</td>
+</tr>
+<tr>
+<td>5 — Sessão</td>
+<td>Estado e continuidade da sessão lógica</td>
+</tr>
+<tr>
+<td>6 — Apresentação</td>
+<td>Codificação, formatos e negociação criptográfica</td>
+</tr>
+<tr>
+<td>7 — Aplicação</td>
+<td>Serviço ativo, DNS, HTTP, autenticação e logs</td>
+</tr>
+</tbody>
+</table>
+<h4 id="exemplos-de-comandos-cisco-nx-os">Exemplos de comandos Cisco NX-OS<a class="headerlink" href="#exemplos-de-comandos-cisco-nx-os" title="Permanent link">¶</a></h4>
+<p>Verificar o estado das interfaces:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-0-1"><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a>show<span class="w"> </span>interface<span class="w"> </span>status
+</span></code></pre></div>
+<p>Consultar informações de uma interface:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-1-1"><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a>show<span class="w"> </span>interface<span class="w"> </span>ethernet<span class="w"> </span><span class="m">1</span>/1
+</span></code></pre></div>
+<p>Consultar a tabela MAC:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-2-1"><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a>show<span class="w"> </span>mac<span class="w"> </span>address-table
+</span></code></pre></div>
+<p>Verificar VLANs:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-3-1"><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a>show<span class="w"> </span>vlan<span class="w"> </span>brief
+</span></code></pre></div>
+<p>Consultar rotas IPv4:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-4-1"><a href="#__codelineno-4-1" id="__codelineno-4-1" name="__codelineno-4-1"></a>show<span class="w"> </span>ip<span class="w"> </span>route
+</span></code></pre></div>
+<p>Verificar a tabela ARP:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-5-1"><a href="#__codelineno-5-1" id="__codelineno-5-1" name="__codelineno-5-1"></a>show<span class="w"> </span>ip<span class="w"> </span>arp
+</span></code></pre></div>
+<h3 id="312-relacao-com-o-ccnp-dccor-350-601">3.12 Relação com o CCNP DCCOR 350-601<a class="headerlink" href="#312-relacao-com-o-ccnp-dccor-350-601" title="Permanent link">¶</a></h3>
+<p>O modelo OSI fornece a base conceitual para diversos assuntos do DCCOR:</p>
+<ul>
+<li><strong>Camada 1:</strong> interfaces Ethernet, cabos DAC, transceptores e conectividade física.</li>
+<li><strong>Camada 2:</strong> VLANs, trunks, STP, Port-Channel e vPC.</li>
+<li><strong>Camada 3:</strong> roteamento IP, OSPF, BGP e ECMP.</li>
+<li><strong>Camada 4:</strong> protocolos de transporte utilizados por aplicações e serviços.</li>
+<li><strong>Camadas 5 a 7:</strong> serviços de aplicação, automação, APIs e protocolos de gerenciamento.</li>
+</ul>
+<p>Também é importante para compreender tecnologias que combinam diferentes funções, como <strong>VXLAN</strong>, que encapsula quadros Ethernet para transportá-los através de uma rede IP.</p>
+<h3 id="313-checklist-de-revisao">3.13 Checklist de revisão<a class="headerlink" href="#313-checklist-de-revisao" title="Permanent link">¶</a></h3>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Compreender a finalidade do modelo OSI.</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Memorizar as sete camadas na ordem correta.</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Identificar as principais responsabilidades de cada camada.</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Diferenciar quadros Ethernet, pacotes IP e segmentos TCP.</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Entender a diferença entre endereçamento MAC e IP.</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Compreender as diferenças fundamentais entre TCP e UDP.</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Identificar protocolos associados à camada de Aplicação.</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Entender que as camadas 5 e 6 são abstrações conceituais no contexto TCP/IP.</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Relacionar as camadas com funções dos switches Cisco Nexus.</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Utilizar o modelo OSI para organizar o troubleshooting de redes.</li>
+</ul>
+<h2 id="4-modelo-tcpip-e-relacao-com-o-osi">4. Modelo TCP/IP e relação com o OSI<a class="headerlink" href="#4-modelo-tcpip-e-relacao-com-o-osi" title="Permanent link">¶</a></h2>
+<p>O <strong>modelo TCP/IP (Transmission Control Protocol / Internet Protocol)</strong> é uma arquitetura de protocolos utilizada como base para a comunicação nas redes modernas, incluindo redes corporativas, Data Centers e a Internet.</p>
+<p>Diferentemente do modelo OSI, que foi desenvolvido como um modelo de referência conceitual, o TCP/IP representa uma arquitetura construída em torno de protocolos efetivamente utilizados na comunicação entre sistemas.</p>
+<p>O nome TCP/IP deriva de dois protocolos fundamentais:</p>
+<ul>
+<li><strong>TCP (Transmission Control Protocol):</strong> protocolo de transporte que oferece comunicação confiável e orientada à conexão.</li>
+<li><strong>IP (Internet Protocol):</strong> protocolo responsável pelo endereçamento lógico e encaminhamento de pacotes entre redes.</li>
+</ul>
+<p>Entretanto, a arquitetura TCP/IP não se limita a esses dois protocolos. Ela compreende diversos outros, como UDP, ICMP, DNS, HTTP, SSH e DHCP.</p>
+<h3 id="41-organizacao-do-modelo-tcpip">4.1 Organização do modelo TCP/IP<a class="headerlink" href="#41-organizacao-do-modelo-tcpip" title="Permanent link">¶</a></h3>
+<p>O modelo TCP/IP é apresentado com quatro camadas:</p>
+<ol>
+<li><strong>Aplicação (Application)</strong></li>
+<li><strong>Host-to-Host / Transporte (Transport)</strong></li>
+<li><strong>Internet</strong></li>
+<li><strong>Network Access / Acesso à Rede</strong></li>
+</ol>
+<p>Cada camada possui responsabilidades específicas e utiliza os serviços oferecidos pela camada inferior.</p>
+<table>
+<thead>
+<tr>
+<th>Camada TCP/IP</th>
+<th>Função principal</th>
+<th>Exemplos de protocolos e tecnologias</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Aplicação</td>
+<td>Disponibilizar serviços de comunicação às aplicações</td>
+<td>HTTP, DNS, SSH, SMTP, DHCP</td>
+</tr>
+<tr>
+<td>Host-to-Host / Transporte</td>
+<td>Comunicação entre processos, portas e mecanismos de transporte</td>
+<td>TCP, UDP</td>
+</tr>
+<tr>
+<td>Internet</td>
+<td>Endereçamento lógico e encaminhamento entre redes</td>
+<td>IPv4, IPv6, ICMP</td>
+</tr>
+<tr>
+<td>Network Access / Acesso à Rede</td>
+<td>Comunicação pelo enlace e transmissão física</td>
+<td>Ethernet, IEEE 802.1Q, fibra óptica</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Nota técnica:</strong> Também existem representações didáticas do TCP/IP com cinco camadas, separando Enlace de Dados e Física. Neste material, utilizaremos o modelo de quatro camadas.</p>
+</blockquote>
+<h3 id="42-camada-de-aplicacao-application-layer">4.2 Camada de Aplicação (Application Layer)<a class="headerlink" href="#42-camada-de-aplicacao-application-layer" title="Permanent link">¶</a></h3>
+<p>A camada de Aplicação representa os protocolos e serviços que permitem às aplicações comunicar-se através da rede.</p>
+<p>No modelo TCP/IP, essa camada reúne funções que, no modelo OSI, são associadas às camadas de Aplicação, Apresentação e Sessão.</p>
+<p>Isso significa que funções como representação de dados, gerenciamento de sessões e comunicação entre aplicações podem ser implementadas diretamente pelos protocolos de aplicação ou por bibliotecas e mecanismos complementares.</p>
+<h4 id="principais-responsabilidades_9">Principais responsabilidades<a class="headerlink" href="#principais-responsabilidades_9" title="Permanent link">¶</a></h4>
+<ul>
+<li>Disponibilizar serviços de rede às aplicações.</li>
+<li>Definir formatos e operações de protocolos de aplicação.</li>
+<li>Permitir resolução de nomes e acesso a serviços.</li>
+<li>Implementar mecanismos de autenticação e gerenciamento de sessões, quando necessários.</li>
+<li>Utilizar mecanismos de codificação e proteção dos dados, conforme o protocolo.</li>
+</ul>
+<h4 id="exemplos-de-protocolos">Exemplos de protocolos<a class="headerlink" href="#exemplos-de-protocolos" title="Permanent link">¶</a></h4>
+<table>
+<thead>
+<tr>
+<th>Protocolo</th>
+<th>Finalidade</th>
+<th>Transporte habitual</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HTTP</td>
+<td>Comunicação Web</td>
+<td>TCP</td>
+</tr>
+<tr>
+<td>HTTPS (HTTP/1.1 ou HTTP/2)</td>
+<td>Comunicação Web protegida por TLS</td>
+<td>TCP</td>
+</tr>
+<tr>
+<td>HTTP/3</td>
+<td>Comunicação Web utilizando QUIC</td>
+<td>UDP</td>
+</tr>
+<tr>
+<td>DNS</td>
+<td>Resolução de nomes</td>
+<td>UDP ou TCP</td>
+</tr>
+<tr>
+<td>SSH</td>
+<td>Acesso remoto seguro</td>
+<td>TCP</td>
+</tr>
+<tr>
+<td>SMTP</td>
+<td>Envio de e-mails</td>
+<td>TCP</td>
+</tr>
+<tr>
+<td>DHCPv4</td>
+<td>Configuração automática de rede</td>
+<td>UDP</td>
+</tr>
+<tr>
+<td>SNMP</td>
+<td>Gerenciamento e monitoramento</td>
+<td>Normalmente UDP</td>
+</tr>
+</tbody>
+</table>
+<h4 id="exemplo-pratico_6">Exemplo prático<a class="headerlink" href="#exemplo-pratico_6" title="Permanent link">¶</a></h4>
+<p>Considere um administrador acessando a interface Web de um switch Cisco Nexus através de HTTPS.</p>
+<p>A aplicação cliente estabelece uma comunicação com o serviço Web do equipamento, utilizando os protocolos necessários para transportar e proteger as informações.</p>
+<p>A camada de Aplicação define como as mensagens são interpretadas pelo cliente e pelo servidor.</p>
+<h3 id="43-camada-host-to-host-transporte-transport-layer">4.3 Camada Host-to-Host / Transporte (Transport Layer)<a class="headerlink" href="#43-camada-host-to-host-transporte-transport-layer" title="Permanent link">¶</a></h3>
+<p>A camada <strong>Host-to-Host</strong>, também denominada <strong>Transporte</strong>, é responsável por oferecer serviços de comunicação entre processos executados em dispositivos diferentes.</p>
+<p>Ela permite que múltiplas aplicações utilizem simultaneamente a rede, diferenciando as comunicações através de identificadores como as portas TCP e UDP.</p>
+<h4 id="principais-responsabilidades_10">Principais responsabilidades<a class="headerlink" href="#principais-responsabilidades_10" title="Permanent link">¶</a></h4>
+<ul>
+<li>Identificação de processos através de portas.</li>
+<li>Multiplexação e demultiplexação de comunicações.</li>
+<li>Segmentação ou organização dos dados para transporte.</li>
+<li>Controle de fluxo, conforme o protocolo.</li>
+<li>Entrega confiável e ordenada, quando implementada.</li>
+<li>Controle de congestionamento, quando implementado.</li>
+</ul>
+<p>Os dois protocolos de transporte mais conhecidos são TCP e UDP.</p>
+<h4 id="tcp-transmission-control-protocol_1">TCP (Transmission Control Protocol)<a class="headerlink" href="#tcp-transmission-control-protocol_1" title="Permanent link">¶</a></h4>
+<p>O TCP oferece um serviço orientado à conexão, com entrega confiável e ordenada de um fluxo de bytes.</p>
+<p>Entre seus mecanismos estão:</p>
+<ul>
+<li>Estabelecimento de conexão através do <em>three-way handshake</em>.</li>
+<li>Números de sequência.</li>
+<li>Confirmações de recebimento (<em>ACK</em>).</li>
+<li>Retransmissões.</li>
+<li>Controle de fluxo.</li>
+<li>Controle de congestionamento.</li>
+</ul>
+<p><strong>Exemplo:</strong> uma conexão SSH entre um computador e um servidor utiliza TCP para transportar os dados da sessão.</p>
+<h4 id="udp-user-datagram-protocol_1">UDP (User Datagram Protocol)<a class="headerlink" href="#udp-user-datagram-protocol_1" title="Permanent link">¶</a></h4>
+<p>O UDP oferece um serviço de datagramas sem estabelecimento de conexão no próprio protocolo.</p>
+<p>Ele possui um cabeçalho mais simples e não implementa nativamente confirmação de entrega, retransmissão ou ordenação.</p>
+<p><strong>Exemplos:</strong> consultas DNS tradicionais, NTP e determinados protocolos de streaming e comunicação em tempo real.</p>
+<blockquote>
+<p><strong>Nota técnica:</strong> O uso de UDP não significa necessariamente que uma aplicação não possa oferecer confiabilidade. Protocolos construídos sobre UDP, como QUIC, podem implementar seus próprios mecanismos de controle e recuperação.</p>
+</blockquote>
+<h4 id="portas-de-origem-e-destino">Portas de origem e destino<a class="headerlink" href="#portas-de-origem-e-destino" title="Permanent link">¶</a></h4>
+<p>Uma comunicação TCP ou UDP utiliza números de portas para identificar os processos envolvidos.</p>
+<p>Por exemplo, em uma conexão SSH:</p>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Exemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IP de origem</td>
+<td>192.168.10.100</td>
+</tr>
+<tr>
+<td>Porta de origem</td>
+<td>51000</td>
+</tr>
+<tr>
+<td>IP de destino</td>
+<td>192.168.20.10</td>
+</tr>
+<tr>
+<td>Porta de destino</td>
+<td>22</td>
+</tr>
+<tr>
+<td>Protocolo</td>
+<td>TCP</td>
+</tr>
+</tbody>
+</table>
+<p>A porta de origem normalmente é escolhida pelo sistema operacional cliente, enquanto a porta de destino identifica o serviço SSH.</p>
+<h3 id="44-camada-internet-internet-layer">4.4 Camada Internet (Internet Layer)<a class="headerlink" href="#44-camada-internet-internet-layer" title="Permanent link">¶</a></h3>
+<p>A camada Internet é responsável pelo <strong>endereçamento lógico e pela entrega de pacotes através de diferentes redes IP</strong>.</p>
+<p>Essa camada corresponde aproximadamente à camada de Rede do modelo OSI.</p>
+<p>Sua principal função é permitir que dispositivos localizados em redes diferentes possam comunicar-se por meio de roteadores e switches de camada 3.</p>
+<h4 id="principais-responsabilidades_11">Principais responsabilidades<a class="headerlink" href="#principais-responsabilidades_11" title="Permanent link">¶</a></h4>
+<ul>
+<li>Endereçamento lógico utilizando IPv4 ou IPv6.</li>
+<li>Encaminhamento de pacotes entre redes.</li>
+<li>Identificação da origem e do destino IP.</li>
+<li>Utilização de informações de roteamento.</li>
+<li>Controle do tempo de vida dos pacotes através de TTL ou Hop Limit.</li>
+<li>Sinalização de erros e diagnósticos através de ICMP.</li>
+</ul>
+<h4 id="principais-protocolos">Principais protocolos<a class="headerlink" href="#principais-protocolos" title="Permanent link">¶</a></h4>
+<ul>
+<li><strong>IPv4:</strong> endereçamento e encaminhamento utilizando endereços de 32 bits.</li>
+<li><strong>IPv6:</strong> endereçamento e encaminhamento utilizando endereços de 128 bits.</li>
+<li><strong>ICMP/ICMPv6:</strong> mensagens de controle, diagnóstico e sinalização.</li>
+</ul>
+<h4 id="exemplo-pratico_7">Exemplo prático<a class="headerlink" href="#exemplo-pratico_7" title="Permanent link">¶</a></h4>
+<p>Considere dois servidores em redes distintas:</p>
+<table>
+<thead>
+<tr>
+<th>Dispositivo</th>
+<th>Endereço IP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Servidor A</td>
+<td>10.10.10.10/24</td>
+</tr>
+<tr>
+<td>Servidor B</td>
+<td>10.10.20.10/24</td>
+</tr>
+</tbody>
+</table>
+<p>Para que o Servidor A se comunique com o Servidor B, é necessário existir conectividade de camada 3 entre as duas redes.</p>
+<pre class="mermaid"><code>flowchart LR
+    A["Servidor A<br/>10.10.10.10/24"]
+    R["Switch L3 / Roteador"]
+    B["Servidor B<br/>10.10.20.10/24"]
+
+    A --&gt;|"Pacote IP"| R
+    R --&gt;|"Pacote IP"| B
+</code></pre>
+<p>O equipamento de camada 3 consulta sua tabela de encaminhamento para determinar por qual interface o pacote deverá seguir.</p>
+<p>O endereço IP de destino normalmente permanece o mesmo ao longo do caminho, enquanto o encapsulamento de camada 2 pode ser reconstruído a cada salto.</p>
+<h3 id="45-camada-network-access-acesso-a-rede">4.5 Camada Network Access / Acesso à Rede<a class="headerlink" href="#45-camada-network-access-acesso-a-rede" title="Permanent link">¶</a></h3>
+<p>A camada de <strong>Acesso à Rede (Network Access)</strong> representa as funções necessárias para transportar os dados através de um enlace de comunicação.</p>
+<p>Ela reúne responsabilidades que, no modelo OSI, são divididas entre:</p>
+<ul>
+<li><strong>Camada 2 — Enlace de Dados</strong></li>
+<li><strong>Camada 1 — Física</strong></li>
+</ul>
+<p>Essa camada abrange tanto a organização dos dados em quadros quanto sua transmissão através do meio físico.</p>
+<h4 id="principais-responsabilidades_12">Principais responsabilidades<a class="headerlink" href="#principais-responsabilidades_12" title="Permanent link">¶</a></h4>
+<ul>
+<li>Encapsulamento em quadros.</li>
+<li>Endereçamento físico, quando utilizado pela tecnologia.</li>
+<li>Controle de acesso ao meio.</li>
+<li>Detecção de erros no enlace.</li>
+<li>Transmissão de sinais elétricos, ópticos ou de rádio.</li>
+<li>Definição das características físicas da comunicação.</li>
+</ul>
+<h4 id="exemplos-de-tecnologias">Exemplos de tecnologias<a class="headerlink" href="#exemplos-de-tecnologias" title="Permanent link">¶</a></h4>
+<ul>
+<li>Ethernet (IEEE 802.3).</li>
+<li>VLAN tagging (IEEE 802.1Q).</li>
+<li>Interfaces de fibra óptica.</li>
+<li>Cabos DAC.</li>
+<li>Interfaces Ethernet de cobre.</li>
+<li>Tecnologias de enlace utilizadas em diferentes meios físicos.</li>
+</ul>
+<h4 id="exemplo-pratico_8">Exemplo prático<a class="headerlink" href="#exemplo-pratico_8" title="Permanent link">¶</a></h4>
+<p>Um servidor conectado a um switch Cisco Nexus através de uma interface Ethernet de 25 Gbps utiliza a camada de Acesso à Rede para transmitir quadros através do enlace físico.</p>
+<p>O switch interpreta as informações Ethernet necessárias ao encaminhamento e transmite os quadros pelas interfaces apropriadas.</p>
+<blockquote>
+<p><strong>Importante:</strong> A camada de Acesso à Rede não define, por si só, o caminho completo entre redes IP distintas. Essa responsabilidade está relacionada à camada Internet.</p>
+</blockquote>
+<h3 id="46-relacao-entre-os-modelos-tcpip-e-osi">4.6 Relação entre os modelos TCP/IP e OSI<a class="headerlink" href="#46-relacao-entre-os-modelos-tcpip-e-osi" title="Permanent link">¶</a></h3>
+<p>Embora ambos utilizem uma organização em camadas, o modelo OSI e a arquitetura TCP/IP possuem estruturas diferentes.</p>
+<p>O modelo OSI divide a comunicação em sete camadas, enquanto o modelo TCP/IP apresentado neste material utiliza quatro.</p>
+<table>
+<thead>
+<tr>
+<th>TCP/IP</th>
+<th>Correspondência aproximada no OSI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Aplicação</td>
+<td>Aplicação, Apresentação e Sessão (7, 6 e 5)</td>
+</tr>
+<tr>
+<td>Host-to-Host / Transporte</td>
+<td>Transporte (4)</td>
+</tr>
+<tr>
+<td>Internet</td>
+<td>Rede (3)</td>
+</tr>
+<tr>
+<td>Network Access / Acesso à Rede</td>
+<td>Enlace e Física (2 e 1)</td>
+</tr>
+</tbody>
+</table>
+<pre class="mermaid"><code>flowchart LR
+    subgraph OSI["Modelo OSI"]
+        direction TB
+        O7["7 — Aplicação"]
+        O6["6 — Apresentação"]
+        O5["5 — Sessão"]
+        O4["4 — Transporte"]
+        O3["3 — Rede"]
+        O2["2 — Enlace"]
+        O1["1 — Física"]
+    end
+
+    subgraph TCPIP["Modelo TCP/IP"]
+        direction TB
+        T4["Aplicação"]
+        T3["Transporte"]
+        T2["Internet"]
+        T1["Acesso à Rede"]
+    end
+
+    O7 --- T4
+    O6 --- T4
+    O5 --- T4
+    O4 --- T3
+    O3 --- T2
+    O2 --- T1
+    O1 --- T1
+</code></pre>
+<blockquote>
+<p><strong>Nota:</strong> O mapeamento é conceitual, não uma equivalência exata entre as arquiteturas. Também existem representações didáticas do TCP/IP com cinco camadas, separando Enlace e Física.</p>
+</blockquote>
+<h4 id="principais-diferencas">Principais diferenças<a class="headerlink" href="#principais-diferencas" title="Permanent link">¶</a></h4>
+<table>
+<thead>
+<tr>
+<th>Característica</th>
+<th>Modelo OSI</th>
+<th>Modelo TCP/IP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Organização</td>
+<td>Sete camadas</td>
+<td>Quatro camadas nesta representação</td>
+</tr>
+<tr>
+<td>Natureza</td>
+<td>Modelo de referência conceitual</td>
+<td>Arquitetura de protocolos</td>
+</tr>
+<tr>
+<td>Aplicação prática</td>
+<td>Estudo, padronização e troubleshooting</td>
+<td>Base das redes IP modernas</td>
+</tr>
+<tr>
+<td>Sessão e Apresentação</td>
+<td>Camadas independentes</td>
+<td>Funções integradas à camada de Aplicação</td>
+</tr>
+<tr>
+<td>Enlace e Física</td>
+<td>Camadas independentes</td>
+<td>Agrupadas em Acesso à Rede</td>
+</tr>
+</tbody>
+</table>
+<h3 id="47-exemplo-de-comunicacao-utilizando-tcpip">4.7 Exemplo de comunicação utilizando TCP/IP<a class="headerlink" href="#47-exemplo-de-comunicacao-utilizando-tcpip" title="Permanent link">¶</a></h3>
+<p>Considere um administrador acessando um servidor Web através de HTTPS sobre TCP.</p>
+<p>O processo pode ser representado da seguinte forma:</p>
+<ol>
+<li><strong>Aplicação:</strong> o cliente prepara uma mensagem HTTP.</li>
+<li><strong>Transporte:</strong> o TCP transporta os dados da aplicação, utilizando portas de origem e destino.</li>
+<li><strong>Internet:</strong> o IP adiciona informações de endereçamento lógico e permite o encaminhamento entre redes.</li>
+<li><strong>Acesso à Rede:</strong> o pacote IP é encapsulado em um quadro Ethernet e transmitido pelo enlace físico.</li>
+</ol>
+<pre class="mermaid"><code>flowchart TB
+    A["Aplicação<br/>Mensagem HTTP"]
+    T["Transporte<br/>Segmento TCP"]
+    I["Internet<br/>Pacote IP"]
+    N["Acesso à Rede<br/>Quadro Ethernet"]
+
+    A --&gt; T
+    T --&gt; I
+    I --&gt; N
+</code></pre>
+<p>No dispositivo de destino, ocorre o processo inverso, no qual os dados são entregues progressivamente às camadas superiores até alcançarem a aplicação.</p>
+<p>Esse processo é denominado <strong>encapsulamento e desencapsulamento</strong> e será detalhado na próxima seção.</p>
+<h3 id="48-aplicacao-do-modelo-tcpip-em-data-centers">4.8 Aplicação do modelo TCP/IP em Data Centers<a class="headerlink" href="#48-aplicacao-do-modelo-tcpip-em-data-centers" title="Permanent link">¶</a></h3>
+<p>A arquitetura TCP/IP está presente em praticamente todos os componentes de comunicação de um Data Center moderno.</p>
+<h4 id="servidores-e-aplicacoes">Servidores e aplicações<a class="headerlink" href="#servidores-e-aplicacoes" title="Permanent link">¶</a></h4>
+<p>Aplicações utilizam protocolos de transporte e serviços de aplicação para comunicar-se com outros sistemas.</p>
+<p>Exemplos:</p>
+<ul>
+<li>Servidores Web utilizando HTTP/HTTPS.</li>
+<li>Bancos de dados utilizando conexões TCP.</li>
+<li>Serviços de resolução de nomes utilizando DNS.</li>
+<li>Serviços de gerenciamento utilizando SSH e APIs.</li>
+</ul>
+<h4 id="infraestrutura-de-rede">Infraestrutura de rede<a class="headerlink" href="#infraestrutura-de-rede" title="Permanent link">¶</a></h4>
+<p>Switches Cisco Nexus e outros equipamentos utilizam protocolos IP para encaminhamento, gerenciamento e comunicação com serviços de infraestrutura.</p>
+<h4 id="redes-spine-leaf">Redes Spine-Leaf<a class="headerlink" href="#redes-spine-leaf" title="Permanent link">¶</a></h4>
+<p>Em arquiteturas Spine-Leaf com underlay IP, a camada Internet permite o encaminhamento de pacotes entre os switches.</p>
+<p>Protocolos de roteamento como OSPF ou BGP podem ser utilizados para distribuir informações de alcance entre os equipamentos.</p>
+<h4 id="vxlan">VXLAN<a class="headerlink" href="#vxlan" title="Permanent link">¶</a></h4>
+<p>O VXLAN permite transportar quadros Ethernet através de uma rede IP utilizando encapsulamento UDP.</p>
+<p>Isso demonstra como diferentes funções da arquitetura TCP/IP podem ser combinadas para implementar tecnologias de virtualização de redes.</p>
+<blockquote>
+<p><strong>Nota técnica:</strong> O funcionamento detalhado do VXLAN, incluindo VTEPs, VNIs, underlay e overlay, será abordado nos módulos específicos do DCCOR.</p>
+</blockquote>
+<h3 id="49-relacao-com-o-ccnp-dccor-350-601">4.9 Relação com o CCNP DCCOR 350-601<a class="headerlink" href="#49-relacao-com-o-ccnp-dccor-350-601" title="Permanent link">¶</a></h3>
+<p>O modelo TCP/IP é essencial para compreender:</p>
+<ul>
+<li><strong>IPv4 e IPv6:</strong> endereçamento lógico e conectividade.</li>
+<li><strong>OSPF e BGP:</strong> distribuição de informações de roteamento.</li>
+<li><strong>ECMP:</strong> utilização de múltiplos caminhos IP de mesmo custo.</li>
+<li><strong>VXLAN EVPN:</strong> encapsulamento e distribuição de informações de alcance.</li>
+<li><strong>Cisco ACI:</strong> comunicação e políticas em uma fabric de Data Center.</li>
+<li><strong>Automação:</strong> APIs REST, HTTPS, SSH e protocolos de gerenciamento.</li>
+<li><strong>Troubleshooting:</strong> identificação de falhas entre as diferentes funções da comunicação.</li>
+</ul>
+<h3 id="410-checklist-de-revisao">4.10 Checklist de revisão<a class="headerlink" href="#410-checklist-de-revisao" title="Permanent link">¶</a></h3>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Compreender a finalidade da arquitetura TCP/IP.</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Identificar as quatro camadas apresentadas no DCICN 640-911.</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Diferenciar o modelo TCP/IP do modelo OSI.</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Entender as responsabilidades da camada de Aplicação.</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Compreender a função dos protocolos TCP e UDP.</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Entender o papel do IP no encaminhamento entre redes.</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Identificar as funções da camada de Acesso à Rede.</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Relacionar as camadas TCP/IP com as camadas OSI.</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Compreender a comunicação básica entre cliente e servidor.</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Relacionar TCP/IP às tecnologias utilizadas em Data Centers.</li>
+</ul>
+</article>
+</div>
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+</div>
+</main>
+<footer class="md-footer">
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-copyright">
+<div class="md-copyright__highlight">
+      Weslley Silva © 2025
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
+      Material for MkDocs
+    </a>
+</div>
+<div class="md-social">
+<a class="md-social__link" href="https://github.com/weslleycsil" rel="noopener" target="_blank" title="github.com">
+<svg viewbox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M202.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M496 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"></path></svg>
+</a>
+<a class="md-social__link" href="https://linkedin.com/in/weslleycsil" rel="noopener" target="_blank" title="linkedin.com">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zM102.2 96a38.5 38.5 0 1 1 0 77 38.5 38.5 0 1 1 0-77m282.1 320h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"></path></svg>
+</a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<div class="md-dialog" data-md-component="dialog">
+<div class="md-dialog__inner md-typeset"></div>
+</div>
+<script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "mais 1 nesta p\u00e1gina", "search.result.more.other": "# mais nesta p\u00e1gina", "search.result.none": "Nenhum documento encontrado", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
+<script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+<script type="module">import mermaid from "https://unpkg.com/mermaid@10.4.0/dist/mermaid.esm.min.mjs";
+window.mermaidConfig = {default: {
+    startOnLoad: false
+}};</script></body>
+</html>

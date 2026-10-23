@@ -10,6 +10,7 @@ Antes de avançar nos tópicos do CCNP Data Center (DCCOR 350-601), esta seção
 - [DCICN 640-911 — Índice dos capítulos](pt-BR/revisao-ccna-dc/640-911/index.md)
 - [Modelos de rede e arquitetura](pt-BR/revisao-ccna-dc/640-911/modelos-de-rede.md)
 - [Endereçamento IPv4](pt-BR/revisao-ccna-dc/640-911/enderecamento-ipv4.md)
+- [Serviços de Rede](pt-BR/revisao-ccna-dc/640-911/servicos-de-rede.md)
 
 
 ## 📚 Conteúdo

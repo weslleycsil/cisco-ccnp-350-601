@@ -10,7 +10,7 @@ O objetivo é construir uma referência prática e organizada, não reproduzir i
 | --- | --- | --- |
 | 01 — Modelos de rede | Modos de comunicação, arquitetura hierárquica, OSI e TCP/IP | [Estudar](modelos-de-rede.md) |
 | 02 — Endereçamento IPv4 | Endereçamento binário, máscaras, CIDR, VLSM e redes privadas | [Estudar](enderecamento-ipv4.md) |
-| 03 — Serviços de rede | DHCP, NAT e PAT | Em preparação |
+| 03 — Serviços de rede | DHCP, NAT e PAT | [Estudar](servicos-de-rede.md) |
 | 04 — TCP e UDP | Transporte, portas, confiabilidade e controle de fluxo | Em preparação |
 | 05 — Ethernet e IEEE 802 | IEEE 802, subcamadas LLC/MAC, CSMA/CD e duplex | Em preparação |
 | 06 — VLANs e trunking | VLAN, portas access/trunk, 802.1Q e VTP | Em preparação |

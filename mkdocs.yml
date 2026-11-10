@@ -2,7 +2,7 @@
 site_name: Guia de Estudos CCNP DCCOR 350-601
 site_description: Guia de Estudos CCNP DCCOR 350-601
 site_author: Weslley Silva
-site_url: https://infra.expert/cisco_ccnp_350-501/
+site_url: https://infra.expert/cisco_ccnp_350-601/
 
 # Repository
 repo_name: weslleycsil/cisco-ccnp-350-601
@@ -61,13 +61,6 @@ extra:
       link: https://github.com/weslleycsil
     - icon: fontawesome/brands/linkedin
       link: https://linkedin.com/in/weslleycsil
-  alternate:
-    - name: Português
-      link: /cisco_aci
-      lang: pt-BR
-    #- name: English
-    #  link: /cisco_aci/en/ 
-    #  lang: en
 
 # Extensions
 markdown_extensions:
@@ -91,12 +84,16 @@ markdown_extensions:
 
 # Navigation
 nav:
-  - Inicio: index.md
+  - Início: index.md
+  - Planejamento:
+      - Roadmap: roadmap.md
+      - Acompanhamento: progress.md
   - Revisão CCNA Data Center:
-      - Visão geral: pt-BR/revisao-ccna-dc/index.md
+      - Visão geral: revisao-ccna-dc/index.md
       - "DCICN 640-911":
-          - Introdução: pt-BR/revisao-ccna-dc/640-911/index.md
-          - Modelos de Rede: pt-BR/revisao-ccna-dc/640-911/modelos-de-rede.md
-          - Endereçamento IPv4: pt-BR/revisao-ccna-dc/640-911/enderecamento-ipv4.md
-          - Serviços de Rede: pt-BR/revisao-ccna-dc/640-911/servicos-de-rede.md
-  - Roadmap: roadmap.md
+          - Introdução: revisao-ccna-dc/640-911/index.md
+          - Modelos de rede: revisao-ccna-dc/640-911/modelos-de-rede.md
+          - Endereçamento IPv4: revisao-ccna-dc/640-911/enderecamento-ipv4.md
+          - Serviços de rede: revisao-ccna-dc/640-911/servicos-de-rede.md
+  - Cisco U — DCCOR: cisco-u/index.md
+  - Por tecnologia: tecnologias.md

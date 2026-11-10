@@ -9,7 +9,7 @@ O material parte de anotações pessoais dos cursos originais e é complementado
 | Curso original | Escopo | Material |
 | --- | --- | --- |
 | **DCICN 640-911** | Fundamentos de redes, Ethernet, endereçamento IP, VLANs, STP e encaminhamento | [Acessar revisão do DCICN 640-911](640-911/index.md) |
-| **DCICT 640-916** | Tecnologias de Data Center do currículo histórico | Revisão planejada |
+| **DCICT 640-916** | Tecnologias de Data Center do currículo histórico | Curso em andamento — parte final; resumos pendentes |
 
 ## Como utilizar
 
@@ -20,3 +20,7 @@ O material parte de anotações pessoais dos cursos originais e é complementado
 5. Relacione o assunto às tecnologias abordadas no DCCOR.
 
 > **Organização:** os capítulos são produzidos e revisados progressivamente. Tópicos planejados não devem ser confundidos com material já concluído.
+
+## Andamento
+
+O curso **640-911 está concluído** e o **640-916 está na parte final**. As anotações acompanham o estudo; os resumos são publicados quando há tempo disponível. Consulte o [acompanhamento](../progress.md).

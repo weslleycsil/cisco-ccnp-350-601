@@ -1,27 +1,44 @@
-# Estudos — CCNP Data Center
+---
+hide:
+  - toc
+---
 
-Este guia reúne meus estudos para o **DCCOR 350-601**, com revisão de fundamentos, resumos e prática de laboratório.
+# Guia de estudos — CCNP Data Center
 
-## Onde estou
+Resumos em português sobre redes e tecnologias de Data Center, produzidos durante minha preparação para o **DCCOR 350-601** e compartilhados para ajudar outras pessoas a estudar.
 
-- **640-911:** curso concluído; resumos sendo publicados aos poucos.
-- **640-916:** parte final em andamento.
-- **Cisco U — DCCOR:** início previsto para a semana de **16/11/2026**.
+O material conecta fundamentos, funcionamento das tecnologias e exemplos práticos. Os capítulos são publicados e aprimorados aos poucos.
 
-Registro atualizado em **10/11/2026**. Consulte o [acompanhamento](progress.md) para os próximos registros.
+## Por onde começar
 
-## Acessos
+### Revisar os fundamentos
 
-| Área | Finalidade |
-| --- | --- |
-| [Revisão CCNA Data Center](revisao-ccna-dc/index.md) | Consolidar os fundamentos dos cursos 640-911 e 640-916 |
-| [Cisco U — DCCOR](cisco-u/index.md) | Encontrar os resumos pela sequência do curso |
-| [Índice por tecnologia](tecnologias.md) | Consultar os mesmos materiais por assunto |
-| [Roadmap](roadmap.md) | Orientar os próximos passos |
-| [Acompanhamento](progress.md) | Registrar estudo, resumo e prática separadamente |
+A [revisão CCNA Data Center](revisao-ccna-dc/index.md) retoma a base dos antigos cursos **640-911 e 640-916**, com contexto para os estudos de Data Center.
 
-## Como o material é produzido
+Comece pelos resumos já disponíveis:
 
-As anotações são feitas durante o estudo. Os resumos são preparados para o MkDocs quando há tempo disponível. A publicação de um resumo não é requisito para avançar no curso.
+- [Modelos de rede e arquitetura](revisao-ccna-dc/640-911/modelos-de-rede.md) — comunicação, arquitetura hierárquica, OSI e TCP/IP.
+- [Endereçamento IPv4](revisao-ccna-dc/640-911/enderecamento-ipv4.md) — endereços, máscaras, CIDR e sub-redes.
+- [Serviços de rede](revisao-ccna-dc/640-911/servicos-de-rede.md) — DHCP, NAT e PAT.
 
-A prática é registrada à parte, com laboratórios no CML quando a tecnologia e a imagem utilizada permitirem.
+Os cursos de origem pertencem a um currículo histórico. As observações nos capítulos ajudam a distinguir esses fundamentos das práticas e tecnologias atuais.
+
+### Acompanhar o conteúdo DCCOR
+
+O [índice do Cisco U — DCCOR](cisco-u/index.md) está preparado para receber os resumos pela sequência do curso. Essa parte está em preparação; os materiais serão adicionados conforme os estudos avançarem.
+
+### Consultar um assunto
+
+Use o [índice por tecnologia](tecnologias.md) para encontrar os materiais por tema ou a busca do site para localizar um termo específico. Os índices apontam para os mesmos resumos.
+
+## Sobre este projeto
+
+Sou **Weslley Silva** e mantenho este repositório público como uma forma de compartilhar conhecimento enquanto estudo. As anotações são feitas durante os cursos; os resumos são organizados para publicação quando tenho tempo disponível.
+
+Este é um material pessoal de apoio, em evolução, sem vínculo oficial com a Cisco. Ele complementa os cursos, a documentação oficial e a prática de laboratório.
+
+Encontrou um erro ou tem uma sugestão? [Abra uma issue no GitHub](https://github.com/weslleycsil/cisco-ccnp-350-601/issues). Você também pode [consultar o repositório e propor melhorias](https://github.com/weslleycsil/cisco-ccnp-350-601).
+
+## Planejamento dos estudos
+
+Meu [roadmap](roadmap.md) e o [acompanhamento](progress.md) registram o andamento do curso, a produção dos resumos e a prática separadamente.

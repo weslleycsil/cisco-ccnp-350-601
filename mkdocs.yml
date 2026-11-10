@@ -2,7 +2,7 @@
 site_name: Guia de Estudos CCNP DCCOR 350-601
 site_description: Guia de Estudos CCNP DCCOR 350-601
 site_author: Weslley Silva
-site_url: https://infra.expert/cisco_ccnp_350-601/
+site_url: https://infra.expert/cisco-ccnp-350-601/
 
 # Repository
 repo_name: weslleycsil/cisco-ccnp-350-601
@@ -35,7 +35,7 @@ theme:
         icon: material/toggle-switch-off
         name: Switch to system preference
   font:
-    text: Roboto
+    text: Source Sans 3
     code: Roboto Mono
     
 plugins:
@@ -53,6 +53,9 @@ plugins:
         #  build: true
         #  site_name: "Cisco ACI Guide"
         #  site_description: "Cisco ACI Guide"
+
+extra_css:
+  - stylesheets/reading.css
 
 # Extras
 extra:
